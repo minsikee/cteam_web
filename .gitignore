@@ -1,0 +1,7 @@
+/.metadata/
+.metadata
+/cteam/.settings/
+cteam/target/
+.metadata/.plugins/
+/iot/.settings/
+iot/target/
