@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 	<header style="padding: 15px 0; text-align: left;" >
 		<div style="margin-left:100px" class='category' >
@@ -8,7 +7,7 @@
 				<li><a href="list.co">회사소개</a></li>
 				<li><a href="list.no">공지사항</a></li>
 				<li><a href="list.sh">상품페이지</a></li>
-				<li><a href="list.bo">산책게시판</a></li>
+				<li><a href="list.bo">커뮤니티</a></li>
 				<li><a href="list.qn">문의게시판</a></li>			
 				<li><a href="list.my">마이페이지</a></li>		
 			</ul>

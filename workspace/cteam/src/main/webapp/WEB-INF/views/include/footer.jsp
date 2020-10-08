@@ -4,5 +4,5 @@
 <footer style="font-size:14px; border-top: 1px solid navy; padding: 20px 0;">
 	<div> 업체명 : 펫밀리</div>
 	<div> 연락처 : 010-2222-2222</div>
-	<div>Coptyright 2020.10.23</div>
+	<div>Copyright 2020.10.23</div>
 </footer>

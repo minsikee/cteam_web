@@ -6,6 +6,7 @@ body {
 	text-align: center;
 	font-family: 'Nanum Gothic', sans-serif;
 }
+
 a:hover, .font-img{cursor:pointer;}
 a:link, a:visited{ text-decoration: none; color: black; }
 a.btn-fill, a.btn-empty{
