@@ -6,7 +6,7 @@
 				<li><a href='<c:url value="/" />'><img src='img/hanul.logo.png'></li>
 				<li><a href="list.co">회사소개</a></li>
 				<li><a href="list.no">공지사항</a></li>
-				<li><a href="list.sh">상품페이지</a></li>
+				<li><a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } >상품페이지</a></li>
 				<li><a href="list.bo">커뮤니티</a></li>
 				<li><a href="list.qn">문의게시판</a></li>			
 				<li><a href="list.my">마이페이지</a></li>		
@@ -14,12 +14,13 @@
 		</div>
 
 	<div style="position:absolute; right:0; top:25px; margin-right:100px;">		
-		
+	<c:if test="${!empty login_info }">
 		<ul>
-			<li></li>
+			<li>${login_info.member_name }님 [${login_info.member_id }] 환영합니다</li>
 			<li><a class="btn-fill" onclick="go_logout()">로그아웃</a></li>
 		</ul>
-	
+	</c:if>
+	<c:if test="${empty login_info}">
 		<ul>
 			<li>
 				<span style="position:absolute; top:-14px; left:-120px; ">
@@ -28,17 +29,14 @@
 				</span>	
 			</li>
 			<li>
-		
+	
 				<li><a class='btn-fill' onclick="go_login()">로그인</a></li>
 				<li><a class='btn-empty' href="member">회원가입</a></li>
 			<li>
 		</ul>
 
-
+	</c:if>	
 	</div>
-
-
-
 	
 	</header>
 	
@@ -47,7 +45,8 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script>
 		function go_logout(){
-			ajax({
+
+				$.ajax({
 				url:'logout',
 				success:function(){
 					alert("로그아웃되었습니다");
@@ -75,7 +74,7 @@
 				data: {userid:$("#userid").val(), userpwd:$("#userpwd").val()},
 				success:function(data){
 						if(data){
-							alert("로그인성공");
+						//	alert("로그인성공");
 							location.reload();
 						}else{
 							alert("아이디나 비밀번호가 일치하지않습니다");

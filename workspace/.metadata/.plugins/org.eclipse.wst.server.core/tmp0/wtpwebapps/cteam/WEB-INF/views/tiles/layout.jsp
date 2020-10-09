@@ -13,7 +13,7 @@
 <body>
 <tiles:insertAttribute name="header" />
 <div id='content'>
-<%-- <tiles:insertAttribute name="content" /> --%>
+ <tiles:insertAttribute name="content" />
 </div>
 <tiles:insertAttribute name="footer" />
 </body>
