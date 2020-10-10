@@ -18,34 +18,34 @@
 <body>
 	<p style="margin: 0 auto; padding-bottom:5px; font-size:13px;" >*은 필수입력입니다</p>
 	<form action="join" method="post">
-		<table>
-			<tr><th>* 성명</th></tr>
+		<table class="w-px160">
+			<tr><th class="w-px160">* 성명</th></tr>
 				<td><input type="text" name="member_name" required="required"></td>
 			</tr>
-				<tr><th>* 아이디</th></tr>
+				<tr><th class="w-px160">* 아이디</th></tr>
 				<td><input type="text" name="member_id" required="required"></td>
 			</tr>
 				</tr>
-				<tr><th>* 비밀번호</th></tr>
+				<tr><th class="w-px160">* 비밀번호</th></tr>
 				<td><input type="text" name="member_pw" required="required"></td>
 			</tr>
 			</tr>
-				<tr><th>* 비밀번호 확인</th></tr>
+				<tr><th class="w-px160">* 비밀번호 확인</th></tr>
 				<td><input type="text" name="member_pw_ck" required="required"></td>
 			</tr>
 			</tr>
-				<tr><th>* 이메일</th></tr>
+				<tr><th class="w-px160">* 이메일</th></tr>
 				<td><input type="text" name="member_email" required="required"></td>
 			</tr>
 			</tr>
-				<tr><th>* 전화번호</th></tr>
+				<tr><th class="w-px160">* 전화번호</th></tr>
 				<td><input type="text" name="member_phonenum" maxlength="3">
 				-<input type="text" name="member_phonenum" maxlength="4">
 				-<input type="text" name="member_phonenum" maxlength="4"></td>
 			</tr>
 			<tr>
-				<tr><th>주소</th></tr>
-				<td><a>우편번호찾기</a> 
+				<tr><th class="w-px160">주소</th></tr>
+				<td><a class="btn-fill-s" onclick="daum_post()">우편번호찾기</a> 
 					<input type="text" name="post" maxlength="5" readonly><br/>
 					<input type="text" name="post" readonly/>
 					<input type="text" name="member_address"/>
