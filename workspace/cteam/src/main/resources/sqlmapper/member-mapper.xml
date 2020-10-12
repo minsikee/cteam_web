@@ -4,6 +4,10 @@
 	<select id="login" resultType="member.MemberVO">
 		select * from memberjoin where member_id= #{id} and member_pw = #{pwd}
 	</select>
+	
+	<select id="id_check" resultType="integer">
+		select COUNT(*) from memberjoin where member_id= #{userid}
+	</select>
 
 
 </mapper>

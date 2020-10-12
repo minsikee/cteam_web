@@ -11,8 +11,9 @@ body {
 a:hover, .font-img{cursor:pointer;}
 a:link, a:visited{ text-decoration: none; color: black; }
 a.btn-fill, a.btn-empty{
-	padding: 5px 20px;
-	background-color: green;
+	padding: 10px 30px;
+	width:200px;
+	background-color: #00db7d;
 	border-radius: 5px;
 	font-size: 20px;
 	box-shadow: 2px 2px 3px #022d72;
@@ -20,18 +21,81 @@ a.btn-fill, a.btn-empty{
 	
 }
 
+
 a.btn-fill{
-	background-color: green;	
+	background-color: #00db7d;	
 	color:white;
 }
 
 a.btn-empty{
 	background-color: white;	
+	color:#00db7d;
 }
 
 ul {list-style:none;}
 
-.w-px160{width:160px;}
+.w-pct50{ width: 50%; }
+.w-pct60{ width: 60%; }
+.w-pct70{ width: 70%; }
+.w-pct80{ width: 80%; }
+.w-pct90{ width: 90%; }
+
+.w-px40{ width: 40px; }
+.w-px50{ width: 50px; }
+.w-px60{ width: 60px; }
+.w-px70{ width: 70px; }
+.w-px80{ width: 80px; }
+.w-px90{ width: 90px; }
+.w-px100{ width: 100px; }
+.w-px160{ width: 160px; }
+.w-px180{ width: 180px; }
+.w-px200{ width: 200px; }
+
+
+
+input {
+	height: 22px;
+	padding: 3px 5px;
+	font-size: 15px;
+}
+
+a.btn-fill-s, a.btn-empty-s{
+	font-size:13px;
+	font-weight:bold;
+	text-align:center;
+	padding:5px 10px;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px #022d72;
+	color:pink;
+	
+}
+a.btn-fill-s {background-color:#666;}
+a.btn-empty-s{background-color: pink;}
+
+
+div.login{
+	width: 400px;
+	height: 400px;
+	margin:0 auto;
+	
+}
+
+
+a.btn-login{
+	
+	width: 320px;
+	height: 30px;
+	display:block;
+	text-align: center;
+
+	
+	
+}
+
+
+
+.btnSet a:not(:first-child) { margin-left: 5px;}
+.btnSet { margin-top: 50px;}
 
 
 /* table {
