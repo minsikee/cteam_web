@@ -32,7 +32,14 @@ a.btn-empty{
 	color:#00db7d;
 }
 
-ul {list-style:none;}
+
+ul { list-style:none; }
+
+
+ul.login-ul {list-style:none;
+	margin: 0 auto;
+	padding-left: 0;
+	}
 
 .w-pct50{ width: 50%; }
 .w-pct60{ width: 60%; }
@@ -83,12 +90,10 @@ div.login{
 
 a.btn-login{
 	
-	width: 320px;
+	width: 332px;
 	height: 30px;
 	display:block;
 	text-align: center;
-
-	
 	
 }
 
@@ -97,7 +102,7 @@ a.btn-login{
 .btnSet a:not(:first-child) { margin-left: 5px;}
 .btnSet { margin-top: 50px;}
 
-
+ul li a { margin: auto; }
 /* table {
 	width: 80%;
 	margin: 0 auto;

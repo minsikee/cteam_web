@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -33,6 +34,7 @@ import member.MemberVO;
 @Controller
 public class MemberController {
 	@Autowired private MemberServiceImpl service;
+	@Autowired private CommonService common;
 		
 
 	/* NaverLoginBO */
@@ -44,6 +46,29 @@ public class MemberController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
+	
+	
+	
+	//회원가입 
+	@ResponseBody @RequestMapping(value="/join", produces="text/html; charset=utf-8")
+	public String join(MemberVO vo, HttpServletRequest req, HttpSession session) {
+		
+		String msg="<script type='text/javascript'>";
+		if(service.member_insert(vo)) {
+			common.sendEmail(vo.getMember_email(),vo.getMember_name(),session);
+			msg+= "alert('회원가입이 완료되었습니다') location='"  
+			+ req.getContextPath()+"'";
+		}else {
+			msg+="alert('회원가입에 실패했습니다') history.go(-1)";
+			
+		}
+		
+			msg+="</script>";
+					
+		return msg;
+	}
+	
+	
 	// 네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
@@ -86,7 +111,7 @@ public class MemberController {
 	
 		//회원가입 요청
 		@RequestMapping("/member")
-		public String join(HttpSession session) {
+		public String member(HttpSession session) {
 			session.removeAttribute("category");
 			return "member/join";
 		}

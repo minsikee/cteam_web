@@ -16,7 +16,7 @@
  	userid : {
  		valid: {code:'valid' , desc:'아이디 중복확인하세요'},
  		invalid:{ code:'invalid', desc:'아이디는 영문,소문자,숫자만 입력하세요'},
- 		usable:{code:'valid', desc:'사용가능한 아이디입니다'},
+ 		usable:{ code:'valid', desc:'사용가능한 아이디입니다'},
  		unUsable:{ code:'invalid', desc:'사용중인 아이디입니다'},
  	
  	},
@@ -26,7 +26,7 @@
  		
  		if( id =='')					return this.common.empty;
  		else if( id.match( space ) )	return this.common.space;
- 		else if(  reg.test(id) )			return this.userid.invalid;
+ 		else if( reg.test(id) )			return this.userid.invalid;
  		else if (id.length < 5 )		return this.common.min;
  		else if (id.length > 10 ) 		return this.common.max;
  		else							return this.userid.valid;
@@ -38,37 +38,49 @@
  	},
  	
  	userpwd : {
- 		vaild : {code: 'valid', desc:'사용가능한 비밀번호입니다'},
+ 		valid : {code: 'valid', desc:'사용가능한 비밀번호입니다'},
  		invalid:{code:'invalid', desc:'비밀번호는 소문자, 숫자, 특수문자만 입력하세요'},
- 		lack:{code:'invalid', desc:'영문 대/소문자, 숫자, 특수문자를 모두 포함해야 합니다'},
+ 		lack:{code:'invalid', desc:'영문, 숫자, 특수문자를 포함해야 합니다'},
  		equal: {code:'valid', desc:'비밀번호가 일치합니다'},
  		notEqual:{code:'invalid', desc:'비밀번호가 일치하지 않습니다'}
  	},
  	
+ 	
+ 	
  	userpw_status:function( pwd ){
- 		var reg=/[^a-zA-z0-9^\[\]\$\(\)\|  \*  \+  \?  \{\}]/g;
- 		var upper =/[A-Z]/g, lower=/[a-z]/g, digit=/[0-9]/g, special=/[\[\]\$\(\)\|  \*  \+  \?  \{\} ]/g
+ 		//var reg=/(?=.*\d{1,10})(?=.*[~`!@#$%\^&*()-+=]{1,10})(?=.*[a-zA-Z]{1,10}).{8,10}$/i;
+ 		reg = /[^a-z0-9~`!@#$%\^&*()-+=]/g;
+ 		var lower=/[a-z]/g, digit=/[0-9]/g, special=/[~!@#$%^&*()_+|<>?:{}]/g
  		if( pwd=='') return this.common.empty;
  		else if(pwd.match(space)) return this.common.space;
  		else if(reg.test(pwd)) return this.userpwd.invalid;
  		else if(pwd.length < 5 ) return this.common.min;
  		else if(pwd.length > 10 ) return this.common.max;
- 		else if(!upper.test(pwd) || !lower.test(pwd) || !digit.test(pwd))
- 				return this.userpwd.lack;
+ 		else if(!lower.test(pwd) || !digit.test(pwd) || !special.test(pwd) ) return this.userpwd.lack;
  		else	return this.userpwd.valid;
  		
  	},
- 	
- 	usermail : {
+ 	userpw_ck_status: function( pwd_ck ){
+ 		if( pwd_ck==$('[name=member_pw]').val() ) return this.userpwd.equal;
+ 		else		return this.userpwd.notEqual;
  		
  	},
  	
- 	userpw_ck_status( pwd_ck ){
  	
+ 	useremail : {
+ 	 	valid: {code:'valid',desc:'유효한 이메일입니다.'},
+ 	 	invalid:{code:'invalid',desc:'유효하지않은 이메일입니다'}
+ 		
  	},
- 	useremail_status( email ){
  	
- 	},
+ 	useremail_status:function( email ){
+ 		var reg=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+ 		if(email=='')					return this.common.empty;
+ 		else if( email.match(space) )	return this.common.space;
+ 		else if( reg.test(email) ) 		return this.useremail.valid;
+ 		else							return this.useremail.invalid;
+ 	},	
+ 
  	
  	tag_status : function( tag ) {
  		var data= tag.val();

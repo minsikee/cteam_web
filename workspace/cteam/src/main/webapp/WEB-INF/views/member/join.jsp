@@ -8,8 +8,8 @@
 <title>회원가입창</title>
 <style type="text/css">
 	table tr td input{ width:300px; height: 40px; }
-	table tr td input[name=member_phonenum], table tr td input[name=post]{width:70px; text-align: center;}
-	table tr td input[name=post],table tr td input[name=member_address]{margin-bottom: 10px;} 
+	table tr td input[name=member_phonenum], table tr td input[name=member_post]{width:70px; text-align: center;}
+	table tr td input[name=member_post],table tr td input[name=member_address]{margin-bottom: 10px;} 
 	table tr th, table tr td{ text-align: left; }
 	.valid{ color: green }
 	.invalid{ color: red }
@@ -22,7 +22,7 @@
 <body>
 	<p class="w-pct60" style="margin: 0 auto; padding-bottom:5px; font-size:13px;" >*은 필수입력입니다</p>
 	<form action="join" method="post">
-		<table class="w-pct60">
+		<table class="w-pct60" style="margin: 0 auto">
 			<tr><th class="w-px160">* 성명</th>
 				<td><input type="text" name="member_name" required="required"></td>
 			</tr>
@@ -33,14 +33,14 @@
 				
 			</tr>
 			<tr><th class="w-px160">* 비밀번호</th>
-				<td><input type="text" name="member_pw" class='chk' required="required">
+				<td><input type="password" name="member_pw" class='chk' required="required">
 				<div class="valid">비밀번호를 입력하세요(영문 대/소문자, 숫자, 특수문자를 모두 포함 8-12자.)</div>
 				
 				</td>
 			</tr>
 			<tr>
 				<th class="w-px160">* 비밀번호 확인</th>
-				<td><input type="text" name="member_pw_ck" class='chk' required="required">
+				<td><input type="password" name="member_pw_ck" class='chk' required="required">
 				<div class="valid">비밀번호를 다시 입력하세요</div>
 				</td>
 			</tr>
@@ -54,10 +54,28 @@
 				- <input type="text" name="member_phonenum" maxlength="4">
 				- <input type="text" name="member_phonenum" maxlength="4"></td>
 			</tr>
+			
+			<tr><th class="w-px160">* 비밀번호 찾기 질문</th>
+				<td>
+					<select> 
+						<option value="1">롤모델의 이름<option> 
+						<option value="2">당신의 꿈</option> 
+						<option value="3">사랑하는 펫의 이름</option> 
+						<option value="4">펫을 데려온 날짜</option> 
+						<option value="5">인상깊게 본 영화의 제목</option> 
+						
+					</select>
+
+				</td>
+			</tr>
+			<tr><th class="w-px160">* 비밀번호 찾기 답</th>
+				<td><input type="text" name="member_answer" class='chk' required="required"></td>
+			</tr>
 			<tr>
 				<th class="w-px160">주소</th>
-				<td><a class="btn-fill-s" onclick="daum_post()" >우편번호찾기</a> 
-					<input type="text" name="post" maxlength="5" readonly><br/>
+				<td>
+					<input type="text" name="member_post" maxlength="5" readonly>
+					<a class="btn-fill-s" onclick="daum_post()" >우편번호찾기</a> <br/>
 					<input type="text" name="member_address" readonly/>
 					<input type="text" name="member_address"/>
 				</td>	
@@ -181,7 +199,7 @@
 		function validate(tag){
 
 			var data= join.tag_status(tag);
-			display_status(tag.silblings('div'), data);
+			display_status(tag.siblings('div'), data);
 		}
 
 
@@ -201,8 +219,8 @@
 					var member_address 
 						= data.userSelectedType =='J' ? data.jibunAddress:data.roadAddress;
 					if(data.buildingName != '')
-						address +='('+data.buildingName+')';
-					$('[name=member_address]').eq(0).val(address);	
+						member_address +='('+data.buildingName+')';
+					$('[name=member_address]').eq(0).val(member_address);	
 
 				}
 			}).open();

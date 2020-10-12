@@ -7,7 +7,31 @@ public class MemberVO {
 	private String member_phonenum;
 	private String member_question;
 	private String member_answer;
+	private String member_email;
+	private String member_address;
+	private String member_post;
+
 	
+	
+	
+	public String getMember_address() {
+		return member_address;
+	}
+	public void setMember_address(String member_address) {
+		this.member_address = member_address;
+	}
+	public String getMember_post() {
+		return member_post;
+	}
+	public void setMember_post(String member_post) {
+		this.member_post = member_post;
+	}
+	public String getMember_email() {
+		return member_email;
+	}
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
+	}
 	
 	public String getMember_id() {
 		return member_id;

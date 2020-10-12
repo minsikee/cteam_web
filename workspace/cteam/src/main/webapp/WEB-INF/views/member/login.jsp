@@ -26,20 +26,21 @@
 			</c:when>
 			<c:otherwise>
 				<div class="login">
-					<ul>
+					<ul class="login-ul" style="overflow: hidden;">
 							<li><h3>로그인</h3></li>
+							<br/>
 							<li>
 								<span>
-								<input type="text" style="margin-bottom: 10px; width:100%; height:40px;" id="userid" placeholder="아이디"/>		<br/>
-								<input onkeypress="if(event.keyCode==13){go_login()}" style="width:100%; height:40px;" type="password" id="userpwd" placeholder="비밀번호"/>
+								<input type="text" style="margin-bottom: 10px; width:356px; padding: 0 20px; height:40px;" id="userid" placeholder="아이디"/>		<br/>
+								<input onkeypress="if(event.keyCode==13){go_login()}" style="width:356px; padding:0 20px; height:40px;" type="password" id="userpwd" placeholder="비밀번호"/>
 								</span>	
 							</li>
 							
-								<li><a href="idFind" style="font-size: 15px;">아이디찾기 ｜</a></li>
-								<li><a href="pwFind">비밀번호찾기</a></li>
+							<li style="margin-top:10px; float: right;"><a href="pwFind" style="font-size: 13px; ">비밀번호찾기</a></li>
+							<li style="margin-top:10px;  float: right;" ><a href="idFind" style="font-size: 13px; ">아이디찾기 ｜</a></li>
 							
-								<li style="margin:10px 0;"><a class='btn-fill btn-login'  onclick="go_login()">로그인</a></li>
-								<li style="margin:10px 0;"><a href="member" class='btn-empty btn-login'>회원가입</a></li>
+							<li style="margin:50px 0 10px 0; text-align: center;"><a class='btn-fill btn-login' onclick="go_login()">로그인</a></li>
+							<li style="margin-bottom:10px; text-align: center;"><a href="member" class='btn-empty btn-login'>회원가입</a></li>
 					</ul>
 			
 				<!-- 네이버 로그인 창으로 이동 -->
