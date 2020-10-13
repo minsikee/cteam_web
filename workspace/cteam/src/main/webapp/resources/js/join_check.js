@@ -80,6 +80,18 @@
  		else if( reg.test(email) ) 		return this.useremail.valid;
  		else							return this.useremail.invalid;
  	},	
+ 	
+ 	answer:{
+ 		valid:{code:'valid',desc:'비밀번호 찾기 답이 입력되었습니다'}
+
+ 	},
+ 	
+ 	useranswer_status:function( answer ) {
+ 		if(answer=='')					return this.common.empty;
+ 		 else if( answer.match(space) )	return this.common.space;
+ 		 else							return this.answer.valid;
+ 		
+ 	},
  
  	
  	tag_status : function( tag ) {
@@ -89,6 +101,7 @@
  		else if(tag == 'member_pw') 	data = this.userpw_status(data);
  		else if(tag == 'member_pw_ck') 	data = this.userpw_ck_status(data);
  		else if(tag == 'member_email') 	data = this.useremail_status(data);
+ 		else if(tag == 'member_answer') data = this.useranswer_status(data);
  	
  		return data;
  	}

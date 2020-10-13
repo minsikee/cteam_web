@@ -1,5 +1,6 @@
 package com.hanul.cteam;
 
+import java.io.Console;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
@@ -54,10 +55,11 @@ public class MemberController {
 	public String join(MemberVO vo, HttpServletRequest req, HttpSession session) {
 		
 		String msg="<script type='text/javascript'>";
+		System.out.println(vo.getMember_answer()+vo.getMember_question());
+		
 		if(service.member_insert(vo)) {
 			common.sendEmail(vo.getMember_email(),vo.getMember_name(),session);
-			msg+= "alert('회원가입이 완료되었습니다') location='"  
-			+ req.getContextPath()+"'";
+			msg+= "alert('회원가입이 완료되었습니다'); location='http://192.168.0.100:8089/cteam/loginPage'";
 		}else {
 			msg+="alert('회원가입에 실패했습니다') history.go(-1)";
 			

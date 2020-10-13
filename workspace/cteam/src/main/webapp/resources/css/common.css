@@ -25,11 +25,14 @@ a.btn-fill, a.btn-empty{
 a.btn-fill{
 	background-color: #00db7d;	
 	color:white;
+	width:200px;
 }
 
 a.btn-empty{
 	background-color: white;	
 	color:#00db7d;
+	width:200px;
+	
 }
 
 
@@ -83,7 +86,8 @@ a.btn-empty-s{background-color: pink;}
 div.login{
 	width: 400px;
 	height: 400px;
-	margin:0 auto;
+	margin:100px auto;
+
 	
 }
 
@@ -100,9 +104,25 @@ a.btn-login{
 
 
 .btnSet a:not(:first-child) { margin-left: 5px;}
-.btnSet { margin-top: 50px;}
+.btnSet { 
+		text-align: center; 
+		margin: 20px auto}
 
 ul li a { margin: auto; }
+
+
+table{
+	width:80%;
+	margin: 0 auto;
+	text-align: center;
+	
+	
+}
+
+select { height:32px; }
+
+
+
 /* table {
 	width: 80%;
 	margin: 0 auto;
@@ -114,7 +134,7 @@ ul li a { margin: auto; }
 table th, table td {
 	border: 1px solid black;
 	padding: 5px 10px;
-}
+}v
 
 table th {
 	background-color: #FFEBFF;
