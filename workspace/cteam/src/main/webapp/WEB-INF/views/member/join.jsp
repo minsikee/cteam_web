@@ -8,11 +8,12 @@
 <title>회원가입창</title>
 <style type="text/css">
 	table tr td input{ width:300px; height: 40px; }
-	table tr td input[name=member_phonenum], table tr td input[name=member_post]{width:70px; text-align: center;}
+	table tr td input[name=member_post]{width:70px; text-align: center;}
 	table tr td input[name=member_post],table tr td input[name=member_address]{margin-bottom: 10px;} 
 	table tr th, table tr td{ text-align: left; }
-	.valid{ color: green }
-	.invalid{ color: red }
+	
+	.valid{ color: green; font-size: 12px;}
+	.invalid{ color: red; font-size: 12px; }
 	
 </style>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -20,21 +21,25 @@
 </head>
 
 <body>
-	<p class="w-pct60" style="margin: 0 auto; padding-bottom:5px; font-size:13px;" >*은 필수입력입니다</p>
-	<form action="join" method="post">
+<div style="margin:30px auto; text-align: center">
+	<h1 class="w-pct60" style=" margin:0 auto; padding-bottom:10px; font-size:20px; font-weight: bold;" >회원가입</h1>
+	<br/>
+	<p class="w-pct60" style="text-align:left; margin: 0 auto; padding-bottom:5px; font-size:13px;" >*은 필수입력입니다</p>
+	
+	<form action="join" method="post" >
 		<table class="w-pct60" style="margin: 0 auto">
 			<tr><th class="w-px160">* 성명</th>
 				<td><input type="text" name="member_name" required="required"></td>
 			</tr>
 			<tr><th class="w-px160">* 아이디</th>
-				<td><input type="text" name="member_id" class='chk' required="required"><a class="btn-fill-s" id="btn-id">아이디 중복확인</a>
+				<td><input type="text" name="member_id" class='chk' required="required"><a class="btn-fill-s" id="btn-id" style="margin-left:10px;">아이디 중복확인</a>
 				<div class="valid">아이디를 입력하세요(영문 소문자, 숫자만 입력가능합니다.)</div>
 				</td>
 				
 			</tr>
 			<tr><th class="w-px160">* 비밀번호</th>
 				<td><input type="password" name="member_pw" class='chk' required="required">
-				<div class="valid">비밀번호를 입력하세요(영문 대/소문자, 숫자, 특수문자를 모두 포함 8-12자.)</div>
+				<div class="valid">비밀번호를 입력하세요(영문, 숫자, 특수문자를 모두 포함 8-12자.)</div>
 				
 				</td>
 			</tr>
@@ -50,26 +55,27 @@
 				</td>
 			</tr>
 			<tr><th class="w-px160">* 전화번호</th>
-				<td><input type="text" name="member_phonenum" maxlength="3">
-				- <input type="text" name="member_phonenum" maxlength="4">
-				- <input type="text" name="member_phonenum" maxlength="4"></td>
+				<td><input type="text" name="member_phonenum" maxlength="11" onKeyup="SetNum(this);"></td>
 			</tr>
 			
-			<tr><th class="w-px160">* 비밀번호 찾기 질문</th>
+			<tr style="margin:10px 0;">
+				<th class="w-px160">* 비밀번호 찾기 질문</th>
 				<td>
-					<select> 
-						<option value="1">롤모델의 이름<option> 
-						<option value="2">당신의 꿈</option> 
-						<option value="3">사랑하는 펫의 이름</option> 
-						<option value="4">펫을 데려온 날짜</option> 
-						<option value="5">인상깊게 본 영화의 제목</option> 
-						
+					<select name="member_question"> 
+						<option value="당신이 가장 존경하는 사람은?">당신이 가장 존경하는 사람은?</option> 
+						<option value="당신의 반려동물의 이름은?">당신의 반려동물의 이름은?</option> 
+						<option value="당신의 반려동물을 입양한 날짜는?">당신의 반려동물을 입양한 날짜는?</option> 
+						<option value="당신의 보물 1호는?">당신의 보물 1호는?</option> 
+						<option value="당신이 가장 인상깊게 본 영화의 제목은?">당신이 가장 인상깊게 본 영화의 제목은?</option> 
 					</select>
-
 				</td>
 			</tr>
 			<tr><th class="w-px160">* 비밀번호 찾기 답</th>
-				<td><input type="text" name="member_answer" class='chk' required="required"></td>
+				<td><input type="text" name="member_answer" class='chk' required="required">
+					<div class="valid">비밀번호 찾기 답을 입력하세요</div>
+					
+				</td>
+				
 			</tr>
 			<tr>
 				<th class="w-px160">주소</th>
@@ -77,16 +83,17 @@
 					<input type="text" name="member_post" maxlength="5" readonly>
 					<a class="btn-fill-s" onclick="daum_post()" >우편번호찾기</a> <br/>
 					<input type="text" name="member_address" readonly/>
-					<input type="text" name="member_address"/>
+					<input type="text" name="member_address2" value="상세주소를 입력하세요" onfocus="this.value=''"/>
 				</td>	
 			</tr>
 				
 		</table>
 	</form>
-	<div class="btnSet">
-		<a class="btn-fill" onclick="go_join()">회원가입</a>
-		<a class="btn-empty" onclick="history.go(-1)">취소</a>
+	<div class="btnSet" >
+		<a class="btn-fill" onclick="go_join()" style="display: inline-block; width:200px;">회원가입</a>
+		<a class="btn-empty" onclick="history.go(-1)" style="display: inline-block; width:200px; ">취소</a>
 	</div>
+</div>	
 
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -94,6 +101,18 @@
 		
 	<script type="text/javascript">
 
+
+		function SetNum(obj) {
+		 
+		 if ((event.keyCode <= 27) || (event.keyCode >= 33 && event.keyCode <= 46) || (event.keyCode >= 91 && event.keyCode <= 93) || (event.keyCode >= 112 && event.keyCode <= 145)) {
+		  return false;
+		 }
+		 
+		 val=obj.value;
+		 re=/[^0-9]/gi;
+		 obj.value=val.replace(re,"");
+		 
+		}
 	
 		function go_join(){
 			if( $('[name=member_name]').val()==''){
@@ -125,6 +144,8 @@
 			if( !item_check ($('[name=member_pw_ck]')) ) return;
 
 			if( !item_check ($('[name=member_email]')) ) return;
+
+			if( !item_check ($('[name=member_answer]')) ) return;
 
 			$('form').submit();
 		
@@ -215,7 +236,7 @@
 		function daum_post(){
 			new daum.Postcode({
 				oncomplete:function(data){
-					$('[name=post]').val(data.zonecode);//우편번호
+					$('[name=member_post]').val(data.zonecode);//우편번호
 					var member_address 
 						= data.userSelectedType =='J' ? data.jibunAddress:data.roadAddress;
 					if(data.buildingName != '')

@@ -9,11 +9,17 @@ public class MemberVO {
 	private String member_answer;
 	private String member_email;
 	private String member_address;
+	private String member_address2;
 	private String member_post;
 
 	
 	
-	
+	public String getMember_address2() {
+		return member_address2;
+	}
+	public void setMember_address2(String member_address2) {
+		this.member_address2 = member_address2;
+	}
 	public String getMember_address() {
 		return member_address;
 	}
