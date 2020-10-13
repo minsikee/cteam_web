@@ -16,7 +16,7 @@ table, table th, table td {
 </head>
 <body>
 
-<div class='body'>
+<div>
 
 <form action='insert.bo' method='post' enctype='multipart/form-data'>
 	<!-- 게시글 작성 -->

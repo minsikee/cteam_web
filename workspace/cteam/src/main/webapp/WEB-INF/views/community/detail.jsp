@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class='body'>
+<div>
 
 	<!-- 상단 메뉴 -->
 	<div style='width:100%; float:left; margin:10px 0;' >

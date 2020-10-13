@@ -91,7 +91,7 @@ function company_map() {
 </head>
 <body>
 
-<div class='body'>
+<div>
 
 	<!-- 상단 그냥 괜히 놔둔 바 -->
 	<div style='width:100%; float:left; margin:10px 0;' >

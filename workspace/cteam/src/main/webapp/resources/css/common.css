@@ -6,6 +6,7 @@ body {
 	text-align: center;
 	font-family: 'Nanum Gothic', sans-serif;
 	width: 80%;
+	overflow: hidden;
 }
 
 a:hover, .font-img{cursor:pointer;}
@@ -51,12 +52,7 @@ ul.login-ul {list-style:none;
 /* --------------- 추가한 부분 --------------- */
 /* --------------- 추가한 부분 --------------- */
 	
-
-div .body {
-	width: 80%;
-	margin: 0 auto;
-	overflow: hidden;	
-}
+	
 
 .w-pct50{ width: 50%; }
 .w-pct60{ width: 60%; }
