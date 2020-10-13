@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 	<header style="padding: 15px 0; text-align: left;" >
 		<div style="margin-left:100px" class='category' >
 			<ul>
-				<li><a href='<c:url value="/" />'><img src='img/hanul.logo.png'></li>
+				<li><a href='<c:url value="/" />'><img src='img/catbody.png'></li>
 				<li><a href="list.co">회사소개</a></li>
 				<li><a href="list.no">공지사항</a></li>
 				<li><a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } >상품페이지</a></li>
@@ -11,7 +11,7 @@
 				<li><a href="list.qn">QNA</a></li>		
 				<li><a href="">반려동물정보</a></li>		
 				<li><a href="">내 펫 정보</a></li>	
-				<li><a href="list.my">마이페이지</a></li>		
+						
 			</ul>
 		</div>
 
@@ -19,6 +19,7 @@
 	<c:if test="${!empty login_info }">
 		<ul>
 			<li>${login_info.member_name }님 [${login_info.member_id }] 환영합니다</li>
+			<li><a href="list.my"  ${category eq 'my' ? 'class="active"' : '' }>마이페이지</a></li>
 			<li><a onclick="go_logout()">로그아웃</a></li>
 		</ul>
 	</c:if>
