@@ -91,8 +91,6 @@ function company_map() {
 </head>
 <body>
 
-<div>
-
 	<!-- 상단 그냥 괜히 놔둔 바 -->
 	<div style='width:100%; float:left; margin:10px 0;' >
 		<div style='width:90%; margin:0 auto;'>
@@ -224,8 +222,6 @@ function company_map() {
 			</span>
 		</div>
 	</div>
-	
-</div>
 
 </body>
 </html>

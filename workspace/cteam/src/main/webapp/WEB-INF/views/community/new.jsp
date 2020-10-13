@@ -16,8 +16,6 @@ table, table th, table td {
 </head>
 <body>
 
-<div>
-
 <form action='insert.bo' method='post' enctype='multipart/form-data'>
 	<!-- 게시글 작성 -->
 	<div style='width:100%; float:left; background-color:yellow;' >	
@@ -76,8 +74,6 @@ table, table th, table td {
 		<button><a href='list.bo'>취소</a></button>
 		<button onclick='$("form").submit()'>글쓰기</button>
 	</div>
-
-</div>
 
 </body>
 </html>

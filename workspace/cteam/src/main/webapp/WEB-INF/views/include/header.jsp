@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <header style='background-color:white;' >
-	<div style='width:80%; margin:0 auto; padding:25px 0px 0px 0px; overflow:hidden;'>
+	<div style='margin:0 auto; padding:25px 0px 0px 0px; overflow:hidden;'>
 	
 		<!-- 헤더 윗줄 : 로고 & 로그인 -->
 		<div style='width:100%; height:100px; float:left;'>

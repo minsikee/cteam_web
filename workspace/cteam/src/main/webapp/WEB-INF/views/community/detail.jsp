@@ -11,8 +11,6 @@
 </head>
 <body>
 
-<div>
-
 	<!-- 상단 메뉴 -->
 	<div style='width:100%; float:left; margin:10px 0;' >
 		<div style='width:90%; margin:0 auto;'>
@@ -69,8 +67,6 @@
 			</span>
 		</div>
 	</div>
-
-</div>
 
 </body>
 </html>
