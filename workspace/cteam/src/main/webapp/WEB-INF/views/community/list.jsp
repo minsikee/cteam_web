@@ -15,7 +15,7 @@ table td { overflow: hidden; text-overflow:ellipsis; white-space: nowrap; }
 <body>
 
 <form method='post' action='list.bo'>
-<div class='body'>
+<div>
 <input type="hidden" name="curPage" value="1">
 	
 	<!-- 상단 메뉴 -->
