@@ -13,6 +13,13 @@
 
 </sql>
 
+	<select id="detail" resultType="shop.ShopVO">
+		select * 
+		from sell_item
+		where item_num = #{item_num}
+		
+	</select>
+
 
 	<select id="total" resultType="Integer">
 		select count(*)	

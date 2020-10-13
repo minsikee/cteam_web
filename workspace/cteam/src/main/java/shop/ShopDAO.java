@@ -25,8 +25,7 @@ public class ShopDAO implements ShopService {
 
 	@Override
 	public ShopVO shop_detail(int item_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne("shop.mapper.detail",item_num);
 	}
 
 	@Override

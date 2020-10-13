@@ -37,7 +37,7 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 			<h3 style="text-align: left;">iot 방석</h3>
 			
 			<ul>
-				<li>
+				<li style="float:right'">
 					<select id="search" name="search" class='w-px80'>
 					<option value='all' ${page.search eq 'all' ? 'selected' : '' } >전체</option>
 					<option value='item_content' ${page.search eq 'item_content' ? 'selected' : '' } >내용</option>

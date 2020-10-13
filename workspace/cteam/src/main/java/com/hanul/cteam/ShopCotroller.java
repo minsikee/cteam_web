@@ -35,9 +35,13 @@ public class ShopCotroller {
 	
 	
 	@RequestMapping("/item.detail")
-	public String itemDetail(HttpSession session) {
+	public String itemDetail(Model model, int item_num) {
 		
-		session.removeAttribute("category");
+		model.addAttribute("vo",service.shop_detail(item_num));
+		model.addAttribute("crlf","\r\n");
+		model.addAttribute("lf","\n");
+		model.addAttribute("page",page);
+		
 		return "shop/itemDetail1";
 	}
 	
