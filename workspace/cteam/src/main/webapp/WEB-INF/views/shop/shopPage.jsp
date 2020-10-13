@@ -55,7 +55,7 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 						<div style="width: 306px; box-sizing: border-box;" >
 							<a href="javascript:go_detail(${vo.item_num })">${empty vo.item_imgpath ? '' : '<img class="shop-img" src=""/>' }</a>	
 							<a href="javascript:go_detail(${vo.item_num })">
-								<span class="item-name">${vo.item_name}</span>
+								<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
 								<span class="item-price">${vo.item_price}</span>
 							</a>
 						</div>

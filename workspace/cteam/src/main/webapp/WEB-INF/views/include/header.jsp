@@ -1,40 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-	<header style="padding: 15px 0; text-align: left;" >
-		<div style="margin-left:100px" class='category' >
-			<ul>
-				<li><a href='<c:url value="/" />'><img src='img/catbody.png'></li>
-				<li><a href="list.co">회사소개</a></li>
-				<li><a href="list.no">공지사항</a></li>
-				<li><a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } >상품페이지</a></li>
-				<li><a href="list.bo">커뮤니티</a></li>
-				<li><a href="list.qn">QNA</a></li>		
-				<li><a href="">반려동물정보</a></li>		
-				<li><a href="">내 펫 정보</a></li>	
-						
-			</ul>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<header style='background-color:white;' >
+	<div style='width:80%; margin:0 auto; padding:25px 0px 0px 0px; overflow:hidden;'>
+	
+		<!-- 헤더 윗줄 : 로고 & 로그인 -->
+		<div style='width:100%; height:100px; float:left;'>
+			<a href='<c:url value="/" />'><img src='img/cteam_logo1.png' width='250px' height='100px'>
+			
 		</div>
 
-	<div style="position:absolute; right:0; top:25px; margin-right:100px;">		
-	<c:if test="${!empty login_info }">
-		<ul>
-			<li>${login_info.member_name }님 [${login_info.member_id }] 환영합니다</li>
-			<li><a href="list.my"  ${category eq 'my' ? 'class="active"' : '' }>마이페이지</a></li>
-			<li><a onclick="go_logout()">로그아웃</a></li>
-		</ul>
-	</c:if>
-	<c:if test="${empty login_info}">
-		<ul>	
-			<li><a href="loginPage">로그인</a></li>
-			<li><a href="member">회원가입</a></li>
-		</ul>
+		<!-- 헤더 아랫줄 : 메뉴버튼 -->
+		<div id='header_menu' style='width:100%; float:left; overflow:hidden;'>
+			<a href="intro.co"><div class='header_menu'>회사소개</div></a>
+			<a href="list.no"><div class='header_menu'>공지사항</div></a>
+			<a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } ><div class='header_menu'>상품페이지</div></a>
+			<a href="list.bo"><div class='header_menu'>커뮤니티</div></a>
+			<a href="list.qn"><div class='header_menu'>Q&A</div></a>	
+			<a href=""><div class='header_menu'>반려동물정보</div></a>
+			<a href=""><div class='header_menu'>내펫정보</div></a>
+			<div class='header_menu1'>
+			
+				<c:if test="${!empty login_info }">
+					<a href="list.my"  ${category eq 'my' ? 'class="active"' : '' }><div class='header_menu2'>마이페이지</div></a>
+					<a onclick="go_logout()"><div class='header_menu2'>로그아웃</div></a>
+				</c:if>
+				
+				<c:if test="${empty login_info}">
+					<a href="loginPage"><div class='header_menu2'>로그인</div></a>
+					<a href="member"><div class='header_menu2'>회원가입</div></a>
+				</c:if>
 
-	</c:if>	
+			</div>
+		</div>
+	
 	</div>
-	
-	</header>
-	
-	
+</header>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script>
@@ -50,7 +51,6 @@
 				}
 				
 			});
-	
 			
 		}
 		
@@ -72,15 +72,42 @@
         }
     </script>
 	
-	
 	<style type="text/css">
-		header ul, header ul li { margin: 0;   padding: 0; display:inline; }
+		.header_menu, .header_menu1 { 
+			width:12.5%;
+			height: 60px;
+			float: left;
+		}
+		.header_menu2 {
+			width: 100%;
+			height: 30px;
+			margin: 0 auto;
+		}
+		#header_menu a:not(:last-child),
+		#header_menu a:not(:nth-child(1))
+		 {
+			line-height: 60px;
+			font-size: 20px;
+			color: #000000;
+		}
+		#header_menu a:last-child,
+		#header_menu a:nth-child(1)  {
+			line-height: 30px;
+			font-size: 18px;
+			color: #000000;
+		}
+		.header_menu:hover, .header_menu2:hover { 
+			background-color: #666666;
+			color: #FFFFFF;
+		}
+		
+	/*
+		header ul, header ul li { margin: 0; padding: 0; }
 		header div.category{font-size:18px;}
 		header div.category li:not(:first-child) {padding-left:30px;}
 		header div.category li a:hover, header div.category li a.active{ font-weight:bold; color:pink; } 
 	
-		
 		header li input{ display:block; }
 		#userid, #userpwd{width:100px; height: 20px;}
-
+	*/
 	</style>

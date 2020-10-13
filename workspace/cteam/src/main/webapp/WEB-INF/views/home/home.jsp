@@ -10,7 +10,6 @@
 </head>
 <body>
 	<div>
-		 <img src='img/hanul.png' style="width: 80%"/>
 		
 		<h1>메인화면</h1>
 	</div>
