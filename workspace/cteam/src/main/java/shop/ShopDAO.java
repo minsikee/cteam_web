@@ -37,7 +37,7 @@ public class ShopDAO implements ShopService {
 	@Override
 	public int shop_delete(int item_num) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.delete("shop.mapper.delete",item_num);
 	}
 
 }

@@ -32,21 +32,25 @@ public class ShopCotroller {
 	
 	
 	@RequestMapping("/delete.sh")
-	public String delete() {
+	public String delete(int item_num, Model model) {
 		
-		return "shop/itemDelete";
+		service.shop_delete(item_num);
+		model.addAttribute("page",page);
+		model.addAttribute("url","list.sh");
+		
+		return "shop/redirect";
 	}
 
 	
 	
 	@RequestMapping("/modify.sh")
-	public String modify() {
+	public String modify(int item_num, Model model) {
 		
 		return "shop/itemModify";
 	}
 
 	
-	
+	//상세보기
 	@RequestMapping("/item.detail")
 	public String itemDetail(Model model, int item_num) {
 		

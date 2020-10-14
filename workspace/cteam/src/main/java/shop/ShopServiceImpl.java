@@ -30,8 +30,7 @@ public class ShopServiceImpl implements ShopService{
 
 	@Override
 	public int shop_delete(int item_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.shop_delete(item_num);
 	}
 
 }

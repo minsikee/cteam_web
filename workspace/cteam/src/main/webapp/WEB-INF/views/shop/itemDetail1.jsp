@@ -24,6 +24,7 @@
  a.modify-btn, a.delete-btn {padding:5px;}
  a.modify-btn{background-color: #EAEAEA; color: #747474;}
  a.delete-btn{background-color: black; color: white;}
+ input[type=number] {width:30px;}
  
 </style> 
 </head>
@@ -57,9 +58,30 @@
 				<div class='list'>
 					
 				</div>
-				<div class="buy-div">
-					<a class="buy-btn" href="" >buy it now</a>
-					<a class="cart-btn" href="">add cart</a>
+				<div class="option-id">	
+					<%-- <c:if test="{$vo.option_name empty}">
+					
+						
+					</c:if> --%>
+					<span class="option-name">옵션:</span>
+					<select>
+						<option value="red">red</option>
+						<option value="blue">blue</option>
+					</select>
+				</div>				
+				<div>
+					<%-- <c:if test="">	</c:if> --%>
+						<span></span>
+						<input name="item_su" type="number" readonly="readonly" />
+						<a>+</a>
+						<a>-</a>
+						<strong><span>${vo.item_price }</span></strong>
+				
+				</div>		
+				<div class="ship-div" style="float:left; width:300px;">
+					<span class="ship">배송비:</span>	
+					<c:if test="${vo.item_price lt 30000 }"><strong>2500원</strong></c:if>
+					<span>2500원<span>
 				</div>
 				
 				

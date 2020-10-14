@@ -12,6 +12,10 @@
 </if>
 
 </sql>
+	<delete id="delete">
+		delete from sell_item where item_num = #{item_num}
+	</delete>
+
 
 	<select id="detail" resultType="shop.ShopVO">
 		select * 
