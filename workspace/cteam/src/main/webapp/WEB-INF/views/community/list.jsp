@@ -15,7 +15,6 @@ table td { overflow: hidden; text-overflow:ellipsis; white-space: nowrap; }
 <body>
 
 <form method='post' action='list.bo'>
-<div>
 <input type="hidden" name="curPage" value="1">
 	
 	<!-- 상단 메뉴 -->
@@ -359,7 +358,6 @@ table td { overflow: hidden; text-overflow:ellipsis; white-space: nowrap; }
 		</div>
 	</div>
 
-</div>
 </form>
 
 </body>
