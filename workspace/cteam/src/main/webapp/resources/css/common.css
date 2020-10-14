@@ -6,8 +6,8 @@ body {
 	text-align: center;
 	font-family: 'Nanum Gothic', sans-serif;
 	width: 80%;
-	overflow: hidden;
 }
+
 
 a:hover, .font-img{cursor:pointer;}
 a:link, a:visited{ text-decoration: none; color: black; }
