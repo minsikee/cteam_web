@@ -20,8 +20,8 @@
 	}
 	
 	#info {
-		width: 50%;
-		border: 1px solid #FFB4BE;
+		width: 750px;
+		border: 3px solid #FFB4BE;
 		height: 250px;
 		margin-bottom: 20px;
 	}
