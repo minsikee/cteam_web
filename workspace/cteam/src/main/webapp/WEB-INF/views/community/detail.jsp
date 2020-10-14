@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,28 +7,74 @@
 <title>커뮤니티<</title>
 
 <style type="text/css">
+table {
+	margin: 0 auto;
+	border: 1px solid #000000;
+}
+
+table th, table td {
+	margin: 0 auto;
+	height: 25px;
+	border: 1px solid #333333;
+	color: #111111;
+}
+
+table th {
+	background-color: #FFB4BE;
+}
+
+.modify, .delete {
+	width: 75px;
+	height: 30px;
+}
 </style>
 
 </head>
 <body>
 
+<input type="hidden" name="id" value="${vo.board_num}">
+<input type="hidden" name="curPage" value="${page.curPage }">
+<input type="hidden" name="search" value="${page.search }">
+<input type="hidden" name="keyword" value="${page.keyword }">
+<input type="hidden" name="pageList" value="${page.pageList }">
+
 	<!-- 상단 메뉴 -->
 	<div style='width:100%; float:left; margin:10px 0;' >
 		<div style='width:90%; margin:0 auto;'>
-			<span style='display:block; background-color:#FFB4BE; height:35px;'>
-				<span style='float:right; margin-top:2.5px; margin-right:2px;'>
-				<button style='width:75px; height:30px; margin-right:5px;'>
-					<a style='color:#111111; font-size:15px;'>수정</a>
-				</button>
-				<button style='width:75px; height:30px;'>
-					<a style='color:#111111; font-size:15px;'>삭제</a>
-				</button>
+			<!-- 작성자가 아닐 경우 : 수정, 삭제 버튼 나타나지 않음 -->
+			<c:if test='${login_info.member_id ne vo.member_id && login_info.member_id ne "admin"}'>
+				<span style='display:block; background-color:#FFB4BE; height:35px;'>
 				</span>
-			</span>
+			</c:if>
+			<!-- 관리자 : 삭제 가능 -->
+			<c:if test='${login_info.member_id eq "admin"}'>
+				<span style='display:block; background-color:#FFFFFF; height:35px;'>
+					<span style='float:right; margin-top:2.5px; margin-right:2px;'>
+					<button class='delete'>
+						<a style='color:#111111; font-size:15px;' 
+						   onclick='if(confirm("정말 삭제하시겠습니까?")){ $("form").attr("action", "delete.bo"); $("form").submit()}'>삭제</a>
+					</button>
+					</span>
+				</span>
+			</c:if>
+			<!-- 글 작성자 : 수정, 삭제 가능 -->
+			<c:if test='${login_info.member_id eq vo.member_id}'>
+				<span style='display:block; background-color:#FFFFFF; height:35px;'>
+					<span style='float:right; margin-top:2.5px; margin-right:2px;'>
+					<button class='modify' style='margin-right:5px;'>
+						<a style='color:#111111; font-size:15px;'>수정</a>
+					</button>
+					<button class='delete'>
+						<a style='color:#111111; font-size:15px;'>삭제</a>
+					</button>
+					</span>
+				</span>
+			</c:if>
 		</div>
 	</div>
 
 	<!-- 게시글 상세보기 -->
+	<form method="post" action="list.bo">
 	<div style='width:100%; float:left;' >
 		<table style='width:90%;'>
 			<tr>
@@ -63,10 +110,11 @@
 	<div style='width:100%; float:left; margin:10px 0;' >
 		<div style='width:90%; height:30px; margin:0 auto; background-color: #FFB4BE;'>
 			<span style='display:block; background-color:#FFFFFF; width:200px; height:35px; margin:0 auto;'>
-			<button style='height:30px; width:100px; font-size:15px;'><a href='list.bo'>목록으로</a></button>
+			<button style='height:30px; width:100px; font-size:15px;'><a onclick='$("form").submit()'>목록으로</a></button>
 			</span>
 		</div>
 	</div>
+	</form>
 
 </body>
 </html>

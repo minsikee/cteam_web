@@ -7,24 +7,55 @@
 <title>커뮤니티</title>
 
 <style type="text/css">
+table {
+	margin: 0 auto;
+	border: 1px solid #000000;
+}
+
+table th, table td {
+	margin: 0 auto;
+	height: 25px;
+	border: 1px solid #333333;
+	color: #111111;
+}
+
+table th {
+	background-color: #FFB4BE;
+}
+
 /* 제목이 너무 길면 말줄임 처리 */
 table td { overflow: hidden; text-overflow:ellipsis; white-space: nowrap; }
+
+input[type=text] {
+	width: 200px;
+	height: 25px;
+	box-sizing: border-box;
+	border: 1px solid #333333;
+	vertical-align: middle;
+}
+
+select {
+	height: 25px;
+	border: 1px solid #333333;
+}
 </style>
 
 </head>
 <body>
 
 <form method='post' action='list.bo'>
-<input type="hidden" name="curPage" value="1">
+<input type='hidden' name='curPage' value='1'/>
 	
 	<!-- 상단 메뉴 -->
 	<div style='width:100%; float:left; margin:10px 0;' >
 		<div style='width:90%; margin:0 auto;'>
+			<!-- 게시판 분류 -->
 			<select name='search' onchange='$("form").submit()' style='float:left; margin:5px 5px 0px 0px;'>
 				<option value='allboard' ${page.search eq 'allboard' ? 'selected' : ''}>전체 게시판</option>
 				<option value='walk' ${page.search eq 'walk' ? 'selected' : ''}>산책</option>
 				<option value='sharing' ${page.search eq 'sharing' ? 'selected' : ''}>나눔</option>
 			</select>
+			<!-- 지역 선택 -->
 			<select name='search2' onchange='$("form").submit()' style='float:left; margin:5px 5px 0px 0px;'>
 				<option value='allcity' ${page.search2 eq 'allcity' ? 'selected' : ''}>전체 지역</option>
 				<option value='seoul' ${page.search2 eq 'seoul' ? 'selected' : ''}>서울특별시</option>
@@ -45,7 +76,8 @@ table td { overflow: hidden; text-overflow:ellipsis; white-space: nowrap; }
 				<option value='gyeongnam' ${page.search2 eq 'gyeongnam' ? 'selected' : ''}>경상남도</option>
 				<option value='jeju' ${page.search2 eq 'jeju' ? 'selected' : ''}>제주특별자치도</option>
 			</select>
-			<select name='search3' onchange='$("form").submit()' style='float:left; margin:5px 5px 0px 0px;'>
+			<!-- 지역 상세 -->
+			<select name='search3' onchange='$("form").submit()' style='float:left; width:75px; margin:5px 5px 0px 0px;'>
 				<option value='allregion' ${page.search3 eq 'allregion' ? 'selected' : ''}>전체</option>
 				<c:if test='${page.search2 eq "seoul"}'>
 					<option value='seoul1' ${page.search3 eq 'seoul1' ? 'selected' : ''}>강남구</option>
@@ -308,6 +340,7 @@ table td { overflow: hidden; text-overflow:ellipsis; white-space: nowrap; }
 					<option value='jeju2' ${page.search3 eq 'jeju2' ? 'selected' : ''}>제주시</option>
 				</c:if>
 			</select>
+			<!-- 직접 입력하여 내용 검색 -->
 			<select name='search4' onchange='$("form").submit()' style='float:left; margin:5px 5px 0px 0px;'>
 				<option value='all' ${page.search4 eq 'all' ? 'selected' : ''}>전체 검색</option>
 				<option value='title' ${page.search4 eq 'title' ? 'selected' : ''}>제목</option>
@@ -317,9 +350,18 @@ table td { overflow: hidden; text-overflow:ellipsis; white-space: nowrap; }
 			<button style='float:left; margin-right:5px; width:60px; margin-top:5px;'>
 				<a>검색</a>
 			</button>
+			<!-- 로그인 되어 있는 경우에만 글쓰기 가능 -->
+			<c:if test='${not empty login_info}'>
 			<button style='float:right; margin-right:2px; width:75px; height:35px;'>
 				<a style='color:#111111; font-size:17px;' href='new.bo'>글쓰기</a>
 			</button>
+			</c:if>
+			<!-- 로그인 되어 있지 않은 경우에는 로그인 페이지로 이동 -->
+			<c:if test='${empty login_info}'>
+			<button style='float:right; margin-right:2px; width:75px; height:35px;'>
+				<a style='color:#111111; font-size:17px;' href='loginPage'>글쓰기</a>
+			</button>
+			</c:if>
 		</div>
 	</div>
 	

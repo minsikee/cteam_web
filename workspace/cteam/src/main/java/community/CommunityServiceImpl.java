@@ -22,4 +22,17 @@ public class CommunityServiceImpl implements CommunityService {
 		return dao.community_detail(id);
 	}
 
+	//글 쓰기
+	@Override
+	public int community_insert(CommunityVO vo) {
+		return dao.community_insert(vo);
+	}
+	
+	//글 삭제하기
+	@Override
+	public int community_delete(int id) {
+		return dao.community_delete(id);
+	}
+	
+
 }

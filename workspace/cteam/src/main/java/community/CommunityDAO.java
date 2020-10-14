@@ -25,5 +25,19 @@ public class CommunityDAO implements CommunityService {
 	public CommunityVO community_detail(int id) {
 		return sql.selectOne("community.mapper.detail", id);
 	}
+	
+	//글 쓰기
+	@Override
+	public int community_insert(CommunityVO vo) {
+		// TODO Auto-generated method stub
+		return sql.insert("community.mapper.insert", vo);
+	}
+
+	//글 삭제하기
+	@Override
+	public int community_delete(int id) {
+		return sql.delete("community.mapper.delete", id);
+	}
+
 
 }

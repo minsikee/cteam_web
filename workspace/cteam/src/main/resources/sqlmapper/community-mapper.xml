@@ -28,6 +28,17 @@ ORDER BY board_date DESC) b ) b
 WHERE no BETWEEN #{beginList} AND #{endList}
 </select>
 
+<!-- 글 삽입 -->
+<select id="insert">
+INSERT INTO board(board_subject, board_city, board_region, member_id, board_title, board_content)
+VALUES (#{search}, #{search2}, #{search3}, #{member_id}, #{title}, #{content})
+</select>
+
+<!-- 글 삭제 -->
+<select id="delete">
+DELETE FROM board WHERE board_num=#{id}
+</select>
+
 <!-- 글 목록 카테고리 필터링 -->
 <sql id="search_where">
 	<if test="search=='allboard'">
