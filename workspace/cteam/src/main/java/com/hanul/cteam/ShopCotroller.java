@@ -31,6 +31,19 @@ public class ShopCotroller {
 	@Autowired private CommonService common;
 	
 	
+	@RequestMapping("/delete.sh")
+	public String delete() {
+		
+		return "shop/itemDelete";
+	}
+
+	
+	
+	@RequestMapping("/modify.sh")
+	public String modify() {
+		
+		return "shop/itemModify";
+	}
 
 	
 	

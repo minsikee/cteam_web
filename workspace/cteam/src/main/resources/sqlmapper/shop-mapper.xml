@@ -17,7 +17,6 @@
 		select * 
 		from sell_item
 		where item_num = #{item_num}
-		
 	</select>
 
 
