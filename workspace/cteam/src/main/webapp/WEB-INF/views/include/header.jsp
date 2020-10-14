@@ -21,16 +21,20 @@
 			<a href=""><div class='header_menu'>내펫정보</div></a>
 			<div class='header_menu1'>
 			
-				<c:if test="${!empty login_info }">
+
+				<c:if test="${!empty login_info && login_info.member_id ne 'admin'}">
 					<a href="list.my"  ${category eq 'my' ? 'class="active"' : '' }><div class='header_menu2'>마이페이지</div></a>
 					<a onclick="go_logout()"><div class='header_menu2'>로그아웃</div></a>
 				</c:if>
-				
+				<c:if test="${login_info.member_id eq 'admin' }">
+					<a href="admin.ad"><div class='header_menu2'>관리자페이지</div></a>
+					<a onclick="go_logout()"><div class='header_menu2'>로그아웃</div></a>
+				</c:if>
 				<c:if test="${empty login_info}">
 					<a href="loginPage"><div class='header_menu2'>로그인</div></a>
 					<a href="member"><div class='header_menu2'>회원가입</div></a>
 				</c:if>
-
+				
 			</div>
 		</div>
 	

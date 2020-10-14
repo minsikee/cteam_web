@@ -31,13 +31,34 @@ public class ShopCotroller {
 	@Autowired private CommonService common;
 	
 	
+	@RequestMapping("/delete.sh")
+	public String delete(int item_num, Model model) {
+		
+		service.shop_delete(item_num);
+		model.addAttribute("page",page);
+		model.addAttribute("url","list.sh");
+		
+		return "shop/redirect";
+	}
 
 	
 	
-	@RequestMapping("/item.detail")
-	public String itemDetail(HttpSession session) {
+	@RequestMapping("/modify.sh")
+	public String modify(int item_num, Model model) {
 		
-		session.removeAttribute("category");
+		return "shop/itemModify";
+	}
+
+	
+	//상세보기
+	@RequestMapping("/item.detail")
+	public String itemDetail(Model model, int item_num) {
+		
+		model.addAttribute("vo",service.shop_detail(item_num));
+		model.addAttribute("crlf","\r\n");
+		model.addAttribute("lf","\n");
+		model.addAttribute("page",page);
+		
 		return "shop/itemDetail1";
 	}
 	

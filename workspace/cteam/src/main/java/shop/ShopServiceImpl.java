@@ -19,8 +19,7 @@ public class ShopServiceImpl implements ShopService{
 
 	@Override
 	public ShopVO shop_detail(int item_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.shop_detail(item_num);
 	}
 
 	@Override
@@ -31,8 +30,7 @@ public class ShopServiceImpl implements ShopService{
 
 	@Override
 	public int shop_delete(int item_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.shop_delete(item_num);
 	}
 
 }

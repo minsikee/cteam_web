@@ -1,22 +1,51 @@
 package com.hanul.cteam;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
+import member.MemberVO;
+import mypage.MypageServiceImpl;
+
 @Controller
 public class MyPageController {
+	@Autowired private MypageServiceImpl service;
 	
-
+	//마이페이지 선태항목불러오기
+	@RequestMapping("/list.my")
+	public String mypage(Model model, HttpSession session) {
+		String member_id = ((MemberVO)session.getAttribute("login_info")).getMember_id();
+		model.addAttribute("orderlist", service.my_state(member_id));
+		return "mypage/mypagelist";
+	} 
+	
+	//회원정보 상세페이지
+	@RequestMapping("/mypageDetail.my")
+	public String mypage_detail(Model model, HttpSession session) {
+		//session.setAttribute("category", "my");
+		return "mypage/mypageDetail";
+	}
+	
+	//내주문조회
+	@RequestMapping("/myorder.my")
+	public String mypage_list(Model model, HttpSession session) {
+		
+		String member_id = ((MemberVO)session.getAttribute("login_info")).getMember_id(); 
+		//session.setAttribute("category", "my");
+		model.addAttribute("orderlist", service.order_list(member_id));
+		return "mypage/myorder";
+	}
+	
+	//내 주문 상세조회
+	@RequestMapping("/orderdetail.my")
+	public String orderdetail(Model model, HttpSession session) {
+		
+		session.setAttribute("category", "my");
+		return "mypage/orderdetail";
+	}
+	
 	
 }

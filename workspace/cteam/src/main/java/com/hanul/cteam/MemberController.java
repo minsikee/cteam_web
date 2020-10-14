@@ -75,7 +75,7 @@ public class MemberController {
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
-		System.out.println("여기는 callback");
+		System.out.println("여기는 callback시 세션 " + session);
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		// 1. 로그인 사용자 정보를 읽어온다.
@@ -149,6 +149,7 @@ public class MemberController {
 		@RequestMapping(value = "/loginPage", method = { RequestMethod.GET, RequestMethod.POST })
 		public String loginPage(Model model, HttpSession session) {
 			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+			System.out.println("login 시 세션:" + session);
 			String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 			// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
 			// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
