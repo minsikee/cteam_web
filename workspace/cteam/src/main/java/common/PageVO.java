@@ -14,8 +14,28 @@ public class PageVO {
 	private int beginPage, endPage;	//현재 페이지에 보여질 페이지 시작/ 끝
 
 	private String search, search2, search3, search4, keyword;		//검색조건, 검색어
+	private String board_subject, board_city, board_region;
 	private String viewType="list";
+	
 
+	public String getBoard_subject() {
+		return board_subject;
+	}
+	public void setBoard_subject(String board_subject) {
+		this.board_subject = board_subject;
+	}
+	public String getBoard_city() {
+		return board_city;
+	}
+	public void setBoard_city(String board_city) {
+		this.board_city = board_city;
+	}
+	public String getBoard_region() {
+		return board_region;
+	}
+	public void setBoard_region(String board_region) {
+		this.board_region = board_region;
+	}
 	public String getViewType() {
 		return viewType;
 	}

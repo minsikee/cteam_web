@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin.mapper">
+<insert id="item_insert" >
+<!-- <insert id="item_insert" USEGENERATEDKEYS="TRUE" KEYCOLUMN=ITEM_NUM KEYPROPERTY="ITEM_NUM"> -->
+ <selectKey keyProperty="item_num" resultType="int" order="AFTER">
+    select SELL_ITEM_SEQ.currval FROM DUAL
+  </selectKey>
+	insert into sell_item (item_code, item_name, item_price, item_imgpath, item_content, item_content_imgpath )
+	values( #{item_code}, #{item_name}, #{item_price}, #{item_imgpath, jdbcType=VARCHAR}, #{item_content}, #{item_content_imgpath, jdbcType=VARCHAR} )
+</insert>
+<insert id="item_option_insert">
+	<foreach collection="option_name" item="option"  separator=" " 
+	open="insert all" close="SELECT * FROM DUAL">
+	into sell_item_option (item_num, item_code, option_name)
+	values( #{item_num}, #{item_code}, #{option} )
+    </foreach>
+</insert>
+
+
+</mapper>

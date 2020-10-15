@@ -44,9 +44,9 @@ public class WalkBoardController {
 	
 	//글 상세보기 화면
 	@RequestMapping("/detail.bo")
-	public String detail(Model model, int id) {
+	public String detail(Model model, int board_num) {
 		
-		model.addAttribute("vo", service.community_detail(id));
+		model.addAttribute("vo", service.community_detail(board_num));
 		model.addAttribute("crlf","\r\n");
 		model.addAttribute("lf","\n");
 		model.addAttribute("page", page);
@@ -56,11 +56,11 @@ public class WalkBoardController {
 	
 	//새글쓰기 화면 >> 수정 필요?
 	@RequestMapping("/new.bo")
-	public String newBoard(Model model, String search, String search2, String search3) {
+	public String newBoard(Model model, String board_subject, String board_city, String board_region) {
 		
-		page.setSearch2(search);
-		page.setSearch2(search2);
-		page.setSearch3(search3);
+		page.setBoard_subject(board_subject);
+		page.setBoard_city(board_city);
+		page.setBoard_region(board_region);
 		model.addAttribute("page", page);
 		
 		return "community/new";
@@ -71,19 +71,20 @@ public class WalkBoardController {
 	public String insert(HttpSession session, CommunityVO vo) {
 		
 		vo.setMember_id( ((MemberVO)session.getAttribute("login_info")).getMember_id() );
-		service.community_insert(vo);
+		service.community_insert(vo);	
+		
 		return "redirect:list.bo";
 	}
 	
 	//글 삭제하기 처리
 	@RequestMapping("/delete.bo")
-	public String delete(Model model, int id) {
+	public String delete(Model model, int board_num) {
 		
-		service.community_delete(id);
+		service.community_delete(board_num);
 		model.addAttribute("page", page);
 		model.addAttribute("url", "list.bo");
 		
-		return "board/redirect";
+		return "community/redirect";
 	}
 	
 

@@ -18,8 +18,8 @@ public class CommunityServiceImpl implements CommunityService {
 	
 	//글 상세보기
 	@Override
-	public CommunityVO community_detail(int id) {
-		return dao.community_detail(id);
+	public CommunityVO community_detail(int board_num) {
+		return dao.community_detail(board_num);
 	}
 
 	//글 쓰기
@@ -30,8 +30,8 @@ public class CommunityServiceImpl implements CommunityService {
 	
 	//글 삭제하기
 	@Override
-	public int community_delete(int id) {
-		return dao.community_delete(id);
+	public int community_delete(int board_num) {
+		return dao.community_delete(board_num);
 	}
 	
 

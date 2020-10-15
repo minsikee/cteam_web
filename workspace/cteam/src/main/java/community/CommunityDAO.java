@@ -22,21 +22,20 @@ public class CommunityDAO implements CommunityService {
 
 	//글 상세보기
 	@Override
-	public CommunityVO community_detail(int id) {
-		return sql.selectOne("community.mapper.detail", id);
+	public CommunityVO community_detail(int board_num) {
+		return sql.selectOne("community.mapper.detail", board_num);
 	}
 	
 	//글 쓰기
 	@Override
 	public int community_insert(CommunityVO vo) {
-		// TODO Auto-generated method stub
 		return sql.insert("community.mapper.insert", vo);
 	}
 
 	//글 삭제하기
 	@Override
-	public int community_delete(int id) {
-		return sql.delete("community.mapper.delete", id);
+	public int community_delete(int board_num) {
+		return sql.delete("community.mapper.delete", board_num);
 	}
 
 
