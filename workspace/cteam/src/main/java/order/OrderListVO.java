@@ -12,12 +12,12 @@ public class OrderListVO {
 	private String item_su;
 	private String order_date;
 	private String order_state;
-	private List<ProductVO> order_item;
+	private List<ItemVO> order_item;
 	
-	public List<ProductVO> getOrder_item() {
+	public List<ItemVO> getOrder_item() {
 		return order_item;
 	}
-	public void setOrder_item(List<ProductVO> order_item) {
+	public void setOrder_item(List<ItemVO> order_item) {
 		this.order_item = order_item;
 	}
 	public String getItem_price() {

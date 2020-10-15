@@ -14,11 +14,11 @@
 		border-collapse: collapse;
 	}
 	img {
-		width: 15px;
-		height:15px;
-		float: right;
-	}
 	
+	}
+	table tr{
+	 border: none;
+	}
 	#info {
 		width: 750px;
 		border: 3px solid #FFB4BE;
@@ -67,6 +67,9 @@
 	}
 	.next {
 		margin-right: 20px;
+		width: 15px;
+		height:15px;
+		float: right;
 	}
 li {
 	list-style: none;
@@ -105,12 +108,16 @@ ol {
 #order {
 	 border-bottom: 1px solid #FFB4BE;
 	 border-top: 1px solid #FFB4BE;
-	 
 }
 </style>
+
 </head>
 <body>
+<c:if test="${empty login_info }">
+<c:out value="${login_info.member_id eq '로그인후 이용해주세요'}"/>
+</c:if>
 <div style="margin: 50px;">
+
 <h2>마이페이지</h2>
 
 <div align="center">
