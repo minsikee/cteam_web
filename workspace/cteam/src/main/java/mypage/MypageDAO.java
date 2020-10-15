@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import member.MemberVO;
 import order.OrderListVO;
-import order.ProductVO;
+import order.ItemVO;
 import order.StateVO;
 
 @Repository
@@ -21,7 +21,7 @@ public class MypageDAO implements MypageService{
 		List<OrderListVO>  orderlist = sql.selectList("mypage.mapper.orderlist", member_id);
 		
 		for(OrderListVO order : orderlist ) {
-			List<ProductVO> items = sql.selectList("mypage.mapper.orderlist_item", order.getOrder_num());
+			List<ItemVO> items = sql.selectList("mypage.mapper.orderlist_item", order.getOrder_num());
 			order.setOrder_item(items);
 		}
 		

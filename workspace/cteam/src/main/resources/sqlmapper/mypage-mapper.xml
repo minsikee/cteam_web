@@ -16,7 +16,7 @@ select order_num, order_date, order_state
 from orderlist where member_id = #{member_id} order by order_date desc
 </select>
 
-<select id="orderlist_item" resultType="order.ProductVO">
+<select id="orderlist_item" resultType="order.ItemVO">
 select order_num, o.item_num, item_su, item_name, item_price, item_imgpath 
 from orderlist_goods o, sell_item p 
 where order_num = #{order_num}

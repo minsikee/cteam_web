@@ -1,23 +1,55 @@
 package com.hanul.cteam;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
-/**
- * Handles requests for the application home page.
- */
+import admin.AdminServiceImpl;
+import admin.SellVO;
+import common.CommonService;
+import member.MemberVO;
+
 @Controller
 public class AdminController {
+	@Autowired private AdminServiceImpl service;
+	@Autowired private CommonService common;
 	
+	//관리자페이지 불러오기
+	@RequestMapping("/admin.ad")
+	public String admin_page(Model model, HttpSession session) {
+		session.setAttribute("category", "ad");
+		return "admin/adminPage";
+	} 
+	
+	//상품리스트페이지 불러오기
+	@RequestMapping("/list.ad")
+	public String item_list(Model model, HttpSession session) {
+		
+		return "admin/list";
+	} 
 
+	//상품등록페이지
+	@RequestMapping("/itemNew.ad")
+	public String admin_up( HttpSession session) {
+		
+		
+		
+	return "admin/itemNew";
+	}
 	
+	//상품등록
+	@RequestMapping("/insert.ad")
+	public String admin_insert(HttpSession session, MultipartFile file, SellVO vo) {
+		if( ! file.isEmpty() ) {
+			vo.setItem_content_imgpath( common.upload("content", file, session) );
+			vo.setItem_imgpath( common.upload("Item", file, session) );
+		}
+		service.item_insert(vo);
+		return "redirect:list.ad";
+	}
 	
 }

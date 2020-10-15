@@ -31,7 +31,52 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class CommonService {
 	
-	
+	//파일 다운로드
+		public File download(String filename, String filepath, HttpSession session, HttpServletResponse response) {
+			//다운로드할 파일 객체를 생성
+			File file = new File(session.getServletContext().getRealPath("resources") + filepath);
+			String mime = session.getServletContext().getMimeType(filename);
+			response.setContentType(mime);
+			
+			try {
+				filename = URLEncoder.encode(filename, "utf-8");
+				response.setHeader("content-disposition", "attachment; filename="+filename);
+				ServletOutputStream out = response.getOutputStream();
+				FileCopyUtils.copy(new FileInputStream(file), out);
+				out.flush();
+				
+			} catch (Exception e) {
+				System.out.println("★파일다운로드 에러 : "+e.getMessage());
+			}
+			
+			return file;
+		}
+		
+		//파일 업로드
+		public String upload (String category, MultipartFile file, HttpSession session) {
+			//업로드해둘 서버의 물리적위치
+			String resources = session.getServletContext().getRealPath("resources");
+			
+			//업로드해 둘 폴더지정
+			String upload = resources + "/upload";
+			//upload/notice/2020/09/18/1234_abc.txt
+			
+			//폴더만들기
+			String folder = upload + "/" + category + "/" + new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+			
+			File f = new File(folder);
+			if( !f.exists() ) f.mkdirs();
+			String uuid = UUID.randomUUID().toString() + "_"+ file.getOriginalFilename();
+			
+			try {
+				file.transferTo(new File(folder, uuid));
+			} catch (Exception e) {
+				System.out.println("★FileException★ "+e.getMessage());
+			}
+			//folder:D:\Study_Spring\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\iot\resources
+			return folder.substring(resources.length() )+ "/" + uuid;
+
+		}
 	
 	
 	public void sendEmail(String email, String name, HttpSession session) {

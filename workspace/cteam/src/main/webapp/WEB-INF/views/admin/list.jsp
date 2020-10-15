@@ -4,16 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자페이지</title>
+<title>Insert title here</title>
 </head>
 <body>
+<h3>상품리스트</h3>
+<a href="itemNew.ad">제품등록하기</a>
 <div align="center">
-<h2>관리자 페이지</h2>
-<table>
-	<tr>
-		<td><a href="list.ad">상품관리</a></td>
-	</tr>
-</table>
 
 </div>
 </body>
