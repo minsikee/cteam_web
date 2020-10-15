@@ -32,7 +32,8 @@ table th {
 </head>
 <body>
 
-<input type="hidden" name="id" value="${vo.board_num}">
+<form method="post" action="list.bo">
+<input type="hidden" name="board_num" value="${vo.board_num}">
 <input type="hidden" name="curPage" value="${page.curPage }">
 <input type="hidden" name="search" value="${page.search }">
 <input type="hidden" name="keyword" value="${page.keyword }">
@@ -52,7 +53,7 @@ table th {
 					<span style='float:right; margin-top:2.5px; margin-right:2px;'>
 					<button class='delete'>
 						<a style='color:#111111; font-size:15px;' 
-						   onclick='if(confirm("정말 삭제하시겠습니까?")){ $("form").attr("action", "delete.bo"); $("form").submit()}'>삭제</a>
+						   onclick='if(confirm("정말 삭제하시겠습니까?")){$("form").attr("action", "delete.bo"); $("form").submit()}'>삭제</a>
 					</button>
 					</span>
 				</span>
@@ -65,7 +66,8 @@ table th {
 						<a style='color:#111111; font-size:15px;'>수정</a>
 					</button>
 					<button class='delete'>
-						<a style='color:#111111; font-size:15px;'>삭제</a>
+						<a style='color:#111111; font-size:15px;' 
+						   onclick='if(confirm("정말 삭제하시겠습니까?")){$("form").attr("action", "delete.bo"); $("form").submit()}'>삭제</a>
 					</button>
 					</span>
 				</span>
@@ -74,7 +76,6 @@ table th {
 	</div>
 
 	<!-- 게시글 상세보기 -->
-	<form method="post" action="list.bo">
 	<div style='width:100%; float:left;' >
 		<table style='width:90%;'>
 			<tr>
@@ -101,7 +102,8 @@ table th {
 					<span style='float:left; margin:10px'>${vo.board_content}</span>
 				</td>
 				<th class='w-px100'>첨부사진</th>
-				<td>${empty vo.board_imagepath ? '' : '<img src="${vo.board_imagepath}" width="100%"/>'}</td>
+				<c:set var='imgpath' value='<img src="${vo.board_imagepath}" width="100%"/>' />
+				<td>${empty vo.board_imagepath ? '' : imgpath}</td>
 			</tr>
 		</table>
 	</div>
@@ -114,7 +116,8 @@ table th {
 			</span>
 		</div>
 	</div>
-	</form>
+
+</form>
 
 </body>
 </html>

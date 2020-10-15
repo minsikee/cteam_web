@@ -99,6 +99,7 @@ public class MemberController {
 		model.addAttribute("result", apiResult);
 		return "home/home";
 	}
+	
 
 	
 	
@@ -117,7 +118,16 @@ public class MemberController {
 			session.removeAttribute("category");
 			return "member/join";
 		}
+		
 	
+		@RequestMapping(value = "/logout_home", method = { RequestMethod.GET, RequestMethod.POST })
+		public String logout_home(HttpSession session){
+		
+			session.removeAttribute("login_info");
+			
+			return "redirect:/";
+		}
+		
 		//로그아웃처리
 	
 		@ResponseBody @RequestMapping("/logout")

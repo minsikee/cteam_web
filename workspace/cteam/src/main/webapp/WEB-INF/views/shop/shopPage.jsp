@@ -49,17 +49,51 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 			</ul>
 			<br/><br/><br/>
 			
+
+			
+			
 			<ul style="overflow: hidden;">
-				<c:forEach items="${page.list }" var="vo">	
-					<li>
-						<div style="width: 306px; box-sizing: border-box;" >
-							<a href="javascript:go_detail(${vo.item_num })">${empty vo.item_imgpath ? '' : '<img class="shop-img" src=""/>' }</a>	
-							<a href="javascript:go_detail(${vo.item_num })">
-								<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
-								<span class="item-price">${vo.item_price}</span>
-							</a>
-						</div>
-					</li>
+			
+				<c:set var="fir" value="0"/>
+				
+				<c:forEach items="${page.list }" var="vo" varStatus="status">
+						
+					<!-- 첫째로 돌때  -->
+					<c:if test="${status.index==0 }">
+						<li>
+							<div style="width: 306px; box-sizing: border-box;" >
+								<a href="javascript:go_detail(${vo.item_num })">${empty vo.item_imgpath ? '' : '<img class="shop-img" src=""/>' }</a>	
+								<a href="javascript:go_detail(${vo.item_num })">
+									<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
+									<span class="item-price">${vo.item_price}</span>
+								</a>
+							</div>
+						</li>
+						<c:set var="fir" value="${vo.item_num }"/>
+					</c:if>
+							<!-- 두번재부터 돌때 전값이랑 비교해서 동일하면 출력x -->
+					<c:if test="${status.index!=0}">
+						<c:set var="item_num" value="${vo.item_num }"></c:set>
+					
+						<c:if test="${ item_num != fir }">
+						
+							<li>
+								<div style="width: 306px; box-sizing: border-box;" >
+									<a href="javascript:go_detail(${vo.item_num })">${empty vo.item_imgpath ? '' : '<img class="shop-img" src="${vo.item_imgpath}"/>' }</a>	
+									<a href="javascript:go_detail(${vo.item_num })">
+										<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
+										<span class="item-price">${vo.item_price}</span>
+									</a>
+								</div>
+							</li>	
+							
+							<c:set var="fir" value="${vo.item_num }"/>
+						</c:if>
+							
+						
+					</c:if>
+					
+					
 					
 				</c:forEach>
 				

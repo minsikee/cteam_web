@@ -54,7 +54,7 @@ public class ShopCotroller {
 	@RequestMapping("/item.detail")
 	public String itemDetail(Model model, int item_num) {
 		
-		model.addAttribute("vo",service.shop_detail(item_num));
+		model.addAttribute("list",service.shop_detail(item_num));
 		model.addAttribute("crlf","\r\n");
 		model.addAttribute("lf","\n");
 		model.addAttribute("page",page);

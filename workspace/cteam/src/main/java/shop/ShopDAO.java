@@ -24,8 +24,8 @@ public class ShopDAO implements ShopService {
 	}
 
 	@Override
-	public ShopVO shop_detail(int item_num) {
-		return sql.selectOne("shop.mapper.detail",item_num);
+	public List<ShopVO> shop_detail(int item_num) {
+		return sql.selectList("shop.mapper.detail",item_num);
 	}
 
 	@Override

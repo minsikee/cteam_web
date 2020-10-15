@@ -45,6 +45,7 @@ select {
 
 <form method='post' action='list.bo'>
 <input type='hidden' name='curPage' value='1'/>
+<input type='hidden' name='board_num'/>
 	
 	<!-- 상단 메뉴 -->
 	<div style='width:100%; float:left; margin:10px 0;' >
@@ -353,7 +354,7 @@ select {
 			<!-- 로그인 되어 있는 경우에만 글쓰기 가능 -->
 			<c:if test='${not empty login_info}'>
 			<button style='float:right; margin-right:2px; width:75px; height:35px;'>
-				<a style='color:#111111; font-size:17px;' href='new.bo'>글쓰기</a>
+				<a href='new.bo' style='color:#111111; font-size:17px;'>글쓰기</a>
 			</button>
 			</c:if>
 			<!-- 로그인 되어 있지 않은 경우에는 로그인 페이지로 이동 -->
@@ -382,12 +383,12 @@ select {
 				<td>${vo.board_city} ${vo.board_region}</td>
 				<td>
 					<span style='color:#FFB4BE; font-weight:bold; float:left; margin-left:5px;'>♡&nbsp;</span>
-					<a href='detail.bo?id=${vo.board_num}' style='color:#000000;'>${vo.board_title}</a>
+					<a href='detail.bo?board_num=${vo.board_num}' style='color:#000000;'>${vo.board_title}</a>
 					<span style='color:#FFB4BE; font-weight:bold; float:right; margin-right:5px;'>&nbsp;♡</span>
 				</td>
 				<td>${vo.member_id}</td>
 				<td>${vo.board_date}</td>
-				<td>${vo.board_imagepath == 'null' ? '' : '<img src="img/attach.png" width="15px" height="15px"/>'}</td>
+				<td>${vo.board_imagepath == null ? '' : '<img src="img/attach.png" width="15px" height="15px"/>'}</td>
 			</tr>
 			</c:forEach>
 		</table>
