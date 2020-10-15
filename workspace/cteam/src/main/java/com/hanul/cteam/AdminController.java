@@ -43,10 +43,13 @@ public class AdminController {
 	
 	//상품등록
 	@RequestMapping("/insert.ad")
-	public String admin_insert(HttpSession session, MultipartFile file, SellVO vo) {
-		if( ! file.isEmpty() ) {
-			vo.setItem_content_imgpath( common.upload("content", file, session) );
-			vo.setItem_imgpath( common.upload("Item", file, session) );
+	public String admin_insert(HttpSession session, MultipartFile file1,MultipartFile file2, SellVO vo) {
+	
+		if( ! file1.isEmpty() ) {
+			vo.setItem_imgpath( common.upload("Item", file1, session) );
+		}
+		if( ! file2.isEmpty() ) {
+			vo.setItem_content_imgpath( common.upload("content", file2, session) );
 		}
 		service.item_insert(vo);
 		return "redirect:list.ad";

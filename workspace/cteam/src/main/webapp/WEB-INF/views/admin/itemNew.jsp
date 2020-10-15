@@ -36,7 +36,7 @@
 					<th>대표 이미지등록</th>
 					<td class="left">
 						<label>
-							<input type="file" name="file" id="attach-file" /> 
+							<input type="file" name="file1" id="attach-file" /> 
 							<i class="far fa-image file-img"></i>
 						</label> 
 						<span id="file-name"></span> 
@@ -77,7 +77,7 @@
 					<th>첨부파일</th>
 					<td class="left">
 						<label> 
-							<input type="file" name="content-file" id="content-file" /> 
+							<input type="file" name="file2" id="file" /> 
 							<i class="far fa-image file-img"></i>
 						</label> 
 						<span id="content-file-name"></span> 

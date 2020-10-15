@@ -7,7 +7,6 @@ public class OrderListVO {
 	private int order_num;
 	private String item_name;
 	private String member_id;
-	private String item_imgpath;
 	private String item_price;
 	private String item_su;
 	private String order_date;
@@ -55,12 +54,6 @@ public class OrderListVO {
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
-	}
-	public String getItem_imgpath() {
-		return item_imgpath;
-	}
-	public void setItem_imgpath(String item_imgpath) {
-		this.item_imgpath = item_imgpath;
 	}
 	public String getOrder_date() {
 		return order_date;

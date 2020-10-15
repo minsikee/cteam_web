@@ -17,7 +17,7 @@ from orderlist where member_id = #{member_id} order by order_date desc
 </select>
 
 <select id="orderlist_item" resultType="order.ItemVO">
-select order_num, o.item_num, item_su, item_name, item_price, item_imgpath 
+select order_num, o.item_num, item_su, item_name, item_price, item_imgpath, item_content_imgpath
 from orderlist_goods o, sell_item p 
 where order_num = #{order_num}
 and o.item_num = p.item_num 

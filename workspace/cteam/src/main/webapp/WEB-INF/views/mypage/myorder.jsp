@@ -38,6 +38,11 @@ label {
 	color: white;
 	height: 30px;
 	}
+
+#item_content_imgpath {
+	width: 80px;
+	height: 80px;
+}
 </style>
 </head>
 <body>
@@ -59,7 +64,7 @@ label {
 	
 	<c:forEach items="${vo.order_item}" var="item"> 
 	<tr style="text-align: center;">
-		<td>${item.item_imgpath }</td>
+		<td><img id="item_content_imgpath" src="<c:url value='/' />${item.item_imgpath }"/></td>
 		<td>${item.item_name }</td>
 		<td>${item.item_price  }￦ / ${item.item_su }개</td>
 		<td>${vo.order_state }</td>
