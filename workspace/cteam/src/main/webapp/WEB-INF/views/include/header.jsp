@@ -44,18 +44,35 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script>
 		function go_logout(){
-
-				$.ajax({
-				url:'logout',
-				success:function(){
-					alert("로그아웃되었습니다");
-					location.reload();},
-				error:function(req,text){
-					alert(text+":"+req.status);
-				}
+ 
+			var newURL = window.location.pathname;
+			alert(newURL);
+			if(newURL=="/cteam/list.my"){
+				location.href='logout_home';
+// 				$.ajax({
+// 					url:'logout_home',
+// 					success: function(){
+// 						location.reload();		
+// 					}
+					
+// 				});
 				
-			});
-			
+			}else{
+ 
+				$.ajax({
+					url:'logout',
+					success:function(){
+						alert("로그아웃되었습니다");
+						location.reload();},
+					error:function(req,text){
+						alert(text+":"+req.status);
+					}
+					
+				});
+				
+
+			}
+				
 		}
 		
 	</script>

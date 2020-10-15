@@ -2,9 +2,15 @@ package shop;
 
 public class ShopVO {
 	private int item_num,item_price;
-	private String item_name,item_imgpath,item_content,item_content_imgpath,item_cate;
+	private String item_name,item_imgpath,item_content,item_content_imgpath,item_cate,option_name;
 
 	
+	public String getOption_name() {
+		return option_name;
+	}
+	public void setOption_name(String option_name) {
+		this.option_name = option_name;
+	}
 	public int getItem_num() {
 		return item_num;
 	}

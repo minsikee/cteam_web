@@ -1,5 +1,7 @@
 package shop;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class ShopServiceImpl implements ShopService{
 	}
 
 	@Override
-	public ShopVO shop_detail(int item_num) {
+	public List<ShopVO> shop_detail(int item_num) {
 		return dao.shop_detail(item_num);
 	}
 

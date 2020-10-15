@@ -32,11 +32,14 @@ public class MyPageController {
 	//내주문조회
 	@RequestMapping("/myorder.my")
 	public String mypage_list(Model model, HttpSession session) {
-		
-		String member_id = ((MemberVO)session.getAttribute("login_info")).getMember_id(); 
-		//session.setAttribute("category", "my");
-		model.addAttribute("orderlist", service.order_list(member_id));
-		return "mypage/myorder";
+		if( session.getAttribute("login_info")==null ) 
+			return "redirect:/";
+		else	{
+			String member_id = ((MemberVO)session.getAttribute("login_info")).getMember_id(); 
+			//session.setAttribute("category", "my");
+			model.addAttribute("orderlist", service.order_list(member_id));
+			return "mypage/myorder";
+		}
 	}
 	
 	//내 주문 상세조회
@@ -44,7 +47,9 @@ public class MyPageController {
 	public String orderdetail(Model model, HttpSession session) {
 		
 		session.setAttribute("category", "my");
-		return "mypage/orderdetail";
+		if( session.getAttribute("login_info")==null ) 
+				return "redirect:/";
+		else	return "mypage/orderdetail";
 	}
 	
 	
