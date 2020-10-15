@@ -7,7 +7,7 @@
 <select id="detail" resultType="community.CommunityVO">
 SELECT board_num, board_subject, board_city, board_region, member_id, board_date, board_title, board_content, board_imagepath
 FROM board
-WHERE board_num=#{id}
+WHERE board_num=#{board_num}
 </select>
 
 <!-- 글 목록 페이징 -->
@@ -30,13 +30,14 @@ WHERE no BETWEEN #{beginList} AND #{endList}
 
 <!-- 글 삽입 -->
 <select id="insert">
-INSERT INTO board(board_subject, board_city, board_region, member_id, board_title, board_content)
-VALUES (#{search}, #{search2}, #{search3}, #{member_id}, #{title}, #{content})
+INSERT INTO board(board_num, board_subject, board_city, board_region, member_id, board_title, board_content)
+VALUES (board_seq.nextval, #{board_subject}, #{board_city}, #{board_region}, #{member_id}, #{board_title}, #{board_content})
 </select>
 
 <!-- 글 삭제 -->
 <select id="delete">
-DELETE FROM board WHERE board_num=#{id}
+DELETE FROM board 
+WHERE board_num=#{board_num}
 </select>
 
 <!-- 글 목록 카테고리 필터링 -->
