@@ -5,7 +5,7 @@
 	<div style='margin:0 auto; padding:25px 0px 25px 0px; overflow:hidden;'>
 	
 		<!-- 헤더 윗줄 : 로고 & 로그인 -->
-		<div style='width:100%; height:100px; float:left;'>
+		<div style='width:100%; height:100px; float:left; '>
 			<a href='<c:url value="/" />'><img src='img/cteam_logo1.png' width='250px' height='100px'>
 			
 		</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
    
     
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
  div.name-div{ font-size: 17px; font-weight: bold; text-align:left;}
  div.content-div{ font-size: 13px; margin-top:40px; text-align:left; color: #333333;}
  div.price-div, div.order-div, div.option-div, div.ship-div, div.list-div {text-align:left; margin-top:20px; font-size: 15px;}
- div.desc-div{ margin-left: 20px; float:left; width: 300px;}
+ div.desc-div{ margin-left: 50px; float:left; width: 300px;}
  div.buy-div {float:left; width:300px; margin-top: 20px;}
  div.center-div{margin: 0 auto; width:800px;}
  div.modify-div{float:left; width:300px; margin-top: 20px;}
@@ -46,10 +46,15 @@
 			<c:if test="${  status.index == ( fn:length( list ) ) - 1 }">
 			
 			
+			
+			<c:if test="${!empty vo.item_num }">
 				<div class="img-div">
-					<img class="imgpath" src="${vo.item_imgpath }" style="float:left;">
+					<img class="imgpath" src="<c:url value='/' />${vo.item_imgpath }" style="float:left;">
 				</div>
 				
+		
+			</c:if>	
+			
 		
 					
 					<div class="desc-div name-div" style="float:left; width:300px;">
@@ -73,7 +78,7 @@
 		<c:set var="option_name" value="" />
 		
 		<select id="select">
-		<option value="" selected disabled hidden>옵션선택</option>
+		<option value="default" selected disabled hidden>옵션선택</option>
 		<c:forEach items="${list }" var="vo" varStatus="status">
 				
 				<c:if test="${!empty vo.option_name }">
@@ -89,7 +94,7 @@
 			
 			<c:if test="${  status.index == ( fn:length( list ) ) - 1 }">
 								
-					<span class="y"></span>
+					<span class="y" style="display: none;">${vo.item_price }</span>
 				<%-- 	<div class="desc-div list-div invisible" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">
 			
 					
@@ -149,7 +154,6 @@
 					</form>
 					
 			
-			
 				</c:if>
 			</c:forEach>
 				
@@ -162,58 +166,173 @@
 		<img src="${vo.item_content_imgpath }" width="800px">
 	
 	</div>
-	
+
 	<script type="text/javascript">	
 
-	var state;
+		var state;
+
+	
+		var length = $("[id=select] option").length;
+
+		var price
+
+
+		var su= 1;
+
+		var eachPrice;
+
+		var totalPrice;
 	
 		$('#select').change(function() {
-			state = $('#select option:selected').val();
-			if ( state ) {
-			/* 	$('.invisible').show();
- */
-			var addDiv = 
-			
-			
-					'<div class="desc-div list-div invisible" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">'+
-				
-				
-				
-					'<span class="option-span">'+state +':</span>'+
 
-					'<span class="option_name-sapn" style="padding-right: 100px;">${option_name }</span>' +
+			state = $('#select option:selected').val();
 			
-					'<a class="option_plus" onclick="plus();"> + </a>'+
+			
+			if ( state ) {
+	
+ 				price= $('.y').html();
+				
+				if( $('span[data-option=' + state + ']').length == 0 ){
+				
+ 				
+/*
+				//만들어진 옵션창 개수
+ 				 var divLength=0;
+ 				 //div state 저장 
+				var tempArray = new Array();
+					
+				if(tempArray.indexOf(state)>-1){
+						alert("이미 선택된 옵션입니다");
+				}
+*/
+
+				var addDiv = 
+			
+					'<div id="div1" class="desc-div list-div invisible" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">'+
+				
+				
+				
+					'<span class="option-span" data-option='+ state +'>'+state +'</span>'+
+
+					'<a class="option_plus" onclick="plus(this);" style=" margin-left:170px;"> + </a>'+
 				
 				
 					'<input class="item_su" name="item_su" type="number" readonly="readonly" value="1" style="text-align: center;"/>'+
-					'<a class="option_minus" onclick="minus()"> - </a>'+
-				
-					'<span>${vo.item_price } ${vo.price }원</span>'+
-					'<a class="list-delete" width="12px" height="13px" onclick="wrap(this);"><i class="fas fa-times"></i></a>'+
-					'</div>'			
-				
-					var divHtml = $('.y');
-					divHtml.after(addDiv);
-
 					
+					'<a class="option_minus" onclick="minus(this)"> - </a>'+
 				
+					'<span class="won" style="padding-right:5px;">'+ price + '원</span>'+
+					
+					'<a class="list-delete" width="12px" height="13px" onclick="wrap(this);"><i class="fas fa-times"></i></a>'+
+					'</div>';			
+				
+				var divHtml = $('.y');
+				divHtml.after(addDiv);
+				eachPrice=parseInt( $(".won").text() );
+					alert( eachPrice );
+					totalPrice += eachPrice;
+					alert($(".price-strong").text());
+					$(".price-strong").text(totalPrice);
+					
+					
+					
+				}
+					
+// 					var addDiv = 
+// 						'';			
+					
+// 					var divHtml = $('.y');
+// 					divHtml.after(addDiv);
+					
+/* 	
+					divLength =$('.list-div').length;
 
+					$(".list-div").each(function(){
+
+					    tempArray.push($(this).children('span:eq(0)').html());
+
+							});
+
+					var optionChk;
+					//이미 선택한 옵션값을 배열로 받는다!@ㅃ!
+					for(var i = 0; i<divLength ;i++){
+						optionChk=tempArray[i];
+						
+						}
+*/
+				
+					
+			
+				/* 	var optionChk=
+						$('.y').next().children('span:eq(0)').html(); */
+					
+
+				/*   if(divLength == length-1){	//옵션이 이미 2개 선택된 상태이고
+					if( state == optionChk)
+							
+					}else{
+
+					}
+				
+				} */
+
+
+				
+				
+				
 			}
+
 		});
 
-		function plus(){
+	
+		/* var optionChk=$('.y').next().filter(':first').val();
+		alert(optionChk); */
+	
+	/* 	if(divLength == length-1){
+			if( state == )
 			
+		} */
+		
+
+		
+
+		
+		function plus(p){
+			var su=$(p).next().val();
+			++su;
+			//var plus=parseInt($(p).siblings('#won').html());
+			var value= price * parseInt(su);
+
+			$(p).next().siblings('.won').html(value);
+			
+			$(p).next().val(su);
+		};
+
+		function minus(m){
+				
+			var su=$(m).prev().val();
+			if(su>1){
+				su--;
+				var minus=parseInt($(m).next().html());
+				var value= minus - price;
+	
+				$(m).next().html(value);
+			}
+			$(m).prev().val(su);
+		
 		};
 
 		function wrap(o){
-			/* $(this).parent().css( 'display', 'none' ); */
-		/* 	$(this).remove() */
+
 			$(o).parent().remove();
+
+			$("#select option:eq(0)").prop("selected", true);
 			
-			state=null;
-				
+			su=1;
+
 		}
+		
+		
 	</script>
 </body>
 </html>

@@ -62,6 +62,10 @@ public class ShopCotroller {
 		return "shop/itemDetail1";
 	}
 	
+	
+
+	
+	
 	@RequestMapping("/list.sh")
 	public String list(Model model, HttpSession session, @RequestParam(defaultValue ="1") int curPage,
 			 String search, String keyword ) {
@@ -75,5 +79,8 @@ public class ShopCotroller {
 		
 		return "shop/shopPage";
 	}
+	
+	
+	
 	 
 }

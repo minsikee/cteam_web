@@ -17,7 +17,7 @@ span{display:block;  margin-bottom: 10px; text-align: left;}
 span.item-title{ font-weight: bold; color: gray; font-size: 20px; margin-top: 5px; }
 span.item-price{ color: purple; font-size: 15px; font-weight: bold;}
 ul li{ float: left; margin-right: 20px;}
-ul{width:1000px; padding: 0px;}
+ul{width:100%; padding: 0px; margin: 0 auto; margin-left: 100px;}
 input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px; border: #f7f7f6; outline: none; font-size: 13px; padding-left: 10px;}
 #top	{margin-bottom:10px;}
 #search	{border:none; padding:5px; outline: none; width:20px; }
@@ -28,16 +28,18 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 	
 	
 	<form method="post" action="list.sh">
-	
 	<input type="hidden" name='curPage' value='1'/>
 	<input type="hidden" name='item_num' />
 		
 				
 		<div id="top" style="margin: 50px auto">
-			<h3 style="text-align: left;">iot 방석</h3>
+		
+			
+			
+		<div style="float:right;">
 			
 			<ul>
-				<li style="float:right'">
+				<li >
 					<select id="search" name="search" class='w-px80'>
 					<option value='all' ${page.search eq 'all' ? 'selected' : '' } >전체</option>
 					<option value='item_content' ${page.search eq 'item_content' ? 'selected' : '' } >내용</option>
@@ -48,7 +50,7 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 				<li><a class='search-btn' onclick="$('form').submit()"><i class='fas fa-search'></i></a></li>
 			</ul>
 			<br/><br/><br/>
-			
+		</div>
 
 			
 			
@@ -62,7 +64,9 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 					<c:if test="${status.index==0 }">
 						<li>
 							<div style="width: 306px; box-sizing: border-box;" >
-								<a href="javascript:go_detail(${vo.item_num })">${empty vo.item_imgpath ? '' : '<img class="shop-img" src=""/>' }</a>	
+							<c:if test="${!empty vo.item_num }">
+									<a href="javascript:go_detail(${vo.item_num })"><img src="<c:url value='/' />${vo.item_imgpath }" class="shop-img"/></a>	
+							</c:if>	
 								<a href="javascript:go_detail(${vo.item_num })">
 									<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
 									<span class="item-price">${vo.item_price}</span>
@@ -77,9 +81,12 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 					
 						<c:if test="${ item_num != fir }">
 						
-							<li>
+							<li>	
 								<div style="width: 306px; box-sizing: border-box;" >
-									<a href="javascript:go_detail(${vo.item_num })">${empty vo.item_imgpath ? '' : '<img class="shop-img" src="${vo.item_imgpath}"/>' }</a>	
+									
+									<c:if test="${!empty vo.item_num }">
+									<a href="javascript:go_detail(${vo.item_num })"><img src="<c:url value='/' />${vo.item_imgpath }" class="shop-img"/></a>	
+									</c:if>
 									<a href="javascript:go_detail(${vo.item_num })">
 										<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
 										<span class="item-price">${vo.item_price}</span>
@@ -120,7 +127,6 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 		$('form').attr('action','item.detail');
 		$('form').submit();
 	}
-
 
 	</script>	
 </body>
