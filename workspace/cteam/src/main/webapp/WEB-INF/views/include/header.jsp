@@ -6,8 +6,8 @@
 	
 		<!-- 헤더 윗줄 : 로고 & 로그인 -->
 		<div style='width:100%; height:100px; float:left; '>
-			<a href='<c:url value="/" />'><img src='img/cteam_logo1.png' width='250px' height='100px'>
-			
+			<a href='<c:url value="/" />'><img src='img/cteam_logo1.png' width='250px' height='100px' style="margin-right: -7.8%">
+			<a href="cart.bs"><img src="img/cart.png" style="float: right; width: 70px; height: 70px; margin-right: 4.6%;"></a>
 		</div>
 
 		<!-- 헤더 아랫줄 : 메뉴버튼 -->

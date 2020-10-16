@@ -40,7 +40,7 @@ delete from board where id=#{id}
 
 <insert id="insert">
 	insert into board(title, content, writer, filename, filepath)
-	values (#{title}, #{content},#{writer},#{filename, jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR})
+	values (#{title}, #{content}, #{writer},#{filename, jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR})
 </insert>
 
 <sql id="search_where">
