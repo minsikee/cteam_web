@@ -6,6 +6,41 @@
 <meta charset="UTF-8">
 <title>상품등록</title>
 <style type="text/css">
+	
+	table {
+	 border-collapse: collapse;
+	 margin-bottom: 50px;
+	 margin-top: 10px;
+	 text-align: center;
+	 border: 3px solid #FFB4BE;
+	 width: 40%;
+	}
+	
+	table td {
+	 border-bottom: 1px solid #FFB4BE;
+	 text-align: left;
+	 height: 45px;
+	}
+	
+	table th {
+	 padding: 10px;
+	 background-color: #FFD9E4;
+	 color: #282828;
+	 width: 200px;
+	}
+	
+	input {
+		border: none;
+		width: 75%;
+		background: #EEEEEE;
+		margin-bottom: 5px;
+		margin-top :5px;
+		margin-left: 5px;
+	}
+	#go_add{
+		margin-bottom: 30px;
+		margin-left: 50%;
+	}
 #item_content {
 	width: calc(100% - 6px);
 	resize: none;
@@ -21,8 +56,34 @@
 	display: none;
 }
 
-</style>
+#preview{
+	height: 250px;
+	text-align: center;
+}
+.small {
+	float: left;
+	width: 40px;
+	height: 35px;
+}
+.add {
+	margin-top:5px;
+	width: 10%;
+	float:right;
+}
 
+textarea {
+ border: 2px solid #FFB4BE;
+}
+
+#option_name, #item_code {
+	width:75%;
+	float: left;
+}
+
+table th:not(:last-child) {
+	border-bottom: 1px dashed white;
+}
+</style>
 </head>
 <body>
 	<div align="center">
@@ -37,12 +98,12 @@
 					<td class="left">
 						<label>
 							<input type="file" name="file1" id="attach-file" /> 
-							<i class="far fa-image file-img"></i>
+							<img src="img/photo.png" class="small"/>
 						</label> 
 						<span id="file-name"></span> 
 						<!-- <span id="preview"></span> -->
-						<span id="delete-file" style="color: red;">
-							<i class="fas fa-times font-img"></i>
+						<span id="delete-file" style="float: right;">
+							<img src="img/delete.png" class="small"/>
 						</span>
 					</td>
 				</tr>
@@ -51,9 +112,10 @@
 					<td><input type="text" id="item_name" name="item_name" /></td>
 				</tr>
 				<tr>
-					<th>상품 번호</th>
+					<th>상품 코드</th>
 					<td>
-					<input type="text" id="item_code" name="item_code" />
+					<input width="70%;" type="text" id="item_code" name="item_code" />
+					<button class="add" style="width: 20%; margin-right: 5px;">중복확인</button>
 					</td>
 				</tr>
 				<tr>
@@ -63,26 +125,30 @@
 				<tr>
 					<th>옵션</th>
 					<td>
-						<input type="button" value="추가" onclick="addInput();" />
-						<input type="button" value="삭제" onclick="deleteInput();"/>
+						<a type="button" value="삭제" onclick="deleteInput();">
+							<img style="width: 35px; height: 35px; float: right; margin-right: 10px;" src="img/minus.png">
+						</a>
+						<a type="button" value="추가" onclick="addInput();">
+							<img style="width: 35px; height: 35px; float: right; margin-right: 10px;" src="img/plus.png">
+						</a>
 						<div id="parah">
-						<input type="text" id="option_name" name="option_name"></input>
+						
 					</div></td>
 				</tr>
 				<tr>
 					<th>상세설명</th>
-					<td><textarea id="item_content" name="item_content"></textarea></td>
+					<td style="padding: 5px 8px 0px 5px;"><textarea id="item_content" name="item_content"></textarea></td>
 				</tr>
 				<tr>
 					<th>첨부파일</th>
 					<td class="left">
 						<label> 
-							<input type="file" name="file2" id="file" /> 
-							<i class="far fa-image file-img"></i>
+							<input type="file" name="file2" id="content-file" /> 
+							<img src="img/photo.png" class="small"/>
 						</label> 
 						<span id="content-file-name"></span> 
-						<span id="content-delete-file" style="color: red;">
-							<i class="fas fa-times font-img"></i>
+						<span id="content-delete-file">
+							<img src="img/delete.png" class="small" style="float: right;"/>
 						</span>
 					</td>
 				</tr>

@@ -5,19 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원관리</title>
 <style type="text/css">
-	#item_imgpath {
-		width: 80px;
-		height: 80px;
-	}
-	
 	div {
-		80%;
+		margin: 0 auto;
+		width: 90%;
 	}
 	
 	table {
-	 width: 60%;
+	 width: 100%;
 	 border-collapse: collapse;
 	 margin-bottom: 50px;
 	 margin-top: 10px;
@@ -27,6 +23,8 @@
 	
 	table td {
 	 border-bottom: 1px solid #FFB4BE;
+	 padding-bottom: 5px;
+	 padding-top: 5px;	 
 	}
 	
 	table th {
@@ -34,31 +32,39 @@
 	 background-color: #D7567F;
 	 color: white;
 	}
+	a:hover {
+		color: #D7567F;
+		font-weight: bold;
+	}
 	
-	#go_add{
-		margin-bottom: 30px;
-		margin-left: 50%;
+	td {
+		padding-left: 5px;
 	}
 </style>
 </head>
 <body>
-<h2>상품 관리</h3>
-	<a id="go_add" class="btn-fill-s" href="itemNew.ad">제품등록하기</a>
+<h2>회원관리</h2>
 <div align="center">
 	<table>
 		<tr>
-			<th>상품 사진</th>
-			<th>상품 코드</th>
-			<th>상품 이름</th>
-			<th>상품 가격</th>
+			<th>아이디</th>
+			<th>성명</th>
+			<th>전화번호</th>
+			<th>이메일</th>
+			<th>주소</th>
+			<th>우편번호</th>		
 		</tr>
 	<c:forEach items="${list }" var="list"> 
+		
 		<tr>
-			<td><img id="item_imgpath" src="<c:url value='/' />${list.item_imgpath }"/></td>
-			<td>${list.item_code }</td>
-			<td>${list.item_name }</td>
-			<td>${list.item_price } 원</td>
+			<td style="width:100px;"><a href="memberDetail.ad?member_id=${list.member_id }">${list.member_id }</a></td>
+			<td style="width:100px;">${list.member_name }</td>
+			<td>${list.member_phonenum }</td>
+			<td>${list.member_email }</td>
+			<td>${list.member_address }<br/>${list.member_address2 }</td>
+			<td>${list.member_post }</td>
 		</tr>
+		
 	</c:forEach>
 	</table>
 

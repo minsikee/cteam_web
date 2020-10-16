@@ -17,5 +17,16 @@
     </foreach>
 </insert>
 
+<select id="list" resultType="admin.ItemListVO">
+	select * from sell_item order by item_code
+</select>
+
+<select id="memberList" resultType="member.MemberVO">
+	select * from memberjoin where not member_id in ('admin')
+</select>
+
+<select id="detail" resultType="member.MemberVO">
+	select * from memberjoin where member_id = #{member_id}
+</select>
 
 </mapper>
