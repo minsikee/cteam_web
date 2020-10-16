@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -49,7 +48,7 @@ label {
 <div align="center">
 <h2>주문정보 조회</h2>
 <c:forEach items="${orderlist }" var="vo"> 
-<table>
+<table style="width: 80%">
 	<tr id="title">
 		<th colspan="6" id="ordernum"> <label>주문날짜 ${vo.order_date }</label> 주문번호 》 <a style="color: white;" href="orderdetail.my?order_num=${vo.order_num }" >${vo.order_num }</a></th>
 	<tr>

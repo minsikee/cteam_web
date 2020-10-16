@@ -25,10 +25,12 @@ order by order_num desc,  o.item_num
 </select>
 
 <select id="orderstate" resultType="order.StateVO">
-SELECT DISTINCT (SELECT COUNT(order_state) from orderlist where order_state='상품준비중') pre,(SELECT COUNT(order_state) from orderlist where order_state='배송중') ship,
-(SELECT COUNT(order_state) from orderlist where order_state='배송완료') finish
+SELECT DISTINCT (SELECT COUNT(order_state) from orderlist where order_state='상품준비중' and member_id = #{member_id}) pre,
+(SELECT COUNT(order_state) from orderlist where order_state='배송중' and member_id = #{member_id}) ship,
+(SELECT COUNT(order_state) from orderlist where order_state='배송완료' and member_id = #{member_id}) finish
 from orderlist
 where member_id = #{member_id}
 </select>
+
 
 </mapper>

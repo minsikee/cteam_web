@@ -12,7 +12,7 @@ input {
 }
 table {
 	padding : 50px;
-	border: 1px solid gray;"
+	border: 1px solid #FFB4BE;"
 }
 
 table tr {
@@ -22,7 +22,7 @@ table th {
 	text-align: left;
 }
 table td, #member_address {
-	border-bottom: 2px solid gray;
+	border-bottom: 2px solid #FFB4BE;
 }
 .btn1{
 	background-color: navy;	
@@ -69,7 +69,7 @@ table td, #member_address {
 <form action="update.no" method="post">
 <input type="hidden" name="member_id" value="${login_info.member_id }" />
 <input type="hidden" name="member_name" value="${login_info.member_name }" />
-<table style="width: 60%; margin-top: 50px;">
+<table style="width: 30%; margin-top: 50px;">
 	<tr>
 		<th id="member_id">아이디</th>
 		<td>${login_info.member_id }</td>

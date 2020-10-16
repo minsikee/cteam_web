@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import admin.AdminServiceImpl;
 import admin.SellVO;
 import common.CommonService;
-import member.MemberVO;
 
 @Controller
 public class AdminController {
@@ -28,6 +27,7 @@ public class AdminController {
 	//상품리스트페이지 불러오기
 	@RequestMapping("/list.ad")
 	public String item_list(Model model, HttpSession session) {
+		model.addAttribute("list", service.list_item());
 		
 		return "admin/list";
 	} 
@@ -37,8 +37,7 @@ public class AdminController {
 	public String admin_up( HttpSession session) {
 		
 		
-		
-	return "admin/itemNew";
+		return "admin/itemNew";
 	}
 	
 	//상품등록
@@ -54,5 +53,19 @@ public class AdminController {
 		service.item_insert(vo);
 		return "redirect:list.ad";
 	}
+	//10월 16일
+		@RequestMapping("/memberList.ad")
+		public String member_list(Model model, HttpSession session) {
+			
+			model.addAttribute("list", service.member_list());
+			return "admin/memberList";
+		}
+		
+		@RequestMapping("memberDetail.ad")
+		public String member_detail(Model model, HttpSession session, String member_id) {
+			
+			model.addAttribute("list", service.member_detail(member_id));
+			return "admin/memberDetail";
+		}
 	
 }
