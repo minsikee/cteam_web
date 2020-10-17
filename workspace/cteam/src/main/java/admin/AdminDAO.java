@@ -21,9 +21,11 @@ import order.ItemVO;
 	}
 	
 	@Override
-	public List<ItemListVO> list_item() {
-		// TODO Auto-generated method stub
-		return sql.selectList("admin.mapper.list");
+	public ListPage list(ListPage page) {
+		page.setTotalList(
+			(Integer) sql.selectOne("admin.mapper.total",page));	
+		page.setList(sql.selectList("admin.mapper.list",page));
+		return page;
 	}
 	
 	@Override

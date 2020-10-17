@@ -12,9 +12,7 @@
 		height: 80px;
 	}
 	
-	div {
-		80%;
-	}
+
 	
 	table {
 	 width: 60%;
@@ -42,9 +40,12 @@
 </style>
 </head>
 <body>
-<h2>상품 관리</h3>
+<h2>상품 관리</h2>
 	<a id="go_add" class="btn-fill-s" href="itemNew.ad">제품등록하기</a>
-<div align="center">
+
+<form method='post' action='list.ad'>
+<input type='hidden' name='curPage' value='1' />
+	<div align="center" id="data-list">
 	<table>
 		<tr>
 			<th>상품 사진</th>
@@ -52,7 +53,7 @@
 			<th>상품 이름</th>
 			<th>상품 가격</th>
 		</tr>
-	<c:forEach items="${list }" var="list"> 
+	<c:forEach items="${page.list}" var="list"> 
 		<tr>
 			<td><img id="item_imgpath" src="<c:url value='/' />${list.item_imgpath }"/></td>
 			<td>${list.item_code }</td>
@@ -61,7 +62,15 @@
 		</tr>
 	</c:forEach>
 	</table>
-
 </div>
+</form>
+
+<!-- 페이징처리 -->
+	<div style='width:100%; float:left; margin:10px 0;' >
+		<div style='width:90%; height:30px; margin:0 auto; '>
+			<jsp:include page="/WEB-INF/views/include/page2.jsp" />
+		</div>
+	</div>
+
 </body>
 </html>

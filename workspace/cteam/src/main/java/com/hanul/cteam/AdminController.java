@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import admin.AdminServiceImpl;
+import admin.ListPage;
 import admin.SellVO;
 import common.CommonService;
 
@@ -16,6 +18,7 @@ import common.CommonService;
 public class AdminController {
 	@Autowired private AdminServiceImpl service;
 	@Autowired private CommonService common;
+	@Autowired private ListPage page;
 	
 	//관리자페이지 불러오기
 	@RequestMapping("/admin.ad")
@@ -26,9 +29,17 @@ public class AdminController {
 	
 	//상품리스트페이지 불러오기
 	@RequestMapping("/list.ad")
-	public String item_list(Model model, HttpSession session) {
-		model.addAttribute("list", service.list_item());
+	public String item_list(Model model, HttpSession session,@RequestParam(defaultValue="1") int curPage,
+			@RequestParam(defaultValue="5") int pageList) {
+		session.setAttribute("category", "ad");
 		
+		//DB에서 방명록 정보를 조회하여 목록화면에 출력
+			page.setCurPage(curPage);
+			//page.setSearch(search);
+			//page.setKeyword(keyword);
+			page.setPageList(pageList);
+			//page.setViewType(viewType);
+			model.addAttribute("page",service.list(page));
 		return "admin/list";
 	} 
 

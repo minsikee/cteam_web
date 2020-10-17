@@ -76,9 +76,23 @@ label {
 		<c:set var= "total" value="${total + item.item_price * item.item_su}"/>
 	</c:forEach>
 	
+	<c:if test="${total lt 50000 }">
+	<tr align="right"  style="border-top: 1px solid #FFB4BE;">
+		<td colspan="5">(5만원 이상 무료배송) 배송비</td><td>＋ 2500￦</td>
+	</tr>
+	<tr align="right" id="last">
+		<td colspan="5">총액</td><td><c:out value="${total + 2500}"/>￦</td>
+	</tr>
+	</c:if>
+	
+	<c:if test="${total gt 50000 }">
+	<tr align="right" style="border-top: 1px solid #FFB4BE;">
+		<td colspan="5">(5만원 이상 무료배송) 배송비</td><td>＋ 0￦</td>
+	</tr>
 	<tr align="right" id="last">
 		<td colspan="5">총액</td><td><c:out value="${total}"/>￦</td>
 	</tr>
+	</c:if>
 	
 	</table>
 	</c:forEach>
