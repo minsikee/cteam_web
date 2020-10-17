@@ -18,9 +18,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<ItemListVO> list_item() {
+	public ListPage list(ListPage vo) {
 		// TODO Auto-generated method stub
-		return dao.list_item();
+		return dao.list(vo);
 	}
 	
 	@Override

@@ -56,7 +56,7 @@
 	p{
 		margin:0px;
 		background-color: pink;
-		height: 20%;
+		height: 20.1%;
 		text-align: center;
 		
 		box-sizing: border-box;
