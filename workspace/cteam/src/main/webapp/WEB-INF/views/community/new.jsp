@@ -28,6 +28,8 @@ table th {
 	width: 75px;
 	height: 30px;
 }
+
+.file-pre { width:100%; }
 </style>
 
 </head>
@@ -42,7 +44,7 @@ table th {
 	</div>
 
 	<!-- 게시글 작성 -->
-	<form method="post" action="insert.bo">
+	<form method="post" action="insert.bo" enctype="multipart/form-data">
 	<div style='width:100%; float:left;' >
 		<table style='width:90%;'>
 			<tr>
@@ -60,10 +62,11 @@ table th {
 						<option value='나눔'>나눔</option>
 					</select>
 				</td>
+				
+				<!-- 지역 선택 -->
 				<th class='w-px100'>지역</th>
 				<td class='w-px250'>		
 				
-				<!-- 지역 선택 -->
 				<select name='board_city' style='width:50%; height:25px; border:none;' onchange='select()'>
 					<option value='' selected disabled='disabled'>== 지역 선택 ==</option>
 					<option title='seoul' value='서울특별시'>서울특별시</option>
@@ -365,305 +368,26 @@ table th {
 					<option value='서귀포시'>서귀포시</option>
 					<option value='제주시'>제주시</option>
 				</span>
-				
-				
-				
-				
-				
-				
-				
-				<!-- <select name='search3' style='width:30%; height:25px; margin-left:10%; border:none;'>
-					<option value='allregion'>== 전체 ==</option>
-				</select>
-
-				<span id='seoul' class='area'>
-					<option value='seoul1'>강남구</option>
-					<option value='seoul2'>강동구</option>
-					<option value='seoul3'>강북구</option>
-					<option value='seoul4'>강서구</option>
-					<option value='seoul5'>관악구</option>
-					<option value='seoul6'>광진구</option>
-					<option value='seoul7'>구로구</option>
-					<option value='seoul8'>금천구</option>
-					<option value='seoul9'>노원구</option>
-					<option value='seoul10'>도봉구</option>
-					<option value='seoul11'>동대문구</option>
-					<option value='seoul12'>동작구</option>
-					<option value='seoul13'>마포구</option>
-					<option value='seoul14'>서대문구</option>
-					<option value='seoul15'>서초구</option>
-					<option value='seoul16'>성동구</option>
-					<option value='seoul17'>성북구</option>
-					<option value='seoul18'>송파구</option>
-					<option value='seoul19'>양천구</option>
-					<option value='seoul20'>영등포구</option>
-					<option value='seoul21'>용산구</option>
-					<option value='seoul22'>은평구</option>
-					<option value='seoul23'>종로구</option>
-					<option value='seoul24'>중구</option>
-					<option value='seoul25'>중랑구</option>
-				</span>
-
-				<span id='busan' class='area'>
-					<option value='busan1'>강서구</option>
-					<option value='busan2'>금정구</option>
-					<option value='busan3'>기장군</option>
-					<option value='busan4'>남구</option>
-					<option value='busan5'>동구</option>
-					<option value='busan6'>동래구</option>
-					<option value='busan7'>부산진구</option>
-					<option value='busan8'>북구</option>
-					<option value='busan9'>사상구</option>
-					<option value='busan10'>사하구</option>
-					<option value='busan11'>서구</option>
-					<option value='busan12'>수영구</option>
-					<option value='busan13'>연제구</option>
-					<option value='busan14'>영도구</option>
-					<option value='busan15'>중구</option>
-					<option value='busan16'>해운대구</option>
-				</span>
-
-				<span id='daegu' class='area'>
-					<option value='daegu1'>중구</option>
-					<option value='daegu2'>동구</option>
-					<option value='daegu3'>서구</option>
-					<option value='daegu4'>남구</option>
-					<option value='daegu5'>북구</option>
-					<option value='daegu6'>수성구</option>
-					<option value='daegu7'>달서구</option>
-					<option value='daegu8'>달성군</option>
-				</span>
-
-				<span id='incheon' class='area'>
-					<option value='incheon1'>강화군</option>
-					<option value='incheon2'>계양구</option>
-					<option value='incheon3'>남구</option>
-					<option value='incheon4'>남동구</option>
-					<option value='incheon5'>동구</option>
-					<option value='incheon6'>부평구</option>
-					<option value='incheon7'>서구</option>
-					<option value='incheon8'>연수구</option>
-					<option value='incheon9'>옹진군</option>
-					<option value='incheon10'>중구</option>
-				</span>					
-
-				<span id='gwangju' class='area'>
-					<option value='gwangju1'>동구</option>
-					<option value='gwangju2'>서구</option>
-					<option value='gwangju3'>남구</option>
-					<option value='gwangju4'>북구</option>
-					<option value='gwangju5'>광산구</option>
-				</span>
-
-				<span id='daejeon' class='area'>
-					<option value='daejeon1'>대덕구</option>
-					<option value='daejeon2'>동구</option>
-					<option value='daejeon3'>서구</option>
-					<option value='daejeon4'>유성구</option>
-					<option value='daejeon5'>중구</option>
-				</span>
-
-				<span id='ulsan' class='area'>
-					<option value='ulsan1'>동구</option>
-					<option value='ulsan2'>남구</option>
-					<option value='ulsan3'>북구</option>
-					<option value='ulsan4'>울주군</option>
-					<option value='ulsan5'>중구</option>
-				</span>
-
-				<span id='gyeonggi' class='area'>
-					<option value='gyeonggi1'>가평군</option>
-					<option value='gyeonggi2'>고양시</option>
-					<option value='gyeonggi3'>과천시</option>
-					<option value='gyeonggi4'>광명시</option>
-					<option value='gyeonggi5'>광주시</option>
-					<option value='gyeonggi6'>구리시</option>
-					<option value='gyeonggi7'>군포시</option>
-					<option value='gyeonggi8'>김포시</option>
-					<option value='gyeonggi9'>남양주시</option>
-					<option value='gyeonggi10'>동두천시</option>
-					<option value='gyeonggi11'>부천시</option>
-					<option value='gyeonggi12'>성남시</option>
-					<option value='gyeonggi13'>수원시</option>
-					<option value='gyeonggi14'>시흥시</option>
-					<option value='gyeonggi15'>안산시</option>
-					<option value='gyeonggi16'>안성시</option>
-					<option value='gyeonggi17'>안양시</option>
-					<option value='gyeonggi18'>양주시</option>
-					<option value='gyeonggi19'>양평군</option>
-					<option value='gyeonggi20'>여주시</option>
-					<option value='gyeonggi21'>연천군</option>
-					<option value='gyeonggi22'>오산시</option>
-					<option value='gyeonggi23'>용인시</option>
-					<option value='gyeonggi24'>의왕시</option>
-					<option value='gyeonggi25'>의정부시</option>
-					<option value='gyeonggi26'>이천시</option>
-					<option value='gyeonggi27'>파주시</option>
-					<option value='gyeonggi28'>평택시</option>
-					<option value='gyeonggi29'>포천시</option>
-					<option value='gyeonggi30'>하남시</option>
-					<option value='gyeonggi31'>화성시</option>
-				</span>
-
-				<span id='gangwon' class='area'>
-					<option value='gangwon1'>강릉시</option>
-					<option value='gangwon2'>고성군</option>
-					<option value='gangwon3'>동해시</option>
-					<option value='gangwon4'>삼척시</option>
-					<option value='gangwon5'>속초시</option>
-					<option value='gangwon6'>양구군</option>
-					<option value='gangwon7'>양양군</option>
-					<option value='gangwon8'>영월군</option>
-					<option value='gangwon9'>원주시</option>
-					<option value='gangwon10'>인제군</option>
-					<option value='gangwon11'>정선군</option>
-					<option value='gangwon12'>철원군</option>
-					<option value='gangwon13'>춘천시</option>
-					<option value='gangwon14'>태백시</option>
-					<option value='gangwon15'>평창군</option>
-					<option value='gangwon16'>홍천군</option>
-					<option value='gangwon17'>화천군</option>
-					<option value='gangwon18'>횡성군</option>
-				</span>
-
-				<span id='chungbuk' class='area'>
-					<option value='chungbuk1'>괴산군</option>
-					<option value='chungbuk2'>단양군</option>
-					<option value='chungbuk3'>보은군</option>
-					<option value='chungbuk4'>영동군</option>
-					<option value='chungbuk5'>옥천군</option>
-					<option value='chungbuk6'>음성군</option>
-					<option value='chungbuk7'>제천시</option>
-					<option value='chungbuk8'>증평군</option>
-					<option value='chungbuk9'>진천군</option>
-					<option value='chungbuk10'>청주시</option>
-					<option value='chungbuk11'>충주시</option>
-				</span>
-
-				<span id='chungnam' class='area'>
-					<option value='chungnam1'>계룡시</option>
-					<option value='chungnam2'>공주시</option>
-					<option value='chungnam3'>금산군</option>
-					<option value='chungnam4'>논산시</option>
-					<option value='chungnam5'>당진시</option>
-					<option value='chungnam6'>보령시</option>
-					<option value='chungnam7'>부여군</option>
-					<option value='chungnam8'>서산시</option>
-					<option value='chungnam9'>서천군</option>
-					<option value='chungnam10'>아산시</option>
-					<option value='chungnam11'>예산군</option>
-					<option value='chungnam12'>천안시</option>
-					<option value='chungnam13'>청양군</option>
-					<option value='chungnam14'>태안군</option>
-					<option value='chungnam15'>홍성군</option>
-				</span>
-
-				<span id='jeonbuk' class='area'>
-					<option value='jeonbuk1'>고창군</option>
-					<option value='jeonbuk2'>군산시</option>
-					<option value='jeonbuk3'>김제시</option>
-					<option value='jeonbuk4'>남원시</option>
-					<option value='jeonbuk5'>무주군</option>
-					<option value='jeonbuk6'>부안군</option>
-					<option value='jeonbuk7'>순창군</option>
-					<option value='jeonbuk8'>완주군</option>
-					<option value='jeonbuk9'>익산시</option>
-					<option value='jeonbuk10'>임실군</option>
-					<option value='jeonbuk11'>장수군</option>
-					<option value='jeonbuk12'>전주시</option>
-					<option value='jeonbuk13'>정읍시</option>
-					<option value='jeonbuk14'>진안군</option>
-				</span>
-
-				<span id='jeonnam' class='area'>
-					<option value='jeonnam1'>강진군</option>
-					<option value='jeonnam2'>고흥군</option>
-					<option value='jeonnam3'>곡성군</option>
-					<option value='jeonnam4'>광양시</option>
-					<option value='jeonnam5'>구례군</option>
-					<option value='jeonnam6'>나주시</option>
-					<option value='jeonnam7'>담양군</option>
-					<option value='jeonnam8'>목포시</option>
-					<option value='jeonnam9'>무안군</option>
-					<option value='jeonnam10'>보성군</option>
-					<option value='jeonnam11'>순천시</option>
-					<option value='jeonnam12'>신안군</option>
-					<option value='jeonnam13'>여수시</option>
-					<option value='jeonnam14'>영광군</option>
-					<option value='jeonnam15'>영암군</option>
-					<option value='jeonnam16'>완도군</option>
-					<option value='jeonnam17'>장성군</option>
-					<option value='jeonnam18'>장흥군</option>
-					<option value='jeonnam19'>진도군</option>
-					<option value='jeonnam20'>함평군</option>
-					<option value='jeonnam21'>해남군</option>
-					<option value='jeonnam22'>화순군</option>
-				</span>
-
-				<span id='gyeongbuk' class='area'>
-					<option value='gyeongbuk1'>경산시</option>
-					<option value='gyeongbuk2'>경주시</option>
-					<option value='gyeongbuk3'>고령군</option>
-					<option value='gyeongbuk4'>구미시</option>
-					<option value='gyeongbuk5'>군위군</option>
-					<option value='gyeongbuk6'>김천시</option>
-					<option value='gyeongbuk7'>문경시</option>
-					<option value='gyeongbuk8'>봉화군</option>
-					<option value='gyeongbuk9'>상주시</option>
-					<option value='gyeongbuk10'>성주군</option>
-					<option value='gyeongbuk11'>안동시</option>
-					<option value='gyeongbuk12'>영덕군</option>
-					<option value='gyeongbuk13'>영양군</option>
-					<option value='gyeongbuk14'>영주시</option>
-					<option value='gyeongbuk15'>영천시</option>
-					<option value='gyeongbuk16'>예천군</option>
-					<option value='gyeongbuk17'>울릉군</option>
-					<option value='gyeongbuk18'>울진군</option>
-					<option value='gyeongbuk19'>의성군</option>
-					<option value='gyeongbuk20'>청도군</option>
-					<option value='gyeongbuk21'>청송군</option>
-					<option value='gyeongbuk22'>칠곡군</option>
-					<option value='gyeongbuk23'>포항시</option>
-				</span>
-
-				<span id='gyeongnam' class='area'>
-					<option value='gyeongnam1'>거제시</option>
-					<option value='gyeongnam2'>거창군</option>
-					<option value='gyeongnam3'>고성군</option>
-					<option value='gyeongnam4'>김해시</option>
-					<option value='gyeongnam5'>남해군</option>
-					<option value='gyeongnam6'>밀양시</option>
-					<option value='gyeongnam7'>사천시</option>
-					<option value='gyeongnam8'>산청군</option>
-					<option value='gyeongnam9'>양산시</option>
-					<option value='gyeongnam10'>의령군</option>
-					<option value='gyeongnam11'>진주시</option>
-					<option value='gyeongnam12'>청녕군</option>
-					<option value='gyeongnam13'>창원시</option>
-					<option value='gyeongnam14'>통영시</option>
-					<option value='gyeongnam15'>하동군</option>
-					<option value='gyeongnam16'>함안군</option>
-					<option value='gyeongnam17'>함양군</option>
-					<option value='gyeongnam18'>합천군</option>
-				</span>
-
-				<span id='jeju' class='area'>
-					<option value='jeju1'>서귀포시</option>
-					<option value='jeju2'>제주시</option>
-				</span> -->
 
 				</td>
 			</tr>
 			<tr>
-				<th class='w-px100' style='height:459px;'>내용</th>
-				<td colspan='3''>
+				<th rowspan='2' class='w-px100' style='height:459px;'>내용</th>
+				<td rowspan='2' colspan='3'>
 					<textarea name='board_content' title='내용' class='need' 
 					style='width:100%; height:99%; margin:0; padding:10px; border:none; box-sizing:border-box; font-size:15px;'></textarea>
 				</td>
-				<th class='w-px100'>첨부사진</th>
+				<th class='w-px100' style='height:400px;'>첨부사진</th>
 				<td>
-					<input type="file" name="file" id="attach-file"/>
-					<img src="img/select.png" class="file-img">
+					<div id="preview"></div>
+				</td>
+			</tr>
+			<tr>
+				<th><label style='cursor:pointer;'><input type="file" name="file" id="attach-file" accept="image/gif, image/jpeg, image/png, image/jpg, image/bmp"/>첨부하기</label></th>
+				<td>
+					<span id="file-name"></span>
+					<span id="delete-file" style='cursor:pointer;'><img src='img/delete.png' height='75%'/></span>
+					<!-- <span id="delete-file" style="color: red;"><i class="far fa-calendar-times font-img"></i></span> -->
 				</td>
 			</tr>
 		</table>
@@ -675,11 +399,13 @@ table th {
 		<div style='width:90%; height:30px; margin:0 auto; background-color: #FFB4BE;'>
 			<span style='display:block; background-color:#FFFFFF; width:200px; height:35px; margin:0 auto;'>
 				<button class='cancel'><a href='list.bo' style='color:#111111; font-size:15px;'>취소</a></button>
-				<button class='submit' onclick='if(necessary()){$("form").submit()}' style='color:#111111; font-size:15px; font-weight:bold;'>글쓰기</button>
+				<button class='submit' onclick='if(necessary()){$("form").submit()}' 
+						style='color:#111111; font-size:15px; font-weight:bold; cursor:pointer;'>글쓰기</button>
 			</span>
 		</div>
 	</div>
 
+<script type="text/javascript" src="js/image_preview.js?v=<%=new java.util.Date().getTime()%>"></script>
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>
 <script type="text/javascript">

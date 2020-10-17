@@ -1,6 +1,6 @@
 /**
  *  필수입력항목에 입력여부를 반환하는 처리
- */3
+ */
 
 function necessary(){
 	var need = true;

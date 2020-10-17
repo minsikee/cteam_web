@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import common.CommonService;
 import community.CommunityPage;
 import community.CommunityServiceImpl;
 import community.CommunityVO;
@@ -20,6 +22,7 @@ public class WalkBoardController {
 	
 	@Autowired private CommunityServiceImpl service;
 	@Autowired private CommunityPage page;
+	@Autowired private CommonService common;
 	
 	//글목록 화면
 	@RequestMapping("/list.bo")
@@ -54,7 +57,7 @@ public class WalkBoardController {
 		return "community/detail";
 	}
 	
-	//새글쓰기 화면 >> 수정 필요?
+	//새글쓰기 화면
 	@RequestMapping("/new.bo")
 	public String newBoard(Model model, String board_subject, String board_city, String board_region) {
 		
@@ -68,7 +71,11 @@ public class WalkBoardController {
 	
 	//새글쓰기 처리
 	@RequestMapping("/insert.bo")
-	public String insert(HttpSession session, CommunityVO vo) {
+	public String insert(HttpSession session, CommunityVO vo, MultipartFile file) {
+		
+		if(!file.isEmpty()) {
+			vo.setBoard_imagepath( common.upload("community", file, session) );
+		}
 		
 		vo.setMember_id( ((MemberVO)session.getAttribute("login_info")).getMember_id() );
 		service.community_insert(vo);	

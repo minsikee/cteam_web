@@ -388,7 +388,7 @@ select {
 				</td>
 				<td>${vo.member_id}</td>
 				<td>${vo.board_date}</td>
-				<td>${vo.board_imagepath == null ? '' : '<img src="img/attach.png" width="15px" height="15px"/>'}</td>
+				<td>${vo.board_imagepath == null || vo.board_imagepath == 'null' ? '' : '<img src="img/attach.png" width="15px" height="15px"/>'}</td>
 			</tr>
 			</c:forEach>
 		</table>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,8 +104,19 @@ table th {
 					<span style='float:left; margin:10px'>${vo.board_content}</span>
 				</td>
 				<th class='w-px100'>첨부사진</th>
-				<c:set var='imgpath' value='<img src="${vo.board_imagepath}" width="100%"/>' />
-				<td>${empty vo.board_imagepath ? '' : imgpath}</td>
+				<td>
+					<c:set var="imgpath" value="${vo.board_imagepath }"/> 
+					<c:choose>
+						<c:when test="${fn:contains(imgpath, 'http')}">
+							<img src="${vo.board_imagepath}" width="100%" />
+						</c:when>
+						<c:when test="${imgpath eq null}"></c:when>
+						<c:when test="${fn:contains(imgpath, 'null')}"></c:when>
+						<c:otherwise>
+							<img src="<c:url value='/' />${vo.board_imagepath}" width="100%"/>
+						</c:otherwise>
+					</c:choose>	
+				</td>
 			</tr>
 		</table>
 	</div>

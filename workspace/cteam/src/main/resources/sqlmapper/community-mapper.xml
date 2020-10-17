@@ -30,8 +30,8 @@ WHERE no BETWEEN #{beginList} AND #{endList}
 
 <!-- 글 삽입 -->
 <select id="insert">
-INSERT INTO board(board_num, board_subject, board_city, board_region, member_id, board_title, board_content)
-VALUES (board_seq.nextval, #{board_subject}, #{board_city}, #{board_region}, #{member_id}, #{board_title}, #{board_content})
+INSERT INTO board(board_num, board_subject, board_city, board_region, member_id, board_title, board_content, board_imagepath)
+VALUES (board_seq.nextval, #{board_subject}, #{board_city}, #{board_region}, #{member_id}, #{board_title}, #{board_content}, #{board_imagepath,jdbcType=VARCHAR})
 </select>
 
 <!-- 글 삭제 -->
