@@ -37,6 +37,7 @@
 		margin-bottom: 30px;
 		margin-left: 50%;
 	}
+
 </style>
 </head>
 <body>
@@ -52,6 +53,7 @@
 			<th>상품 코드</th>
 			<th>상품 이름</th>
 			<th>상품 가격</th>
+			<th></th>
 		</tr>
 	<c:forEach items="${page.list}" var="list"> 
 		<tr>
@@ -59,6 +61,8 @@
 			<td>${list.item_code }</td>
 			<td>${list.item_name }</td>
 			<td>${list.item_price } 원</td>
+			<td><a class="btn-fill-s" style="background-color: pink; color: #666;">수정</a>
+			<a class="btn-empty-s" style="color: white; background-color: #666;">삭제</a> </td>
 		</tr>
 	</c:forEach>
 	</table>
