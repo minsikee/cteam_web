@@ -28,11 +28,21 @@ public class CommunityServiceImpl implements CommunityService {
 		return dao.community_insert(vo);
 	}
 	
+	//글 수정하기
+	@Override
+	public int community_update(CommunityVO vo) {
+		return dao.community_update(vo);
+	}
+
 	//글 삭제하기
 	@Override
 	public int community_delete(int board_num) {
 		return dao.community_delete(board_num);
 	}
-	
+
+	//댓글 목록
+	public List<CommunityCommentVO> community_comment_list(int board_num) {
+		return dao.community_comment_list(board_num);
+	}
 
 }

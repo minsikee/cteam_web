@@ -383,10 +383,22 @@ select {
 				<td>${vo.board_city} ${vo.board_region}</td>
 				<td>
 					<span style='color:#FFB4BE; font-weight:bold; float:left; margin-left:5px;'>♡&nbsp;</span>
-					<a href='detail.bo?board_num=${vo.board_num}' style='color:#000000;'>${vo.board_title}</a>
+						<c:if test='${vo.member_id eq "admin"}'>
+							<a href='detail.bo?board_num=${vo.board_num}' style='color:#000000; font-weight:bold;'>${vo.board_title}</a>
+						</c:if>
+						<c:if test='${vo.member_id ne "admin"}'>
+							<a href='detail.bo?board_num=${vo.board_num}' style='color:#000000;'>${vo.board_title}</a>
+						</c:if>
 					<span style='color:#FFB4BE; font-weight:bold; float:right; margin-right:5px;'>&nbsp;♡</span>
 				</td>
-				<td>${vo.member_id}</td>
+				<td>
+					<c:if test='${vo.member_id eq "admin"}'>
+						<font style='font-weight:bold;'>${vo.member_id}</font>
+					</c:if>
+					<c:if test='${vo.member_id ne "admin"}'>
+						${vo.member_id}
+					</c:if>
+				</td>
 				<td>${vo.board_date}</td>
 				<td>${vo.board_imagepath == null || vo.board_imagepath == 'null' ? '' : '<img src="img/attach.png" width="15px" height="15px"/>'}</td>
 			</tr>

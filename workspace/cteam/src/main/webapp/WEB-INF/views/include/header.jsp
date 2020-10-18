@@ -5,14 +5,14 @@
 	<div style='margin:0 auto; padding:25px 0px 25px 0px; overflow:hidden;'>
 	
 		<!-- 헤더 윗줄 : 로고 & 로그인 -->
-		<div style='width:100%; height:100px; float:left; '>
+		<div style='width:100%; height:100px; float:left; margin-bottom:20px; '>
 			<a href='<c:url value="/" />'><img src='img/cteam_logo1.png' width='250px' height='100px' style="margin-right: -7.8%">
-			<a href="cart.bs"><img src="img/cart.png" style="float: right; width: 70px; height: 70px; margin-right: 4.6%;"></a>
+			<a href="cart.bs"><img src="img/cart.png" style="float: right; width: 70px; height: 70px; margin-top:20px; margin-right: 4.6%;"></a>
 		</div>
 
 		<!-- 헤더 아랫줄 : 메뉴버튼 -->
 		<div id='header_menu' style='width:100%; float:left; overflow:hidden;'>
-			<a href="intro.co"><div class='header_menu'>회사소개</div></a>
+			<a href="intro.co" style="line-height:60px; font-size:20px; color:#222222;"><div class='header_menu'>회사소개</div></a>
 			<a href="list.no"><div class='header_menu'>공지사항</div></a>
 			<a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } ><div class='header_menu'>상품페이지</div></a>
 			<a href="list.bo"><div class='header_menu'>커뮤니티</div></a>
@@ -109,13 +109,13 @@
 		 {
 			line-height: 60px;
 			font-size: 20px;
-			color: #000000;
+			color: #222222;
 		}
 		#header_menu a:last-child,
 		#header_menu a:nth-child(1)  {
 			line-height: 30px;
 			font-size: 18px;
-			color: #000000;
+			color: #222222;
 		}
 		.header_menu:hover, .header_menu2:hover { 
 			background-color: #666666;

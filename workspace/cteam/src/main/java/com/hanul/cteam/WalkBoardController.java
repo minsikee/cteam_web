@@ -1,5 +1,6 @@
 package com.hanul.cteam;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +33,7 @@ public class WalkBoardController {
 					   String search4, String keyword, 
 					   @RequestParam(defaultValue="1") int curPage, 
 					   @RequestParam(defaultValue="15") int pageList) {
+		
 		session.setAttribute("category", "bo");
 		
 		page.setCurPage(curPage);
@@ -83,6 +86,49 @@ public class WalkBoardController {
 		return "redirect:list.bo";
 	}
 	
+	//글 수정하기 화면
+	@RequestMapping("/modify.bo")
+	public String modify(Model model, int board_num) {
+		
+		model.addAttribute("vo", service.community_detail(board_num));
+		
+		return "community/modify";
+	}
+	
+	//글 수정하기 처리
+	@RequestMapping("/update.bo")
+	public String update(CommunityVO vo, Model model, HttpSession session, MultipartFile file, String attach) {
+		
+		CommunityVO community = service.community_detail(vo.getBoard_num());
+		String uuid = session.getServletContext().getRealPath("resources") + community.getBoard_imagepath();
+		
+		if(! file.isEmpty()) {
+			vo.setBoard_imagepath(common.upload("community", file, session));
+			
+			if(community.getBoard_imagepath() != null) {
+				File f = new File(uuid);
+				if(f.exists()) f.delete();
+			}
+		} else {
+			
+			if( attach.isEmpty() ) {
+				if( community.getBoard_imagepath() != null) {
+					File f = new File(uuid);
+					if( f.exists() ) f.delete();
+				}
+			} else {
+				vo.setBoard_imagepath( community.getBoard_imagepath());
+			}
+		}
+		
+		service.community_update(vo);
+		
+		model.addAttribute("url", "detail.bo");
+		model.addAttribute("board_num", vo.getBoard_num());
+
+		return "community/redirect";
+	}
+	
 	//글 삭제하기 처리
 	@RequestMapping("/delete.bo")
 	public String delete(Model model, int board_num) {
@@ -92,6 +138,16 @@ public class WalkBoardController {
 		model.addAttribute("url", "list.bo");
 		
 		return "community/redirect";
+	}
+	
+	//댓글목록 화면
+	@RequestMapping("/community/comment/{board_num}")
+	public String comment_list(Model model, @PathVariable int board_num) {
+		model.addAttribute("list",service.community_comment_list(board_num));
+		model.addAttribute("crlf","\r\n");
+		model.addAttribute("lf","\n");
+		
+		return "community/comment/comment_list";
 	}
 	
 

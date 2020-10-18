@@ -31,12 +31,23 @@ public class CommunityDAO implements CommunityService {
 	public int community_insert(CommunityVO vo) {
 		return sql.insert("community.mapper.insert", vo);
 	}
-
+	
+	//글 수정하기
+	@Override
+	public int community_update(CommunityVO vo) {
+		return sql.update("community.mapper.update", vo);
+	}
+	
 	//글 삭제하기
 	@Override
 	public int community_delete(int board_num) {
 		return sql.delete("community.mapper.delete", board_num);
 	}
 
+	//댓글 목록
+	@Override
+	public List<CommunityCommentVO> community_comment_list(int board_num) {
+		return sql.selectList("community.mapper.comment_list", board_num);
+	}
 
 }

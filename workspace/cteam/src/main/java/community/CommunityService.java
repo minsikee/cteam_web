@@ -8,7 +8,9 @@ public interface CommunityService {
 	CommunityVO community_detail(int board_num);			//글상세
 	
 	int community_insert(CommunityVO vo);					//글쓰기
-	
+	int community_update(CommunityVO vo);					//글수정
 	int community_delete(int board_num);					//글삭제
+	
+	List<CommunityCommentVO> community_comment_list(int board_num);	//댓글 목록 조회
 
 }
