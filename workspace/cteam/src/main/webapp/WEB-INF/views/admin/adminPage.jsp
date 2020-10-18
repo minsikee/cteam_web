@@ -79,8 +79,8 @@ a:hover{
 		<p><a href="memberList.ad">회원관리</a></p>
 	</li>
 	<li>
-		<a href=""><img id="order" src="img/orderlist.png" /></a>
-		<p><a href="">주문관리</a></p>
+		<a href="orderList.ad"><img id="order" src="img/orderlist.png" /></a>
+		<p><a href="orderList.ad">주문관리</a></p>
 	</li>
 </ul>
 

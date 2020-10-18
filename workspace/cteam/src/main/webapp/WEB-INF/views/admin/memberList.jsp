@@ -44,7 +44,9 @@
 </head>
 <body>
 <h2>회원관리</h2>
-<div align="center">
+<form action="memberList.ad" method="post">
+<input type='hidden' name='curPage' value='1' />
+<div align="center" id="data-list">
 	<table>
 		<tr>
 			<th>아이디</th>
@@ -53,8 +55,9 @@
 			<th>이메일</th>
 			<th>주소</th>
 			<th>우편번호</th>		
+			<th>삭제</th>		
 		</tr>
-	<c:forEach items="${list }" var="list"> 
+	<c:forEach items="${page.list }" var="list"> 
 		
 		<tr>
 			<td style="width:100px;"><a href="memberDetail.ad?member_id=${list.member_id }">${list.member_id }</a></td>
@@ -63,11 +66,18 @@
 			<td>${list.member_email }</td>
 			<td>${list.member_address }<br/>${list.member_address2 }</td>
 			<td>${list.member_post }</td>
+			<td><a href="" class="btn-fill-s">회원 탈퇴</a></td>
 		</tr>
 		
 	</c:forEach>
 	</table>
-
 </div>
+</form>
+<!-- 페이징처리 -->
+	<div style='width:100%; float:left; margin:10px 0;' >
+		<div style='width:90%; height:30px; margin:0 auto; '>
+			<jsp:include page="/WEB-INF/views/include/page2.jsp" />
+		</div>
+	</div>
 </body>
 </html>
