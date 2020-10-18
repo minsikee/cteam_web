@@ -14,7 +14,7 @@ import mypage.MypageServiceImpl;
 public class MyPageController {
 	@Autowired private MypageServiceImpl service;
 	
-	//마이페이지 선태항목불러오기
+	//마이페이지 선택항목불러오기
 	@RequestMapping("/list.my")
 	public String mypage(Model model, HttpSession session) {
 		String member_id = ((MemberVO)session.getAttribute("login_info")).getMember_id();
@@ -52,5 +52,13 @@ public class MyPageController {
 		else	return "mypage/orderdetail";
 	}
 	
+	@RequestMapping("/myWrite.my")
+	public String my_write(Model model, HttpSession session) {
+		String member_id = ((MemberVO)session.getAttribute("login_info")).getMember_id();
+		session.setAttribute("category", "my");
+		model.addAttribute("list",service.my_write(member_id));
+		
+		return "mypage/myWrite";
+	}
 	
 }

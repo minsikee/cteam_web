@@ -1,12 +1,16 @@
 package com.hanul.cteam;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import admin.AdminServiceImpl;
@@ -98,4 +102,16 @@ public class AdminController {
 			model.addAttribute("orderlist", service.order_list());
 			return "admin/orderList";
 		}
+		
+	 	@RequestMapping("/stateUpdate.ad")
+		public void state_update(Model model, String order_state, String order_num) {
+	 		HashMap<String, String> map = new HashMap<String, String>();
+			map.put("order_state", order_state);
+			map.put("order_num", order_num);
+			
+			service.state_update(map);
+			//return "redirect:orderList";
+		}
+		
+		
 }

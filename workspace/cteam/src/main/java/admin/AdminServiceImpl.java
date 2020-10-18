@@ -1,5 +1,6 @@
 package admin;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,9 @@ public class AdminServiceImpl implements AdminService {
 		return dao.order_list();
 	}
 
-
+	@Override
+	public void state_update(HashMap<String, String> map) {
+		dao.state_update(map);
+		
+	}
 }
