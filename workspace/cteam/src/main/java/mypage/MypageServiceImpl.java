@@ -34,4 +34,10 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 
+	@Override
+	public List<WrtieVO> my_write(String member_id) {
+		return dao.my_write(member_id);
+	}
+
+
 }

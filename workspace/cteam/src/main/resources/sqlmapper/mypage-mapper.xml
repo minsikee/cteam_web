@@ -32,5 +32,15 @@ from orderlist
 where member_id = #{member_id}
 </select>
 
+<!-- <select id="writelist" resultType="mypage.WriteVO">
+	select board_subject, board_title, board_date, board_num
+	from board
+	where member_id = #{member_id}
+</select>
 
+<select id="comment" resultType="mypage.CommentVO">
+	select content, writedate, comment_num
+	from board_comment
+	where member_id = #{member_id}
+</select> -->
 </mapper>

@@ -1,5 +1,6 @@
 package admin;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -53,6 +54,11 @@ import order.OrderListVO;
 		}
 		
 		return orderlist;
+	}
+
+	@Override
+	public void state_update(HashMap<String, String> map) {
+		sql.update("admin.mapper.state",map);
 	}
 
 

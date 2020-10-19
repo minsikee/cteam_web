@@ -40,6 +40,19 @@ public class MypageDAO implements MypageService{
 		return sql.selectOne("mypage.mapper.orderstate", member_id);
 	}
 
+	@Override
+	public List<WrtieVO> my_write(String member_id) {
+		/*
+		 * List<WrtieVO> writelist = sql.selectList("mypage.mapper.writelist",
+		 * member_id);
+		 * 
+		 * for(WrtieVO write : writelist ) { List<CommentVO> comment =
+		 * sql.selectList("mypage.mapper.comment", member_id);
+		 * write.setComment(comment); }
+		 */
+		return null;
+	}
+
 
 
 }

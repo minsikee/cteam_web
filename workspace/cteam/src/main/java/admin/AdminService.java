@@ -16,4 +16,5 @@ public interface AdminService {
 	MemberListPage member_list (MemberListPage vo);	//회원정보조회(10/16)
 	MemberVO member_detail(String member_id);	//회원정보 상세조회
 	List<OrderListVO> order_list();				//주문내역 조회
+	void state_update(HashMap<String, String> map);
 }

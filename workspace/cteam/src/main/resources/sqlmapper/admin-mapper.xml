@@ -42,7 +42,7 @@
 </select>
 
 <select id="orderlist" resultType="order.OrderListVO">
-select order_num, order_date, order_state
+select member_id, order_num, order_date, order_state
 from orderlist order by order_date desc
 </select>
 <select id="orderlist_item" resultType="order.ItemVO">
@@ -52,4 +52,10 @@ where order_num = #{order_num}
 and o.item_num = p.item_num 
 order by order_num desc,  o.item_num
 </select>
+
+<update id="state">
+	update set order_state = #{order_state}
+	where ordernum = #{order_num}
+</update>
+
 </mapper>
