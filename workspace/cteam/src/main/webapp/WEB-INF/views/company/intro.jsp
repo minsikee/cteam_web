@@ -6,9 +6,11 @@
 <title>회사</title>
 
 <style type="text/css">
+
 #company_menu, #company_menu_body, #company_employee_body, #company_map_body {
 	float: left;
 	height: 500px;
+	overflow: auto;
 }
 #company_menu ul li a {
 	display: block;
@@ -157,7 +159,7 @@ function company_map() {
 					<div class='employee_cardview_text'>
 						<span class='employee_cardview_name'> 제리누나</span>
 						<span class='employee_cardview_note'>
-						특 : 못봄
+						특 : 목포에 있어서 못봄
 						</span>
 					</div>
 				</div>
@@ -168,7 +170,7 @@ function company_map() {
 					<div class='employee_cardview_text'>
 						<span class='employee_cardview_name'> 자몽언니</span>
 						<span class='employee_cardview_note'>
-						특 : 가끔 자몽이 데려옴
+						특 : 가끔 자몽이 데려옴 자몽이 견생 부러움
 						</span>
 					</div>
 				</div>
@@ -197,19 +199,21 @@ function company_map() {
 			</div>
 			
 			<!-- 오른쪽 내용 : 오시는 길 -->
-			<div id='company_map_body' style='width:80%; display:none;' >
-			<div style='width:45%; margin:10px 0px 10px 10px; float:left;'>
-				주소 : (619-28) 광주광역시 서구 경열로 3 ( 농성동 271-4 )<br/>
-				버스 : 금호36, 문흥39, 봉선37, 송정19,송암68, 송암72, 나주160, 함평500, 지선1187, 마을763<br/>
-				지하철 : 농성역1번 출구, (도보 5분여 소요)<br/>
-				전화번호 : 062)362-7797<br/>
-				FAX : 062)362-7798
-			</div>
-			<div style='width:45%; margin:10px 10px 10px 0px; float:right;'>
-				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13047.805951622882!2d126.8840455!3d35.1578306!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb8207167890e32bb!2z7ZWc7Jq47KeB7JeF7KCE66y47ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1602308233338!5m2!1sko!2skr" 
-						width="100%" height="321px" frameborder="2px" style="border:2px dashed #FFB4BE" allowfullscreen="" aria-hidden="false" tabindex="0">
-				</iframe>
-			</div>
+			<div id='company_map_body' style='width:80%; display:none;'>
+				<div style='padding:10px 12px 10px 12px;'>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13047.805951622882!2d126.8840455!3d35.1578306!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb8207167890e32bb!2z7ZWc7Jq47KeB7JeF7KCE66y47ZWZ6rWQ!5e0!3m2!1sko!2skr!4v1602308233338!5m2!1sko!2skr" 
+							width="100%" height="350px" frameborder="2px" style="border:2px dashed #FFB4BE" allowfullscreen="" aria-hidden="false" tabindex="0">
+					</iframe>
+				</div>
+  				<div style='padding:10px;'>
+		 			<div><font style='color:#222222;'>
+					주소 : (619-28) 광주광역시 서구 경열로 3 ( 농성동 271-4 )<br/>
+					버스 : 금호36, 문흥39, 봉선37, 송정19,송암68, 송암72, 나주160, 함평500, 지선1187, 마을763<br/>
+					지하철 : 농성역1번 출구, (도보 5분여 소요)<br/>
+					전화번호 : 062)362-7797<br/>
+					FAX : 062)362-7798
+		 			</font></div>
+				</div>
 			</div>
 			
 		</div>

@@ -2,16 +2,16 @@ package community;
 
 public class CommunityVO {
 	
-	private String board_num;
+	private int board_num;
 	private String member_id;
 	private String board_date;
 	private String board_subject, board_city, board_region;
 	private String board_title, board_content, board_imagepath;
 
-	public String getBoard_num() {
+	public int getBoard_num() {
 		return board_num;
 	}
-	public void setBoard_num(String board_num) {
+	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
 	public String getMember_id() {

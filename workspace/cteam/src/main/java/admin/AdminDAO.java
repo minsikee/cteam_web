@@ -1,5 +1,6 @@
 package admin;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import member.MemberVO;
 import order.ItemVO;
+import order.OrderListVO;
 
 @Repository
 	public class AdminDAO implements AdminService {
@@ -29,13 +31,35 @@ import order.ItemVO;
 	}
 	
 	@Override
-	public List<MemberVO> member_list() {
-		// TODO Auto-generated method stub
-		return sql.selectList("admin.mapper.memberList");
+	public MemberListPage member_list(MemberListPage page) {
+		page.setTotalList(
+				(Integer) sql.selectOne("admin.mapper.membertotal",page));	
+			page.setList(sql.selectList("admin.mapper.memberlist",page));
+			return page;
 	}
 	
 	@Override
 	public MemberVO member_detail(String member_id) {
+		
 		return sql.selectOne("admin.mapper.detail",member_id);
 }
+
+	@Override
+	public List<OrderListVO> order_list() {
+	List<OrderListVO>  orderlist = sql.selectList("admin.mapper.orderlist");
+		
+		for(OrderListVO order : orderlist ) {
+			List<ItemVO> items = sql.selectList("admin.mapper.orderlist_item", order.getOrder_num());
+			order.setOrder_item(items);
+		}
+		
+		return orderlist;
+	}
+
+	@Override
+	public void state_update(HashMap<String, String> map) {
+		sql.update("admin.mapper.state",map);
+	}
+
+
 }

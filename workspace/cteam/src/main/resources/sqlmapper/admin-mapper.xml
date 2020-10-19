@@ -27,13 +27,35 @@
 	where no between #{beginList} and #{endList}
 </select>
 
-
-<select id="memberList" resultType="member.MemberVO">
-	select * from memberjoin where not member_id in ('admin')
+<select id="membertotal" resultType="integer">
+	select count(*) from memberjoin
 </select>
-
+<select id="memberlist" resultType="member.MemberVO">
+	select n.* from (select n.*, rownum no from 
+	(select * from memberjoin  where not member_id in ('admin'))  n order by no desc) n
+	where no between #{beginList} and #{endList}
+</select>
+<!-- where not member_id in ('admin')
+ -->
 <select id="detail" resultType="member.MemberVO">
 	select * from memberjoin where member_id = #{member_id}
 </select>
+
+<select id="orderlist" resultType="order.OrderListVO">
+select member_id, order_num, order_date, order_state
+from orderlist order by order_date desc
+</select>
+<select id="orderlist_item" resultType="order.ItemVO">
+select order_num, o.item_num, item_su, item_name, item_price, item_imgpath, item_content_imgpath
+from orderlist_goods o, sell_item p 
+where order_num = #{order_num}
+and o.item_num = p.item_num 
+order by order_num desc,  o.item_num
+</select>
+
+<update id="state">
+	update set order_state = #{order_state}
+	where ordernum = #{order_num}
+</update>
 
 </mapper>

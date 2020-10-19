@@ -25,13 +25,15 @@ table td, #member_address {
 	border-bottom: 2px solid #FFB4BE;
 }
 .btn1{
-	background-color: navy;	
-	color:white;
+	background-color: pink;	
+	color:#333;
+	font-weight: bold;
 }
 
 .btn2{
 	background-color: white;	
-	color:navy;
+	color: pink;
+	font-weight: bold;
 }
 .btn1, .btn2{
 	padding: 10px 30px;
@@ -47,7 +49,7 @@ table td, #member_address {
 	border-radius: 3px;
 	font-size: 10px;
 	box-shadow: 2px 2px 3px #022d72;
-	background-color: navy;	
+	background-color: #666;	
 	color:white;
 	height: 30px;
 }
@@ -112,7 +114,7 @@ table td, #member_address {
 		<th>주소</th>
 		<td><input type="text" value="${login_info.member_post }" id="member_post" name="member_post" readonly="readonly"><button id="post">우편번호찾기</button><br/>
 			<input type="text" value="${login_info.member_address }" id="member_address" name="member_address" readonly="readonly">
-			<input type="text" value="" name="member_address2" placeholder="상세주소" ></td>
+			<input type="text" value="${login_info.member_address2 }" name="member_address2" placeholder="상세주소" ></td>
 	</tr>
 	</table>
 </form>

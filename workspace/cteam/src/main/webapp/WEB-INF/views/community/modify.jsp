@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +30,14 @@ table th {
 	height: 30px;
 }
 
-.file-pre { width:90%; }
+.file-pre { width:100%; }
 </style>
 
 </head>
 <body>
+<form action="update.bo" method="post" enctype="multipart/form-data">
+<input type="hidden" name="board_num" value="${vo.board_num}" />
+<input type="hidden" name="attach" />
 
 	<!-- 상단 메뉴 -->
 	<div style='width:100%; float:left; margin:10px 0;'>
@@ -43,8 +47,8 @@ table th {
 		</div>
 	</div>
 
-	<!-- 게시글 작성 -->
-	<form method="post" action="insert.bo" enctype="multipart/form-data">
+	<!-- 게시글 수정 -->
+	<form method="post" action="update.bo" enctype="multipart/form-data">
 	<div style='width:100%; float:left;' >
 		<table style='width:90%;'>
 			<tr>
@@ -52,12 +56,13 @@ table th {
 				<td class='w-px400'>
 					<input class='need' type='text' name='board_title' title='제목' 
 					style='height:25px; width:100%; margin:0 auto; padding:0px 10px; 
-					vertical-align:middel; border:0px; box-sizing:border-box;'/>
+					vertical-align:middel; border:0px; box-sizing:border-box;'
+					value='${vo.board_title}'/>
 				</td>
 				<th class='w-px100'>게시판</th>
 				<td class='w-px100'>
 					<select name='board_subject' style='width:90%; height:25px; border:none;'>
-						<option selected='selected' disabled='disabled'>== 카테고리 ==</option>
+						<option selected disabled='disabled'>== 카테고리 ==</option>
 						<option value='산책'>산책</option>
 						<option value='나눔'>나눔</option>
 					</select>
@@ -375,7 +380,7 @@ table th {
 				<th rowspan='2' class='w-px100' style='height:459px;'>내용</th>
 				<td rowspan='2' colspan='3'>
 					<textarea name='board_content' title='내용' class='need' 
-					style='width:100%; height:99%; margin:0; padding:10px; border:none; box-sizing:border-box; font-size:15px;'></textarea>
+					style='width:100%; height:99%; margin:0; padding:10px; border:none; box-sizing:border-box; font-size:15px;'>${vo.board_content}</textarea>
 				</td>
 				<th class='w-px100' style='height:400px;'>첨부사진</th>
 				<td>
@@ -385,7 +390,13 @@ table th {
 			<tr>
 				<th><label style='cursor:pointer;'><input type="file" name="file" id="attach-file" accept="image/gif, image/jpeg, image/png, image/jpg, image/bmp"/>첨부하기</label></th>
 				<td>
-					<span id="file-name"></span>
+					<span id="file-name">
+					<c:choose>
+						<c:when test ="${vo.board_imagepath eq null}">첨부된 사진이 없습니다</c:when>
+						<c:when test="${vo.board_imagepath eq 'null'}">첨부된 사진이 없습니다</c:when>
+						<c:otherwise>첨부된 사진이 있습니다</c:otherwise>
+					</c:choose>
+					</span>
 					<span id="delete-file" style='cursor:pointer;'><img src='img/delete.png' height='75%'/></span>
 					<!-- <span id="delete-file" style="color: red;"><i class="far fa-calendar-times font-img"></i></span> -->
 				</td>
@@ -399,15 +410,29 @@ table th {
 		<div style='width:90%; height:30px; margin:0 auto; background-color: #FFB4BE;'>
 			<span style='display:block; background-color:#FFFFFF; width:200px; height:35px; margin:0 auto;'>
 				<button class='cancel'><a href='list.bo' style='color:#111111; font-size:15px;'>취소</a></button>
-				<button class='submit' onclick='if(necessary()){$("form").submit()}' 
-						style='color:#111111; font-size:15px; font-weight:bold; cursor:pointer;'>글쓰기</button>
+				<button class='submit' onclick='if(necessary()){$("[name=attach]").val($("#board_imagepath").text()); $("form").submit()}' 
+						style='color:#111111; font-size:15px; font-weight:bold; cursor:pointer;'>수정하기</button>
 			</span>
 		</div>
 	</div>
-
+	
 <script type="text/javascript" src="js/image_preview.js?v=<%=new java.util.Date().getTime()%>"></script>
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>
+<script type="text/javascript">
+if(${!empty vo.board_imagepath}) {
+	$('#delete-file').css('display','inline');
+}
+</script>
+<script type="text/javascript">
+if(isImage('${vo.board_imagepath}')) {	
+/* 	var imgpath = "${vo.board_imagepath }"  */
+	var imagepath = '${vo.board_imagepath}'.substring(1);
+	var img = "<img src='"+imagepath+"' class='file-pre' id='preview-pre'/>";
+	$('#preview').html(img)
+	}
+}
+</script>
 <script type="text/javascript">
 $('.area').css('display', 'none');
 function select() {
