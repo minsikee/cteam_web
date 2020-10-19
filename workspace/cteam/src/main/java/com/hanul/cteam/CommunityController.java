@@ -22,7 +22,7 @@ import community.CommunityVO;
 import member.MemberVO;
 
 @Controller
-public class WalkBoardController {
+public class CommunityController {
 	
 	@Autowired private CommunityServiceImpl service;
 	@Autowired private CommunityPage page;
@@ -111,15 +111,15 @@ public class WalkBoardController {
 				File f = new File(uuid);
 				if(f.exists()) f.delete();
 			}
-		} else {
-			
+		}
+		else {
 			if( attach.isEmpty() ) {
 				if( community.getBoard_imagepath() != null) {
 					File f = new File(uuid);
 					if( f.exists() ) f.delete();
 				}
 			} else {
-				vo.setBoard_imagepath( community.getBoard_imagepath());
+				vo.setBoard_imagepath( community.getBoard_imagepath() );
 			}
 		}
 		

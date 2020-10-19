@@ -47,7 +47,7 @@ FROM board
 <select id="list" resultType="community.CommunityVO">
 SELECT b.* FROM 
 (SELECT b.*, rownum no FROM 
-(SELECT board_num, board_subject, board_city, board_region, board_title, member_id, board_date, board_imagepath
+(SELECT board_num, board_subject, board_city, board_region, board_title, board_content, member_id, board_date, board_imagepath
 FROM board 
 <include refid="search_where"/>
 ORDER BY board_num) b
@@ -63,8 +63,8 @@ VALUES (board_seq.nextval, #{board_subject}, #{board_city}, #{board_region}, #{m
 
 <!-- 글 수정 -->
 <update id="update">
-UPDATE board SET board_num=#{board_num}, board_subject=#{board_subject}, board_city=#{board_city}, board_region=#{board_region}, 
-				 member_id=#{member_id}, board_title=#{board_title}, board_content=#{board_content}, board_imagepath=#{board_imagepath, jdbcType=VARCHAR}
+UPDATE board SET board_subject=#{board_subject}, board_city=#{board_city}, board_region=#{board_region},
+				 board_title=#{board_title}, board_content=#{board_content}, board_imagepath=#{board_imagepath, jdbcType=VARCHAR}
 WHERE board_num = #{board_num}
 </update>
 

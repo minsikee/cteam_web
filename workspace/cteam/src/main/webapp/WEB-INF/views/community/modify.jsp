@@ -30,7 +30,7 @@ table th {
 	height: 30px;
 }
 
-.file-pre { width:100%; }
+.file-pre { width:90%; }
 </style>
 
 </head>
@@ -48,7 +48,6 @@ table th {
 	</div>
 
 	<!-- 게시글 수정 -->
-	<form method="post" action="update.bo" enctype="multipart/form-data">
 	<div style='width:100%; float:left;' >
 		<table style='width:90%;'>
 			<tr>
@@ -405,7 +404,7 @@ table th {
 	</div>
 	</form>
 	
-	<!-- 글쓰기 버튼 -->
+	<!-- 수정하기 버튼 -->
 	<div style='width:100%; float:left; margin:10px 0;'>
 		<div style='width:90%; height:30px; margin:0 auto; background-color: #FFB4BE;'>
 			<span style='display:block; background-color:#FFFFFF; width:200px; height:35px; margin:0 auto;'>
@@ -420,20 +419,24 @@ table th {
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>
 <script type="text/javascript">
+
 if(${!empty vo.board_imagepath}) {
 	$('#delete-file').css('display','inline');
 }
-</script>
-<script type="text/javascript">
-if(isImage('${vo.board_imagepath}')) {	
-/* 	var imgpath = "${vo.board_imagepath }"  */
-	var imagepath = '${vo.board_imagepath}'.substring(1);
+
+if(isImage('${vo.board_imagepath}')) {
+	var board_imagepath = '${vo.board_imagepath}';
+	
+	if(board_imagepath.indexOf('http') > -1 ) {
+		var imagepath = '${vo.board_imagepath}';
+	} else {
+		var imagepath = '${vo.board_imagepath}'.substring(1);
+	}
+	
 	var img = "<img src='"+imagepath+"' class='file-pre' id='preview-pre'/>";
 	$('#preview').html(img)
-	}
 }
-</script>
-<script type="text/javascript">
+
 $('.area').css('display', 'none');
 function select() {
 	var board_city = $('[name=board_city]').val();
@@ -446,6 +449,12 @@ function select() {
 /*	$('[name=board_region]').css('display', 'none');
 	$('#'+ $('[name=board_city] option:selected').attr('title')).css('display', 'block'); */
 }
+
+$('[name=board_subject]').val('${vo.board_subject}').prop("selected",true);
+$('[name=board_city]').val("${vo.board_city}").prop("selected", true);
+$('[name=board_city]').trigger('change');
+$('[name=board_region]').val("${vo.board_region}").prop("selected", true);
+
 </script>
 </body>
 </html>
