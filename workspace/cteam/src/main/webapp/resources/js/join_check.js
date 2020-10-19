@@ -67,6 +67,7 @@
  	},
  	
  	
+ 	
  	useremail : {
  	 	valid: {code:'valid',desc:'유효한 이메일입니다.'},
  	 	invalid:{code:'invalid',desc:'유효하지않은 이메일입니다'}
@@ -75,8 +76,7 @@
  	
  	useremail_status:function( email ){
  		var reg=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
- 		if(email=='')					return this.common.empty;
- 		else if( email.match(space) )	return this.common.space;
+ 		if( email.match(space) )	return this.common.space;
  		else if( reg.test(email) ) 		return this.useremail.valid;
  		else							return this.useremail.invalid;
  	},	
@@ -92,6 +92,16 @@
  		 else							return this.answer.valid;
  		
  	},
+ 	
+ 	phonenum:{
+ 		valid:{code:'valid',desc: '전화번호가 입력되었습니다'}
+ 	},
+ 	
+ 	userphonenum_status( phonenum ) {
+ 		if(phonenum =='') return this.common.empty;
+ 		else		return this.phonenum.valid;
+ 		
+ 	},
  
  	
  	tag_status : function( tag ) {
@@ -102,6 +112,7 @@
  		else if(tag == 'member_pw_ck') 	data = this.userpw_ck_status(data);
  		else if(tag == 'member_email') 	data = this.useremail_status(data);
  		else if(tag == 'member_answer') data = this.useranswer_status(data);
+ 	 	else if(tag == 'member_phonenum') data = this.userphonenum_status(data);
  	
  		return data;
  	}

@@ -42,7 +42,7 @@
 							<li style="margin-top:10px;  float: right;" ><a href="idFind" style="font-size: 13px; ">아이디찾기 ｜</a></li>
 							
 							<li style="margin:50px 0 10px 0; text-align: center;"><a class='btn-fill btn-login' onclick="go_login()">로그인</a></li>
-							<li style="margin-bottom:10px; text-align: center;"><a href="member" class='btn-empty btn-login'>회원가입</a></li>
+							<li style="margin-bottom:10px; text-align: center;"><a href="email.do" class='btn-empty btn-login'>회원가입</a></li>
 					</ul>
 			
 				<!-- 네이버 로그인 창으로 이동 -->

@@ -80,12 +80,17 @@
 		<select id="select">
 		<option value="default" selected disabled hidden>옵션선택</option>
 		<c:forEach items="${list }" var="vo" varStatus="status">
+								
 				
 				<c:if test="${!empty vo.option_name }">
 					
+					
 					<option value="${vo.option_name }">${vo.option_name }</option>
-				</c:if>		
-			</c:forEach>	
+					
+					
+				</c:if>	
+		
+		</c:forEach>	
 		</select>	
 		</div>
 			
@@ -93,6 +98,7 @@
 	
 			
 			<c:if test="${  status.index == ( fn:length( list ) ) - 1 }">
+					
 								
 					<span class="y" style="display: none;">${vo.item_price }</span>
 				<%-- 	<div class="desc-div list-div invisible" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">
@@ -119,7 +125,7 @@
 					<div class="desc-div ship-div" style="float:left; width:300px;">
 						<span class="ship">배송비:</span>	
 						<c:choose>
-						<c:when test="${vo.item_price gt 30000 }"><span>무료</span></c:when>
+						<c:when test="${vo.item_price gt 50000 }"><span>무료</span></c:when>
 						<c:otherwise><span>2500원</span></c:otherwise>
 						</c:choose>
 					</div>
@@ -131,7 +137,7 @@
 					</div>
 					
 					<div class='desc-div buy-div'>
-						<a class="buy-btn" onclick="">buy it now</a>
+						<a href="javascript:submit()" class="buy-btn">buy it now</a>
 						<a class="cart-btn" onclick="">go cart</a>
 					</div>
 					
@@ -143,16 +149,22 @@
 						</div>
 					</c:if>
 					
-					<form method="post" action="list.sh">
+					<form method="post" action="order.sh">
+					
 						<input type="hidden" name="item_num" value="${vo.item_num }">
 						<input type="hidden" name="curPage" value="${page.curPage }">
 						<input type="hidden" name="search" value="${page.search }">
-						<input type="hidden" name="keyword" value="${page.keyword }">
 						<input type="hidden" name="pageList" value="${page.pageList }">
-						<input type="hidden" name="view_Type" value="${page.viewType }">
-					
+						<input type="hidden" name="option_name" value="">
+						<input type="hidden" name="item_price" value="${vo.item_price }">
+						<input type="hidden" name="item_name" value="${vo.item_name }">
+						<input type="hidden" name="item_imgpath" value="${vo.item_imgpath }">
+						<input type="hidden" name="totalPrice" value="">
 					</form>
-					
+						<div class="contentImg-div">
+		
+							<img class="imgpath" src="<c:url value='/' />${vo.item_content_imgpath }" style="width:800px; height: 3000px;" >
+						</div>
 			
 				</c:if>
 			</c:forEach>
@@ -161,11 +173,7 @@
 		
 	
 	</div>
-	<div class="contentImg-div">
-		
-		<img src="${vo.item_content_imgpath }" width="800px">
-	
-	</div>
+
 
 	<script type="text/javascript">	
 
@@ -174,14 +182,17 @@
 	
 		var length = $("[id=select] option").length;
 
-		var price
+		var price= parseInt($('.y').html());
 
 
 		var su= 1;
 
 		var eachPrice;
 
-		var totalPrice;
+		var totalPrice=0;
+
+
+		
 	
 		$('#select').change(function() {
 
@@ -190,7 +201,7 @@
 			
 			if ( state ) {
 	
- 				price= $('.y').html();
+ 				
 				
 				if( $('span[data-option=' + state + ']').length == 0 ){
 				
@@ -217,11 +228,11 @@
 					'<a class="option_plus" onclick="plus(this);" style=" margin-left:170px;"> + </a>'+
 				
 				
-					'<input class="item_su" name="item_su" type="number" readonly="readonly" value="1" style="text-align: center;"/>'+
+					'<input class="item_su" name="item_su2" type="number" readonly="readonly" value="1" style="text-align: center;"/>'+
 					
 					'<a class="option_minus" onclick="minus(this)"> - </a>'+
 				
-					'<span class="won" style="padding-right:5px;">'+ price + '원</span>'+
+					'<span class="won" style="padding-right:5px;" data-option='+ price +'>'+ price +  '원 </span>'+
 					
 					'<a class="list-delete" width="12px" height="13px" onclick="wrap(this);"><i class="fas fa-times"></i></a>'+
 					'</div>';			
@@ -229,14 +240,20 @@
 				var divHtml = $('.y');
 				divHtml.after(addDiv);
 				eachPrice=parseInt( $(".won").text() );
-					alert( eachPrice );
-					totalPrice += eachPrice;
-					alert($(".price-strong").text());
+					totalPrice += eachPrice; //옵션추가시 토탈금액 늘어남
+
 					$(".price-strong").text(totalPrice);
+					//토탈금액 세팅
 					
 					
 					
 				}
+
+
+				
+				
+				
+			
 					
 // 					var addDiv = 
 // 						'';			
@@ -294,7 +311,40 @@
 		} */
 		
 
-		
+
+
+		function submit(){
+
+			var option_name="";
+			
+			//선택한 옵션이름들 저장 /로 구분
+			 $('.option-span').each(function (i) {
+				 if(i==0){
+	             option_name += $('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
+				 }else{
+		          option_name += '/'+$('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
+				}
+				 	
+	      });
+
+			 $('[name=option_name]').val(  option_name  ); //선택한 옵션이름들 세팅
+			 
+				
+				
+
+        	    
+			//옵션만큼 수량 저장
+	/* 		 $("input[name='item_su2']").each(function (i) {
+		 
+		             item_su += $("input[name='item_su2']").eq(i).val()+'@' ;
+		 				
+		      }); */
+		    		      
+
+		      $('[name=totalPrice]').val( $(".price-strong").text() );
+			
+			$('form').submit(); 
+		}
 
 		
 		function plus(p){
@@ -304,34 +354,64 @@
 			var value= price * parseInt(su);
 
 			$(p).next().siblings('.won').html(value);
+
+			totalPrice += price; 
 			
 			$(p).next().val(su);
+
+			
+			$(".price-strong").text(totalPrice);
+			
 		};
 
 		function minus(m){
 				
 			var su=$(m).prev().val();
 			if(su>1){
-				su--;
+				--su;
 				var minus=parseInt($(m).next().html());
 				var value= minus - price;
-	
+
+				
+				
 				$(m).next().html(value);
+
+				totalPrice -= price;
+				$(".price-strong").text(totalPrice);
+				
 			}
 			$(m).prev().val(su);
 		
 		};
 
 		function wrap(o){
+			//옵션창 지우면 그만큼 토탈금액이 마이너스
+			var deletePrice= parseInt($(o).prev().text()); 
 
+			totalPrice-=deletePrice;
+
+			$(".price-strong").text(totalPrice);
+			
+			
 			$(o).parent().remove();
 
 			$("#select option:eq(0)").prop("selected", true);
-			
+
+
 			su=1;
 
+			
+			//totalPrice -=deletePrice;
+
+			//alert(totalPrice);
+			
+			//$(".price-strong").text(totalPrice);
+
+
 		}
-		
+
+
+
 		
 	</script>
 </body>

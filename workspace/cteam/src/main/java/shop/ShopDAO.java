@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import member.MemberVO;
+
 @Repository
 public class ShopDAO implements ShopService {
 @Autowired private SqlSession sql;
@@ -38,6 +40,10 @@ public class ShopDAO implements ShopService {
 	public int shop_delete(int item_num) {
 		// TODO Auto-generated method stub
 		return sql.delete("shop.mapper.delete",item_num);
+	}
+
+	public MemberVO member(String member_id) {
+		return sql.selectOne("shop.mapper.member_info",member_id);
 	}
 
 }

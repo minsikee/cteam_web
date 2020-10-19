@@ -32,7 +32,7 @@
 				</c:if>
 				<c:if test="${empty login_info}">
 					<a href="loginPage"><div class='header_menu2'>로그인</div></a>
-					<a href="member"><div class='header_menu2'>회원가입</div></a>
+					<a href="email.do"><div class='header_menu2'>회원가입</div></a>
 				</c:if>
 				
 			</div>
@@ -46,7 +46,7 @@
 		function go_logout(){
  
 			var newURL = window.location.pathname;
-			alert(newURL);
+			//alert(newURL);
 			if(newURL=="/cteam/list.my"){
 				location.href='logout_home';
 // 				$.ajax({
