@@ -24,6 +24,19 @@ table th {
 	background-color: #FFB4BE;
 }
 
+button {
+	height: 25px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-weight: bold;
+}
+
 .cancel, .submit {
 	width: 75px;
 	height: 30px;

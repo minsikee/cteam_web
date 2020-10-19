@@ -15,8 +15,8 @@
 			<a href="intro.co" style="line-height:60px; font-size:20px; color:#222222;"><div class='header_menu'>회사소개</div></a>
 			<a href="list.no"><div class='header_menu'>공지사항</div></a>
 			<a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } ><div class='header_menu'>상품페이지</div></a>
-			<a href="list.bo"><div class='header_menu'>커뮤니티</div></a>
-			<a href="list.qn"><div class='header_menu'>Q&A</div></a>	
+			<a href="list.bo" ${category eq 'bo' ? 'class="active"' : '' } ><div class='header_menu'>커뮤니티</div></a>
+			<a href="list.qn" ${category eq 'qn' ? 'class="active"' : '' } ><div class='header_menu'>Q&A</div></a>	
 			<a href=""><div class='header_menu'>반려동물정보</div></a>
 			<a href=""><div class='header_menu'>내펫정보</div></a>
 			<div class='header_menu1'>

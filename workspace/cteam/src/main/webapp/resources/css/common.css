@@ -87,18 +87,6 @@ ul.login-ul {list-style:none;
 .w-px1500{ width: 1500px; }
 .w-px2000{ width: 2000px; }
 
-button {
-	height: 25px;
-	background-color: #FFB4BE;
-	border: 1px groove #333333;
- 	box-shadow: 2px 2px 2px #969696;
-}
-
-button a {
-	display: block;
-	color: #111111;
-	font-weight: bold;
-}
 
 
 /* --------------- 추가한 부분 --------------- */

@@ -1,11 +1,9 @@
 package qna;
 
-import java.util.HashMap;
+import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public interface QnaService {
-
+	
+	List<QnaVO> qna_list();		//QnA 목록
 	
 }

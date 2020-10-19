@@ -10,6 +10,19 @@
 
 <style type="text/css">
 
+button {
+	height: 25px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-weight: bold;
+}
+
 #comment_writer {
 	display: block;
 	width: 10%;
