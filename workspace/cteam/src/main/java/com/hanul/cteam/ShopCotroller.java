@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import common.CommonService;
+import member.MemberVO;
+import order.OrderGoodsVO;
 import shop.ShopPage;
 import shop.ShopServiceImpl;
 
@@ -29,6 +31,36 @@ public class ShopCotroller {
 	@Autowired private ShopServiceImpl service;
 	@Autowired private ShopPage page;
 	@Autowired private CommonService common;
+	
+	
+	@RequestMapping("/order.sh")
+	public String order( HttpSession session, Model model, String search, String keyword,@RequestParam(defaultValue ="1") int curPage,
+		 String option_name, String item_price, String item_name, String item_imgpath, String totalPrice, int item_num, @RequestParam(defaultValue="10") int pageList ) {
+		
+		page.setCurPage(curPage);
+		page.setSearch(search);
+		page.setKeyword(keyword);
+		page.setPageList(pageList);
+		
+		OrderGoodsVO vo = new OrderGoodsVO();
+		vo.setItem_num(item_num);
+		vo.setOption_name(option_name);
+		vo.setItem_imgpath(item_imgpath);
+		vo.setItem_name(item_name);
+		vo.setItem_price(item_price);
+		vo.setTotalPrice(totalPrice);
+		
+		if((MemberVO)session.getAttribute("login_info") != null) {
+		String member_id= ((MemberVO)session.getAttribute("login_info")).getMember_id();
+		
+		model.addAttribute("member", service.member(member_id));
+		}
+		model.addAttribute("page", page);
+		model.addAttribute("vo", vo);
+		
+		return "order/order";
+	}
+	
 	
 	
 	@RequestMapping("/delete.sh")

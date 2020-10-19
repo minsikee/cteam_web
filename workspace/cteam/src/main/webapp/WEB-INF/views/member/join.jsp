@@ -1,20 +1,21 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입창</title>
 <style type="text/css">
-	table tr td input{ width:300px; height: 40px; }
+	table tr td input{border: 1px solid #dedede; color:#565656; height: 30px; outline: none; width:300px;}
 	table tr td input[name=member_post]{width:70px; text-align: center;}
-	table tr td input[name=member_post],table tr td input[name=member_address]{margin-bottom: 10px;} 
+	table tr td input[name=member_post],table tr td input[name=member_address]{margin-bottom: 5px;} 
 	table tr th, table tr td{ text-align: left; }
-	
+	th{font-size: 15px;}
 	.valid{ color: green; font-size: 12px;}
 	.invalid{ color: red; font-size: 12px; }
-	
+	table{padding-left: 150px;}
 </style>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -22,13 +23,13 @@
 
 <body>
 <div style="margin:30px auto; text-align: center">
-	<h1 class="w-pct60" style=" margin:0 auto; padding-bottom:10px; font-size:20px; font-weight: bold;" >회원가입</h1>
+	<h1 class="w-pct60" style=" margin:0 auto; padding-bottom:10px; font-size:20px; font-weight: bold; border-bottom: 1px solid #777777;" >회원가입</h1>
 	<br/>
 	<p class="w-pct60" style="text-align:left; margin: 0 auto; padding-bottom:5px; font-size:13px;" >*은 필수입력입니다</p>
 	
 	<form action="join" method="post" >
-		<table class="w-pct60" style="margin: 0 auto">
-			<tr><th class="w-px160">* 성명</th>
+		<table class="w-pct60" style="margin: 0 auto; border-bottom: 1px solid #777777;" >
+			<tr><th class="w-px200">* 성명</th>
 				<td><input type="text" name="member_name" required="required"></td>
 			</tr>
 			<tr><th class="w-px160">* 아이디</th>
@@ -50,8 +51,8 @@
 				</td>
 			</tr>
 			<tr><th class="w-px160">* 이메일</th>
-				<td><input type="text" name="member_email" class='chk' required="required">
-					<div class="valid">이메일을 입력하세요</div>
+				<td><input type="text" name="member_email" value="${tomail }" class='chk' required="required" readonly="readonly">
+					<div class="valid"></div>
 				</td>
 			</tr>
 			<tr><th class="w-px160">* 전화번호</th>
@@ -83,15 +84,15 @@
 					<input type="text" name="member_post" maxlength="5" readonly>
 					<a class="btn-fill-s" onclick="daum_post()" >우편번호찾기</a> <br/>
 					<input type="text" name="member_address" readonly/>
-					<input type="text" name="member_address2" value="상세주소를 입력하세요" onfocus="this.value=''"/>
+					<input style="margin-bottom: 20px;" type="text" name="member_address2" value="상세주소를 입력하세요" onfocus="this.value=''"/>
 				</td>	
 			</tr>
 				
 		</table>
 	</form>
-	<div class="btnSet" >
+	<div class="btnSet" style="margin-bottom: 100px; margin-top: 50px; margin-left: 50px;" >
 		<a class="btn-fill" onclick="go_join()" style="display: inline-block; width:200px;">회원가입</a>
-		<a class="btn-empty" onclick="history.go(-1)" style="display: inline-block; width:200px; ">취소</a>
+		<a class="btn-empty" href='<c:url value="/"/>' style="display: inline-block; width:200px; ">취소</a>
 	</div>
 </div>	
 
@@ -146,6 +147,8 @@
 			if( !item_check ($('[name=member_email]')) ) return;
 
 			if( !item_check ($('[name=member_answer]')) ) return;
+
+			if (!item_check ($('[name=member_phonenum]')) ) return;
 
 			$('form').submit();
 		

@@ -39,7 +39,13 @@ public class MemberServiceImpl implements MemberService {
 		return dao.member_id_check(userid);
 	}
 
-	
-	
+	public String member_idFind(HashMap<String, String> map) {
+		
+		return dao.member_idFind(map);
+	}
+
+
+
+
 	
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import member.MemberVO;
+
 @Service
 public class ShopServiceImpl implements ShopService{
 	@Autowired private ShopDAO dao;
@@ -33,6 +35,10 @@ public class ShopServiceImpl implements ShopService{
 	@Override
 	public int shop_delete(int item_num) {
 		return dao.shop_delete(item_num);
+	}
+
+	public MemberVO member(String member_id) {
+		return dao.member(member_id);
 	}
 
 }

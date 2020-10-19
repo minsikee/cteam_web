@@ -8,4 +8,22 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<import resource="classpath:data/*.xml"/>
 	<context:component-scan base-package="community,common,admin, calendar, home, member, mypage, notice, qna, shareboard, shop, walkboard,company"/>
+
+
+<!-- Gmail -->
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="runningwithcry@gmail.com" />
+    <property name="password" value="dnflwhWkd1" />
+    <property name="javaMailProperties">
+    <props>
+      <prop key="mail.smtp.auth">true</prop>
+      <prop key="mail.smtp.starttls.enable">true</prop>
+    </props>
+    </property>
+  </bean>
+
+
 </beans>
+

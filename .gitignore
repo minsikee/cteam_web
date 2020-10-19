@@ -32,3 +32,4 @@ workspace/cteam/target/classes/shop/ShopVO.class
 workspace/cteam/target/classes/sqlmapper/shop-mapper.xml
 workspace/cteam/target/classes/walkboard/WalkBoardService.class
 workspace/iot/src/main/webapp/resources/images/cat.jpg
+workspace/cteam/target/classes/sqlmapper/admin-mapper.xml

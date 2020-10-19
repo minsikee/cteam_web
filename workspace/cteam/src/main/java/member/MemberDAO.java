@@ -42,7 +42,11 @@ public class MemberDAO implements MemberService {
 
 		return (Integer)sql.selectOne("member.mapper.id_check", userid) > 0 ? false: true;
 	}
-	
+
+	public String member_idFind(HashMap<String, String> map) {
+		return sql.selectOne("member.mapper.idFind",map);
+	}
+
 
 	
 	
