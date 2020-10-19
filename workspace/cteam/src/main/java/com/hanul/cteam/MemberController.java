@@ -89,7 +89,7 @@ public class MemberController {
 		
 		
 		
-		return go;
+		return null;
 		
 	}
 	
