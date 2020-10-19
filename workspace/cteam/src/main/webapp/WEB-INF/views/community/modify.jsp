@@ -62,7 +62,7 @@ table th {
 				<th class='w-px100'>게시판</th>
 				<td class='w-px100'>
 					<select name='board_subject' style='width:90%; height:25px; border:none;'>
-						<option selected='selected' disabled='disabled'>== 카테고리 ==</option>
+						<option selected disabled='disabled'>== 카테고리 ==</option>
 						<option value='산책'>산책</option>
 						<option value='나눔'>나눔</option>
 					</select>

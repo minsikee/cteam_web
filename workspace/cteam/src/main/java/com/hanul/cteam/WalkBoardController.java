@@ -1,7 +1,6 @@
 package com.hanul.cteam;
 
 import java.io.File;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import common.CommonService;
+import community.CommunityCommentVO;
 import community.CommunityPage;
 import community.CommunityServiceImpl;
 import community.CommunityVO;
@@ -150,6 +152,27 @@ public class WalkBoardController {
 		return "community/comment/comment_list";
 	}
 	
-
+	//댓글쓰기 처리
+	@ResponseBody @RequestMapping("/community/comment/regist")
+	public int comment_regist(CommunityCommentVO vo, HttpSession session) {
+		
+		MemberVO member = (MemberVO) session.getAttribute("login_info");
+		vo.setMember_id(member.getMember_id());
+		
+		return service.community_comment_regist(vo);
+	}
+	
+	//댓글수정 처리
+	@ResponseBody @RequestMapping(value="/community/comment/update",
+								  produces = "application/text; charset=utf-8")
+	private String comment_update(@RequestBody CommunityCommentVO vo) {
+		return service.community_comment_update(vo) > 0 ? "수정 성공" : "수정 실패";
+	}
+	
+	//댓글삭제 처리
+	@ResponseBody @RequestMapping("/community/comment/delete/{comment_num}")
+	public void comment_delete(@PathVariable int comment_num) {
+		service.community_comment_delete(comment_num);
+	}
 	
 }

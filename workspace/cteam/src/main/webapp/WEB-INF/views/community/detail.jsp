@@ -46,7 +46,7 @@ table th {
 	display: block;
 	width: 80%;
 	height: 30px;
-	line-height: 30px;
+	line-height: 28px;
 	box-sizing: border-box;
 	border: 1px solid #969696;
 	border-radius: 5px;
@@ -73,7 +73,7 @@ table th {
 	display: block;
 	width: 8%;
 	height: 30px;
-	line-height: 30px;
+	line-height: 28px;
 	box-sizing: border-box;
 	border: 1px solid #969696;
 	border-radius: 5px;
@@ -122,7 +122,7 @@ textarea:focus:-ms-input-placeholder{
 	<!-- 상단 메뉴 -->
 	<div style='width:100%; float:left; margin:10px 0;' >
 		<div style='width:90%; margin:0 auto;'>
-		<!-- 글 작성자 : 수정, 삭제 가능, 글 관리자 : 삭제 가능 -->
+		<!-- 글 작성자 : 수정, 삭제 가능, 관리자 : 삭제 가능 -->
 		<c:choose>
 			<c:when test='${login_info.member_id eq vo.member_id}'>
 				<span style='display:block; background-color:#FFFFFF; height:35px;'>
@@ -187,12 +187,12 @@ textarea:focus:-ms-input-placeholder{
 					<c:set var="imgpath" value="${vo.board_imagepath }"/> 
 					<c:choose>
 						<c:when test="${fn:contains(imgpath, 'http')}">
-							<img src="${vo.board_imagepath}" width="100%" />
+							<img src="${vo.board_imagepath}" width="90%" />
 						</c:when>
 						<c:when test="${imgpath eq null}"></c:when>
 						<c:when test="${fn:contains(imgpath, 'null')}"></c:when>
 						<c:otherwise>
-							<img src="<c:url value='/' />${vo.board_imagepath}" width="100%"/>
+							<img src="<c:url value='/' />${vo.board_imagepath}" width="90%"/>
 						</c:otherwise>
 					</c:choose>	
 				</td>
@@ -200,7 +200,9 @@ textarea:focus:-ms-input-placeholder{
 		</table>
 	</div>
 	
-	<div id="comment_list" class="left"></div>
+</form>
+
+	<div id='comment_list'></div>
 	
 	<!-- 댓글 작성 -->
 	<div style='width:100%; height:30px; margin-top:10px;'>
@@ -222,7 +224,6 @@ textarea:focus:-ms-input-placeholder{
 		</div>
 	</div>
 
-</form>
 
 <script type="text/javascript">
 comment_list();
@@ -232,6 +233,31 @@ function comment_list(){
 		success: function(data){
 			$('#comment_list').html(data);
 			
+		},error: function(req, text){
+			alert(text+':'+req.status);
+		}
+	});
+}
+
+function comment_regist(){
+	if( ${empty login_info} ){
+		alert('댓글을 등록하려면 로그인하세요');
+		return;
+	} else if( $('#comment_write').val() == '' ){
+		alert('댓글을 입력하세요!');
+		$('#comment_writet').focus();
+		return;
+	}
+
+	$.ajax({
+		url: 'community/comment/regist',
+		data: { content:$('#comment_write').val(), board_num:${vo.board_num} },
+		success: function(data){
+			if( data == 1 ){
+				alert('댓글이 등록되었습니다');
+				$('#comment_write').val('');
+				comment_list();
+			}
 		},error: function(req, text){
 			alert(text+':'+req.status);
 		}

@@ -50,4 +50,22 @@ public class CommunityDAO implements CommunityService {
 		return sql.selectList("community.mapper.comment_list", board_num);
 	}
 
+	//댓글 작성
+	@Override
+	public int community_comment_regist(CommunityCommentVO vo) {
+		return sql.insert("community.mapper.comment_regist", vo);
+	}
+
+	//댓글 수정
+	@Override
+	public int community_comment_update(CommunityCommentVO vo) {
+		return sql.update("community.mapper.comment_update", vo);
+	}
+	
+	//댓글 삭제
+	@Override
+	public int community_comment_delete(int comment_num) {
+		return sql.delete("community.mapper.comment_delete", comment_num);
+	}
+
 }

@@ -29,7 +29,7 @@ table th {
 	height: 30px;
 }
 
-.file-pre { width:100%; }
+.file-pre { width:90%; }
 </style>
 
 </head>

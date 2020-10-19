@@ -12,5 +12,8 @@ public interface CommunityService {
 	int community_delete(int board_num);					//글삭제
 	
 	List<CommunityCommentVO> community_comment_list(int board_num);	//댓글 목록 조회
-
+	int community_comment_regist(CommunityCommentVO vo);			//댓글 작성
+	int community_comment_update(CommunityCommentVO vo);			//댓글 변경
+	int community_comment_delete(int comment_num);					//댓글 삭제
+	
 }
