@@ -56,10 +56,31 @@ import order.OrderListVO;
 		return orderlist;
 	}
 
+	/*
+	 * @Override public void state_update(HashMap<String, String> map) {
+	 * sql.update("admin.mapper.state",map); }
+	 */
 	@Override
-	public void state_update(HashMap<String, String> map) {
-		sql.update("admin.mapper.state",map);
+	public SellItemVO item_select(int item_num) {
+		
+		return sql.selectOne("admin.mapper.itemmodify", item_num);
 	}
 
+	@Override
+	public List<OptionVO> option_select(int item_num) {
+		return sql.selectList("admin.mapper.optionlist", item_num);
+	}
+
+	@Override
+	public int option_delete(int item_num) {
+		// TODO Auto-generated method stub
+		return sql.delete("admin.mapper.optionDelete",item_num);
+	}
+
+	@Override
+	public int item_update(SellVO vo) {
+		sql.insert("admin.mapper.option_Re_insert", vo);
+		return sql.update("admin.mapper.update", vo);
+	}
 
 }
