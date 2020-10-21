@@ -4,7 +4,17 @@
 
 
 	<select id="cart_select" resultType="Basket.CartVO">
-		select * from cart where member_id = #{member_id}
+		select * 
+		from cart 
+		where member_id = #{member_id}
+		order by cart_num desc
+	</select>
+	
+	<select id="cartlist_item" resultType="order.ItemVO">
+		select item_num, item_name, item_imgpath,item_price
+		from sell_item
+		where item_num = #{item_num}
+		order by item_num desc
 	</select>
 
 	<insert id="cart_insert">

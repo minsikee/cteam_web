@@ -1,5 +1,7 @@
 package order;
 
+import java.util.List;
+
 public class OrderVO {
 	
 	private int item_num;
@@ -7,7 +9,21 @@ public class OrderVO {
 	shipping_message,shipping_address,shipping_phonenum,shipping_name,shipping_address2,
 	shipping_post,pay,option_info;
 	
+	private List<OrderGoodsVO> goods_list;
+	
+	
 	private String order_state="상품준비중";
+	
+	
+	
+
+	public List<OrderGoodsVO> getGoods_list() {
+		return goods_list;
+	}
+
+	public void setGoods_list(List<OrderGoodsVO> goods_list) {
+		this.goods_list = goods_list;
+	}
 
 	public String getOrder_seq() {
 		return order_seq;

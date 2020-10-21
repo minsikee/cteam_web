@@ -13,6 +13,7 @@
 
 body {
     font: 17px 'Nanum Gothic', sans-serif;
+
 }
 
 a {
@@ -30,7 +31,7 @@ li {
 #background_modal {
     display:none;
     position: fixed;
-    width: 120%;
+    width: 80%;
     height: 100%;
     background: rgba(0,0,0,0.9);
     margin-left: 0px;
@@ -38,7 +39,7 @@ li {
 
 .modal_contents {
     position: absolute;
-    left: 30%;
+    left: 50%;
     top: 30%;
     transform: translate(-50%,-50%);
     width: 400px;
