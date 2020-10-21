@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="css/common.css?v="<%=new java.util.Date().getTime() %>">
 <style type="text/css">
 	li {text-align: center;}
-
-	
+	.btn-login{	line-height: 40px; margin:5px auto; box-shadow: 2px 2px 2px #969696; font-size:13px;  border: 1px solid #000000; color:white; background-color: black; width:385px; height: 40px; display: block; }
+	.btn-signin{ line-height: 40px; margin:5px auto; box-shadow: 2px 2px 2px #969696; font-size:13px;  border: 1px solid #000000; color:black; background-color: white; width:385px; height: 40px; display: block;  }
 </style>
 </head>
 <body>
@@ -33,16 +33,16 @@
 							<br/>
 							<li>
 								<span>
-								<input type="text" style="margin-bottom: 10px; width:356px; padding: 0 20px; height:40px;" id="userid" placeholder="아이디"/>		<br/>
-								<input onkeypress="if(event.keyCode==13){go_login()}" style="width:356px; padding:0 20px; height:40px;" type="password" id="userpwd" placeholder="비밀번호"/>
+								<input type="text" style="margin-bottom: 10px; width:356px; outline-color:pink; border: 1px solid #7e7e7e;  padding: 0 20px; height:40px;" id="userid" placeholder="아이디"/>		<br/>
+								<input onkeypress="if(event.keyCode==13){go_login()}" style=" outline-color:pink; width:356px; border: 1px solid #7e7e7e; padding:0 20px; height:40px;" type="password" id="userpwd" placeholder="비밀번호"/>
 								</span>	
 							</li>
 							
-							<li style="margin-top:10px; float: right;"><a href="pwFind" style="font-size: 13px; ">비밀번호찾기</a></li>
-							<li style="margin-top:10px;  float: right;" ><a href="idFind" style="font-size: 13px; ">아이디찾기 ｜</a></li>
+						
+							<li style="margin-top:10px;  float: right;" ><a href="idFind" style="font-size: 13px;">아이디찾기 ｜ 비밀번호 찾기</a></li>
 							
-							<li style="margin:50px 0 10px 0; text-align: center;"><a class='btn-fill btn-login' onclick="go_login()">로그인</a></li>
-							<li style="margin-bottom:10px; text-align: center;"><a href="email.do" class='btn-empty btn-login'>회원가입</a></li>
+							<li style="margin:50px 0 10px 0; text-align: center;"><a class='btn-login' onclick="go_login()">로그인</a></li>
+							<li style="margin-bottom:10px; text-align: center;"><a href="email.do" class='btn-signin'>회원가입</a></li>
 					</ul>
 			
 				<!-- 네이버 로그인 창으로 이동 -->

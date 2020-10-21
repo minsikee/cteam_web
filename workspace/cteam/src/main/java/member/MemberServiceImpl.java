@@ -44,6 +44,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.member_idFind(map);
 	}
 
+	@Override
+	public boolean member_emailFind(String member_email) {
+		
+		return dao.member_emailFind(member_email);
+	}
+
+	@Override
+	public boolean member_pwChange(String key, String member_id) {
+
+		return dao.member_pwChange(key, member_id);
+	}
+
 
 
 

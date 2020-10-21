@@ -47,6 +47,22 @@ public class MemberDAO implements MemberService {
 		return sql.selectOne("member.mapper.idFind",map);
 	}
 
+	@Override
+	public boolean member_emailFind(String member_email) {
+
+		return (Integer)sql.selectOne("member.mapper.emailFind",member_email) > 0 ? true : false;
+	}
+
+	@Override
+	public boolean member_pwChange(String key, String member_id) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("key", key);
+		map.put("member_id", member_id);
+		
+		return sql.insert("member.mapper.pwChange", map) > 0? true : false;
+	}
+
 
 	
 	

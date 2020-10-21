@@ -16,6 +16,8 @@
 	.valid{ color: green; font-size: 12px;}
 	.invalid{ color: red; font-size: 12px; }
 	table{padding-left: 150px;}
+	.btn-signin{margin:5px auto; box-shadow: 2px 2px 2px #969696; font-size:13px;  border: 1px solid #000000; color:white; background-color: black; width:398px; height: 40px; line-height: 40px;}
+	.btn-cancel{ margin:5px auto; box-shadow: 2px 2px 2px #969696; font-size:13px;  border: 1px solid #000000; color:black; background-color: white; width:398px; height: 40px;  line-height: 40px;}
 </style>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -25,8 +27,8 @@
 <div style="margin:30px auto; text-align: center">
 	<h1 class="w-pct60" style=" margin:0 auto; padding-bottom:10px; font-size:20px; font-weight: bold; border-bottom: 1px solid #777777;" >회원가입</h1>
 	<br/>
-	<p class="w-pct60" style="text-align:left; margin: 0 auto; padding-bottom:5px; font-size:13px;" >*은 필수입력입니다</p>
-	
+<!-- 	<p class="w-pct60" style="text-align:left; margin: 0 auto; padding-bottom:5px; font-size:13px;" >*은 필수입력입니다</p>
+ -->	
 	<form action="join" method="post" >
 		<table class="w-pct60" style="margin: 0 auto; border-bottom: 1px solid #777777;" >
 			<tr><th class="w-px200">* 성명</th>
@@ -91,8 +93,8 @@
 		</table>
 	</form>
 	<div class="btnSet" style="margin-bottom: 100px; margin-top: 50px; margin-left: 50px;" >
-		<a class="btn-fill" onclick="go_join()" style="display: inline-block; width:200px;">회원가입</a>
-		<a class="btn-empty" href='<c:url value="/"/>' style="display: inline-block; width:200px; ">취소</a>
+		<a class="btn-signin" onclick="go_join()" style="display: inline-block; ">회원가입</a>
+		<a class="btn-cancel" href='<c:url value="/"/>' style="display: inline-block; color:black;">취소</a>
 	</div>
 </div>	
 

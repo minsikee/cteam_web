@@ -53,7 +53,11 @@ public class ShopCotroller {
 		if((MemberVO)session.getAttribute("login_info") != null) {
 		String member_id= ((MemberVO)session.getAttribute("login_info")).getMember_id();
 		
+		
 		model.addAttribute("member", service.member(member_id));
+			
+		
+		
 		}
 		model.addAttribute("page", page);
 		model.addAttribute("vo", vo);

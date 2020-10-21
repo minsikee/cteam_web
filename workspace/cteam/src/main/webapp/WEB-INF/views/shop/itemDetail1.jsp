@@ -15,10 +15,10 @@
  div.name-div{ font-size: 17px; font-weight: bold; text-align:left;}
  div.content-div{ font-size: 13px; margin-top:40px; text-align:left; color: #333333;}
  div.price-div, div.order-div, div.option-div, div.ship-div, div.list-div {text-align:left; margin-top:20px; font-size: 15px;}
- div.desc-div{ margin-left: 50px; float:left; width: 300px;}
+ div.desc-div{ margin-left: 50px; float:left;}
  div.buy-div {float:left; width:300px; margin-top: 20px;}
  div.center-div{margin: 0 auto; width:800px;}
- div.modify-div{float:left; width:300px; margin-top: 20px;}
+ div.modify-div{float:left; margin-top: 100px;}
  span { font-size: 13px; color:#333333; }
  span.color-span, span.price-span {color:#000000;}
  strong.price-strong{color:#000000;}
@@ -138,8 +138,9 @@
 					
 					<div class='desc-div buy-div'>
 						<a href="javascript:submit()" class="buy-btn">buy it now</a>
-						<a class="cart-btn" onclick="">go cart</a>
+						<a class="cart-btn" onclick="go_cart()">go cart</a>
 					</div>
+					
 					
 					
 					<c:if test="${login_info.member_id == 'admin' }">
@@ -161,9 +162,9 @@
 						<input type="hidden" name="item_imgpath" value="${vo.item_imgpath }">
 						<input type="hidden" name="totalPrice" value="">
 					</form>
-						<div class="contentImg-div">
+						<div class="contentImg-div" style="margin-top:50px;">
 		
-							<img class="imgpath" src="<c:url value='/' />${vo.item_content_imgpath }" style="width:800px; height: 3000px;" >
+							<img class="imgpath" src="<c:url value='/' />${vo.item_content_imgpath }" style="width:800px; height: inherit;" >
 						</div>
 			
 				</c:if>
@@ -315,35 +316,40 @@
 
 		function submit(){
 
+
+			if(state){
 			var option_name="";
 			
-			//선택한 옵션이름들 저장 /로 구분
-			 $('.option-span').each(function (i) {
-				 if(i==0){
-	             option_name += $('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
-				 }else{
-		          option_name += '/'+$('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
-				}
-				 	
-	      });
-
-			 $('[name=option_name]').val(  option_name  ); //선택한 옵션이름들 세팅
+				//선택한 옵션이름들 저장 /로 구분
+				 $('.option-span').each(function (i) {
+					 if(i==0){
+		             option_name += $('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
+					 }else{
+			          option_name += '/'+$('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
+					}
+					 	
+		      });
+	
+				 $('[name=option_name]').val(  option_name  ); //선택한 옵션이름들 세팅
+				 
+					
+					
+	
+	        	    
+				//옵션만큼 수량 저장
+		/* 		 $("input[name='item_su2']").each(function (i) {
 			 
+			             item_su += $("input[name='item_su2']").eq(i).val()+'@' ;
+			 				
+			      }); */
+			    		      
+	
+			      $('[name=totalPrice]').val( $(".price-strong").text() );
 				
-				
-
-        	    
-			//옵션만큼 수량 저장
-	/* 		 $("input[name='item_su2']").each(function (i) {
-		 
-		             item_su += $("input[name='item_su2']").eq(i).val()+'@' ;
-		 				
-		      }); */
-		    		      
-
-		      $('[name=totalPrice]').val( $(".price-strong").text() );
-			
-			$('form').submit(); 
+				$('form').submit(); 
+			}else{
+				alert("옵션을 선택하세요");
+			}
 		}
 
 		
@@ -383,6 +389,45 @@
 			$(m).prev().val(su);
 		
 		};
+		function go_cart(){
+
+			if(state){
+				var option_name="";
+			
+				//선택한 옵션이름들 저장 /로 구분
+				 $('.option-span').each(function (i) {
+					 if(i==0){
+		             option_name += $('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
+					 }else{
+			          option_name += '/'+$('.option-span').eq(i).text()+'@'+ $("input[name='item_su2']").eq(i).val() ;
+					}
+					 	
+		      });
+	
+				 
+	
+			      var cart_totalPrice= $(".price-strong").text();
+				  var item_num = $('[name=item_num]').val();
+
+				$.ajax({
+					url:"${pageContext.request.contextPath}/cartAdd?item_num="+item_num+"&option_info="+option_name+"&totalPrice="+cart_totalPrice,
+					success:function(data){ 
+						if(data){
+							alert("장바구니에 담겼습니다");
+						}else{
+							alert("실패했습니다");
+						}
+					}
+				});
+					
+
+
+
+			}else{
+				alert("옵션을 선택하세요");
+			}
+
+		}
 
 		function wrap(o){
 			//옵션창 지우면 그만큼 토탈금액이 마이너스

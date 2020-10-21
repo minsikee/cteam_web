@@ -18,6 +18,13 @@
 	<select id="id_check" resultType="integer">
 		select COUNT(*) from memberjoin where member_id= #{userid}
 	</select>
+	
+	<select id="emailFind" resultType="integer">
+		select COUNT(*) from memberjoin where member_email = #{member_email}
+	</select>
 
+	<update id="pwChange">
+		update memberjoin set member_pw = #{key} where member_id = #{member_id}
+	</update>
 
 </mapper>

@@ -12,5 +12,6 @@ public interface MemberService {
 	boolean member_delete(String userid); //회원탈퇴처리
 	boolean member_id_check(String userid); //아이디 중복확인
 	String member_idFind(HashMap<String, String> map);
-	
+	boolean member_emailFind(String member_email);
+	boolean member_pwChange(String key,String member_id);
 }
