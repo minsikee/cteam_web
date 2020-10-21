@@ -102,11 +102,11 @@ function company_map() {
 	</div>
 	
 	<!-- 중간 바디 -->
-	<div style='width:100%; float:left;' >
+	<div style='width:100%; float:left;'>
 		<div style='width:90%; margin:0 auto;'>
 
 			<!-- 왼쪽 메뉴 -->
-			<div id='company_menu' style='width:20%;' >
+			<div id='company_menu' style='width:20%;'>
 				<ul>
 					<li><a href='javascript:company_intro()'>회사 소개</a></li>
 					<li><a href='javascript:company_employee()'>직원 정보</a></li>
@@ -115,7 +115,7 @@ function company_map() {
 			</div>
 			
 			<!-- 오른쪽 내용 : 회사 소개 -->
-			<div id='company_menu_body' style='width:80%;' >
+			<div id='company_menu_body' style='width:80%;'>
 				<h1>
 					<font style='color:#111111;'>신뢰와 믿음을 목표로 한단계씩 성장하는 팀 펫넥트</font>
 				</h1>
@@ -220,7 +220,7 @@ function company_map() {
 	</div>
 			
 	<!-- 하단 그냥 괜히 놔둔 바 -->
-	<div style='width:100%; float:left; margin:10px 0;' >
+	<div style='width:100%; float:left; margin:10px 0;'>
 		<div style='width:90%; margin:0 auto;'>
 			<span style='display:block; background-color:#FFB4BE; height:30px;'>
 			</span>

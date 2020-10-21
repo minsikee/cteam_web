@@ -1,75 +1,214 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
+<title>QnA</title>
 
-ul{list-style: none;}
-.accordion-box{
-  width: 80%;
-  margin:  0 auto;
-  border: 2px solid #FF7E9D;
+<style type="text/css">
+#qna {
+	overflow-y: scroll;
 }
-p.title{
-  width: 100%;  
-  line-height: 60px; 
-  background: white; 
-  color: black;
-  box-sizing: border-box;
-  padding: 0 10px;
-  margin: 0;
-  text-align: left;
-  border-bottom: 1px solid #FF7E9D;
-  border-top: 1px solid #FF7E9D;
-  }
-.con{
-  padding: 20px; 
-  display:none;
-  background-color: #FFF5EE;
-  }
-footer {
-  	bottom:0;
-	left:0;
-	right:0;
+
+#qna::-webkit-scrollbar-button:start:decrement, 
+#qna::-webkit-scrollbar-button:end:increment {
+	display: block;
+	height: 15px;
+	background-color: #969696;
 }
-.list{
-	padding: 0px 10px 0px 10px;
-	margin: 20px 0px 20px 0px;
+
+#qna::-webkit-scrollbar {
+	width: 15px;
 }
+
+#qna::-webkit-scrollbar-thumb {
+	background-color: #FFB4BE;
+}
+
+#qna::-webkit-scrollbar-track {
+	background-color: #96969650;
+}
+
+#qna::-webkit-scrollbar-button {
+	background-color: #969696;
+}
+
+#qna_body {
+	width: 60%;
+	height: 500px;
+	margin: 0 auto;
+}
+
+#qna_title_insert {
+	width: 80%;
+	height: 30px;
+	line-height: 28px;
+	box-sizing: border-box;
+	border: 1px solid #969696;
+	border-radius: 5px;
+	vertical-align: middle;
+	float: left;
+	padding: 0 10px;
+	font-size: 15px;
+	color: #111111;
+}
+
+#qna_content_insert {
+	width: 100%;
+	height: 60px;
+	line-height: 29px;
+	box-sizing: border-box;
+	border: 1px solid #969696;
+	border-radius: 5px;
+	float: left;
+	padding: 0 10px;
+	font-size: 15px;
+	color: #111111;
+}
+
+#qna_button_insert {
+	width: 15%;
+	height: 30px;
+	line-height: 28px;
+	box-sizing: border-box;
+	border: 2px solid #FFB4BE;
+	border-radius: 5px;
+	float: left;
+	font-weight: bold;
+	font-size: 15px;
+	color: #333333;
+	vertical-align: middle;
+	background-color: #FFB4BE80;
+	cursor: pointer;
+}
+
+.qna_space_insert_5 {
+	display: block;
+	width: 5%;
+	height: 30px;
+	float: left;
+}
+
+.qna_space_insert_20 {
+	display: block;
+	width: 100%;
+	height: 20px;
+	float: left;
+}
+
+.qna_space_insert_10 {
+	display: block;
+	width: 100%;
+	height: 10px;
+	float: left;
+}
+
+/* 클릭시 placeholder 문구 사라짐 */
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder{
+	/*webkit browser */
+	color: transparent;
+}
+input:focus:-moz-input-placeholder,
+textarea:focus:-moz-input-placeholder{
+	/* Mozila Firefox 4 to 18 */
+	color: transparent;
+}
+input:focus::-moz-input-placeholder,
+textarea:focus::-moz-input-placeholder{
+	/* Mozila Firefox 19+ */
+	color: transparent;
+}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder{
+	/* Internet Explorer 10+ */
+	color: transparent;
+}
+
 </style>
+
 </head>
 <body>
-<h1>자주 묻는 질문</h2>
-<div class="accordion-box">
-   <ul class="list">
-     <li>
-      <p class="title">교환은 어떻게 하나요?</p>
-      <div class="con"> 교환은 저희쪽으로 연락주시면 감사하겠습니다.<br/>연락처는 062-951-1785 입니다.</div>
-    </li>
-    <li>
-      <p class="title">직접 가서 보고 살 수 있나요?</p>
-	  <div class="con">오프라인 매장 주소는 광주광역시 광산구 경열로 3 입니다.<br/>영업시간은 아침 9시부터 저녁 9시까지 입니다.</div>    
-	</li>
-    <li>
-      <p class="title">품절된 상품은 언제 재입고 되나요?</p>
-      <div class="con">품절된 상품의 재입고는 거의 되지 않습니다.<br/>비슷한 상품이나 똑같은 상품이 다시 들어올때도 간혹있으나
-		그 시기가 정확치 않아 미리 재입고 된다고 예정할수 없는점 양해 부탁드립니다
+
+	<!-- 상단 그냥 괜히 놔둔 바 -->
+	<div style='width:100%; float:left; margin:10px 0;' >
+		<div style='width:90%; margin:0 auto;'>
+			<span style='display:block; background-color:white; height:35px;'>
+			</span>
+		</div>
 	</div>
-	</li>
-    <li>
-      <p class="title">환불 방법에는 어떤것이 있나요?</p>
-      <div class="con">상품 환불에는 카드취소, 젠틀빅사이트에 예치/적립, 계좌환불, 휴대폰결제취소 있습니다. <br/>신용카드로 구매하신경우에는 카드취소로만 환불됩니다.(예치금으로 적립후에 환불하실경우도 카드취소로만 가능합니다.)
- 		<br/>적립금으로 적립하신경우 계좌환불 불가능합니다.</div>
-	</li>
-    </ul>
-</div>
+	
+	<!-- 중간 바디 -->
+	<div id='qna' style='width:100%; height:500px; float:left;'>
+		<div id='qna_body'>
+			<div id='qna_list'></div>
+		
+			<!-- 관리자만 추가 가능 -->
+			<c:if test='${login_info.member_id eq "admin"}'>
+				<span class="qna_space_insert_20"></span>
+					<input type="text" id="qna_title_insert" placeholder="이곳에 추가할 질문을 작성하세요"/>
+				<span class="qna_space_insert_5"></span>
+					<button id="qna_button_insert" onclick="qna_regist()">확인</button>
+				<span class="qna_space_insert_10"></span>
+					<textarea id="qna_content_insert" placeholder="이곳에 추가할 답변을 작성하세요"></textarea>
+				<span class="qna_space_insert_20"></span>
+			</c:if>
+		</div>
+	</div>
+	
+	<!-- 하단 그냥 괜히 놔둔 바 -->
+	<div style='width:100%; float:left; margin:10px 0;'>
+		<div style='width:90%; margin:0 auto;'>
+			<span style='display:block; background-color:white; height:30px;'>
+			</span>
+		</div>
+	</div>
+
 <script type="text/javascript">
-$("p.title").on('click',function(){
-	  $(this).next(".con").slideToggle(100);
+qna_list();
+function qna_list(){
+	$.ajax({
+		url : 'qna/qna2',
+		success: function(data) {
+			$('#qna_list').html(data);
+		},
+		error: function(req, text) {
+			alert(text+':'+req.status);
+		}
 	});
+}
+
+function qna_regist() {
+	if ( $('#qna_title_insert').val() == '' ) {
+		alert('질문을 입력하세요');
+		$('#qna_title_insert').focus();
+		return;
+	} else if ( $('#qna_content_insert').val() == '' ) {
+		alert('답변을 입력하세요');
+		$('#qna_content_insert').focus();
+		return;
+	}
+
+	$.ajax({
+		url: 'qna/qna2/regist',
+		data: { qna_title:$('#qna_title_insert').val(), qna_content:$('#qna_content_insert').val() },
+		success: function(data) {
+			if( data == 1 ){
+				alert('등록되었습니다');
+				$('#qna_title_insert').val('');
+				$('#qna_content_insert').val('');
+				qna_list();
+			}
+		},
+		error: function(req, text) {
+			alert(text+':'+req.status);
+		}
+	});
+}
 </script>
+
 </body>
 </html>

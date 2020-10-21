@@ -1,5 +1,6 @@
 package com.hanul.cteam;
 
+import java.io.File;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -7,15 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import admin.AdminServiceImpl;
 import admin.ListPage;
 import admin.MemberListPage;
+import admin.SellItemVO;
 import admin.SellVO;
 import common.CommonService;
 
@@ -41,10 +41,7 @@ public class AdminController {
 		
 		//DB에서 방명록 정보를 조회하여 목록화면에 출력
 			page.setCurPage(curPage);
-			//page.setSearch(search);
-			//page.setKeyword(keyword);
 			page.setPageList(pageList);
-			//page.setViewType(viewType);
 			model.addAttribute("page",service.list(page));
 		return "admin/list";
 	} 
@@ -67,6 +64,7 @@ public class AdminController {
 		if( ! file2.isEmpty() ) {
 			vo.setItem_content_imgpath( common.upload("content", file2, session) );
 		}
+		
 		service.item_insert(vo);
 		return "redirect:list.ad";
 	}
@@ -79,11 +77,8 @@ public class AdminController {
 			
 			//DB에서 방명록 정보를 조회하여 목록화면에 출력
 			memberpage.setCurPage(curPage);
-				//page.setSearch(search);
-				//page.setKeyword(keyword);
 			memberpage.setPageList(pageList);
-				//page.setViewType(viewType);
-				model.addAttribute("page", service.member_list(memberpage));
+			model.addAttribute("page", service.member_list(memberpage));
 			return "admin/memberList";
 		}
 		
@@ -103,15 +98,99 @@ public class AdminController {
 			return "admin/orderList";
 		}
 		
-	 	@RequestMapping("/stateUpdate.ad")
-		public void state_update(Model model, String order_state, String order_num) {
-	 		HashMap<String, String> map = new HashMap<String, String>();
-			map.put("order_state", order_state);
-			map.put("order_num", order_num);
-			
-			service.state_update(map);
-			//return "redirect:orderList";
-		}
+		/*
+		 * @RequestMapping("/stateUpdate.ad") public void state_update(Model model,
+		 * String order_state, String order_num) { HashMap<String, String> map = new
+		 * HashMap<String, String>(); map.put("order_state", order_state);
+		 * map.put("order_num", order_num);
+		 * 
+		 * service.state_update(map); //return "redirect:orderList"; }
+		 */
 		
+		//상품 수정화면 불러오기
+	 	@RequestMapping("/itemModify.ad")
+	 	public String item_modify(Model model, int item_num ) {
+	 		
+	 		model.addAttribute("option", service.option_select(item_num));
+	 		model.addAttribute("item", service.item_select(item_num));
+	 		return "admin/itemModify";
+	 	}
+	 	
+	 	//상품 수정 저장처리
+	 	@RequestMapping("/update.ad")
+	 	public String item_update(SellVO vo ,int item_num, String attach, MultipartFile file1, MultipartFile file2, HttpSession session, Model model) {
+
+			String uuid = session.getServletContext().getRealPath("resources");
+	 		System.out.println("vo.getItem_num" + vo.getItem_num());
+	 		System.out.println("vo.getItem_code" + vo.getItem_code());
+	 		System.out.println("vo.getItem_name" + vo.getItem_name() );
+	 		System.out.println("vo.getItem_price" + vo.getItem_price());
+	 		System.out.println("vo.getItem_content" + vo.getItem_content());
+	 		System.out.println("vo.getItem_content_imgpath" + vo.getItem_content_imgpath());
+	 		System.out.println("vo.getItem_imgpath" + vo.getItem_imgpath());
+	 	
+	 		System.out.println("item_num"+item_num);
+			if(! file1.isEmpty()) {
+				//원래 없었는데 추가 / 원래 있었는데 변경
+				vo.setItem_imgpath(common.upload("Item", file1, session));
+	 		
+			//원래 있던 파일 삭제
+			if(vo.getItem_imgpath()!=null) {
+				File f = new File(uuid);
+				if(f.exists()) f.delete();
+			}
+			
+		}else {
+			//원래부터 없던 경우 → 아무 처리 필요 없음
+			
+			// 원래 있었는데 삭제한 경우
+			if( attach.isEmpty() ) {
+				if( vo.getItem_imgpath()!= null) {
+					File f = new File(uuid);
+					if( f.exists() ) f.delete();
+				}
+				
+			}else {
+			//원래 있던걸 그대로 사용하는 경우
+				vo.setItem_imgpath(vo.getItem_imgpath());
+			}
+		}	
+			
+			//file2
+			if(! file2.isEmpty()) {
+				//원래 없었는데 추가 / 원래 있었는데 변경
+				vo.setItem_content_imgpath(common.upload("content", file2, session));
+	 		
+			//원래 있던 파일 삭제
+			if(vo.getItem_content_imgpath()!=null) {
+				File f = new File(uuid);
+				if(f.exists()) f.delete();
+			}
+			
+		}else {
+			//원래부터 없던 경우 → 아무 처리 필요 없음
+			
+			// 원래 있었는데 삭제한 경우
+			if( attach.isEmpty() ) {
+				if( vo.getItem_content_imgpath()!= null) {
+					File f = new File(uuid);
+					if( f.exists() ) f.delete();
+				}
+				
+			}else {
+			//원래 있던걸 그대로 사용하는 경우
+				vo.setItem_content_imgpath(vo.getItem_content_imgpath());
+			}
+		}	
+		
+			service.option_delete(item_num);
+			service.item_update(vo);
+			
+	 		model.addAttribute("url", "itemModify.ad");
+	 		model.addAttribute("item", service.item_select(item_num));
+	 		return "admin/redirect";
+	 	}
+	 	
+	 	
 		
 }

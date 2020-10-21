@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+
 <header style='background-color:white;' >
 	<div style='margin:0 auto; padding:25px 0px 25px 0px; overflow:hidden;'>
 	
@@ -15,8 +17,8 @@
 			<a href="intro.co" style="line-height:60px; font-size:20px; color:#222222;"><div class='header_menu'>회사소개</div></a>
 			<a href="list.no"><div class='header_menu'>공지사항</div></a>
 			<a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } ><div class='header_menu'>상품페이지</div></a>
-			<a href="list.bo"><div class='header_menu'>커뮤니티</div></a>
-			<a href="list.qn"><div class='header_menu'>Q&A</div></a>	
+			<a href="list.bo" ${category eq 'bo' ? 'class="active"' : '' } ><div class='header_menu'>커뮤니티</div></a>
+			<a href="list.qn" ${category eq 'qn' ? 'class="active"' : '' } ><div class='header_menu'>Q&A</div></a>	
 			<a href=""><div class='header_menu'>반려동물정보</div></a>
 			<a href=""><div class='header_menu'>내펫정보</div></a>
 			<div class='header_menu1'>

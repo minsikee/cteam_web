@@ -10,6 +10,19 @@
 
 <style type="text/css">
 
+button {
+	height: 25px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-weight: bold;
+}
+
 #comment_writer {
 	display: block;
 	width: 10%;
@@ -163,7 +176,7 @@ $('.comment_delete').on('click', function() {
 		if(confirm('정말 삭제하시겠습니까?')) {
 			$.ajax({
 				url:'community/comment/delete/' + $div.data('comment_num'),
-				success: function(){
+				success: function() {
 					comment_list();
 				},
 				error: function(req, text) {

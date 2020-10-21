@@ -38,6 +38,19 @@ select {
 	height: 25px;
 	border: 1px solid #333333;
 }
+
+button {
+	height: 25px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-weight: bold;
+}
 </style>
 
 </head>

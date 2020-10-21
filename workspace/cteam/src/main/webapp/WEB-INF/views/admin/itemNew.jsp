@@ -109,7 +109,7 @@ table th:not(:last-child) {
 				</tr>
 				<tr>
 					<th>상품 이름</th>
-					<td><input type="text" id="item_name" name="item_name" /></td>
+					<td><input type="text" id="item_name" name="item_name" accept="image/gif, image/jpeg, image/png, image/jpg, image/bmp"/></td>
 				</tr>
 				<tr>
 					<th>상품 코드</th>
@@ -125,15 +125,12 @@ table th:not(:last-child) {
 				<tr>
 					<th>옵션</th>
 					<td>
-						<a type="button" value="삭제" onclick="deleteInput();">
-							<img style="width: 35px; height: 35px; float: right; margin-right: 10px;" src="img/minus.png">
-						</a>
-						<a type="button" value="추가" onclick="addInput();">
-							<img style="width: 35px; height: 35px; float: right; margin-right: 10px;" src="img/plus.png">
-						</a>
-						<div id="parah">
-						
-					</div></td>
+					    <div class='addInput'>
+ 						</div>
+					    <button type='button'  class="btn" style="border: none; background: none;">
+					    <img style="width: 35px; height: 35px; float: right; margin-right: 10px;" src="img/plus.png">
+					    </button>
+					</td>
 				</tr>
 				<tr>
 					<th>상세설명</th>
@@ -143,7 +140,7 @@ table th:not(:last-child) {
 					<th>첨부파일</th>
 					<td class="left">
 						<label> 
-							<input type="file" name="file2" id="content-file" /> 
+							<input type="file" name="file2" id="content-file" accept="image/gif, image/jpeg, image/png, image/jpg, image/bmp" /> 
 							<img src="img/photo.png" class="small"/>
 						</label> 
 						<span id="content-file-name"></span> 
@@ -162,7 +159,22 @@ table th:not(:last-child) {
 	</div>
 
 	<script type="text/javascript">
-	
+	  $(document).ready (function () {                
+	        $('.btn').click (function () {                                        
+	            $('.addInput').append (                        
+	                '<input type="type" name="option_name" value="">\
+	                <button style="border: none; background: none;" type="button" class="btnRemove"><img style="width: 20px; height: 20px; float: right; margin-right: 10px;" src="img/minus.png"></button><br>'                    
+	            );    // input taf 추가                     
+	            $('.btnRemove').on('click', function () { 
+	                                                                          // 여기서 this는 '.btnRemove'
+	                $(this).prev().remove();        // .prev()로 input tag를 가리키고 remove()한다.
+	                $(this).next().remove();        // <br> 삭제
+	                $(this).remove();                        // 버튼삭제
+	            });
+	        });                                      
+	    });
+		
+
 		$('#content-file').on('change', function() {
 			if (this.files[0]) $('#content-file-name').text(this.files[0].name);
 			$('#content-delete-file').css('display', 'inline');
@@ -174,39 +186,7 @@ table th:not(:last-child) {
 			$('#content-delete-file').css('display', 'none');
 		});
 
-		var arrInput = new Array(0);
-		  var arrInputValue = new Array(0);
-		 
-		function addInput() {
-		  arrInput.push(arrInput.length);
-		  arrInputValue.push("");
-		  display();
-		}
-		 
-		function display() {
-		  document.getElementById('parah').innerHTML="";
-		  for (intI=0;intI<arrInput.length;intI++) {
-		    document.getElementById('parah').innerHTML+=createInput(arrInput[intI], arrInputValue[intI]);
-		  }
-		}
-		 
-		function saveValue(intId,strValue) {
-		  arrInputValue[intId]=strValue;
-		}  
-		 
-		function createInput(id,value) {
-		  return "<input type='text' name='option_name' class='option_name' onChange='javascript:saveValue("+ id +",this.value)' value='"+ 
-		 
-		value +"'><br>";
-		}
-		 
-		function deleteInput() {
-		  if (arrInput.length > 0) { 
-		     arrInput.pop(); 
-		     arrInputValue.pop();
-		  }
-		  display(); 
-		}
+	
 	</script>
 	<script type="text/javascript" src="js/image_preview.js?v=<%=new java.util.Date().getTime()%>"></script>
 	<script type="text/javascript" src="js/need_check.js"></script>

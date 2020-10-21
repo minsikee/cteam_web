@@ -24,6 +24,19 @@ table th {
 	background-color: #FFB4BE;
 }
 
+button {
+	height: 25px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-weight: bold;
+}
+
 .cancel, .submit {
 	width: 75px;
 	height: 30px;
@@ -56,7 +69,7 @@ table th {
 				</td>
 				<th class='w-px100'>게시판</th>
 				<td class='w-px100'>
-					<select name='board_subject' style='width:90%; height:25px; border:none;'>
+					<select name='board_subject' class='need' title='게시판 카테고리' style='width:90%; height:25px; border:none;'>
 						<option selected='selected' disabled='disabled'>== 카테고리 ==</option>
 						<option value='산책'>산책</option>
 						<option value='나눔'>나눔</option>
@@ -67,7 +80,7 @@ table th {
 				<th class='w-px100'>지역</th>
 				<td class='w-px250'>		
 				
-				<select name='board_city' style='width:50%; height:25px; border:none;' onchange='select()'>
+				<select name='board_city' class='need' title='지역' style='width:50%; height:25px; border:none;' onchange='select()'>
 					<option value='' selected disabled='disabled'>== 지역 선택 ==</option>
 					<option title='seoul' value='서울특별시'>서울특별시</option>
 					<option title='busan' value='부산광역시'>부산광역시</option>
