@@ -169,7 +169,10 @@ input {
 	<script type="text/javascript">
 
 		function go_pay() {
-
+			if( $("[input name=shipping_address2]").val() =="상세주소를 입력하세요"){
+				alert("상세주소를 입력하세요");
+				return false;
+			}
 			$('form').submit();
 		}
 

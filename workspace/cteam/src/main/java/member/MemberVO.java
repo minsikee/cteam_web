@@ -11,9 +11,18 @@ public class MemberVO {
 	private String member_address;
 	private String member_address2;
 	private String member_post;
+	private String admin;
+	
+	
 
 	
 	
+	public String getAdmin() {
+		return admin;
+	}
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
 	public String getMember_address2() {
 		return member_address2;
 	}

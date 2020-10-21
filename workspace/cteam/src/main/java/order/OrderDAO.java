@@ -2,11 +2,14 @@ package order;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import shop.ShopVO;
 
 @Repository
 public class OrderDAO implements OrderService{
@@ -37,6 +40,20 @@ public class OrderDAO implements OrderService{
 
 		
 		return sql.insert("order.mapper.order_goods_insert", orderVo) > 0 ? true : false;
+	}
+
+	@Override
+	public ShopVO order_show(int item_num) {
+
+		return sql.selectOne("order.mapper.order_show", item_num);
+	}
+
+	@Override
+	public List<OrderVO> order_select(String order_num) {
+		
+		List<OrderVO> orderVo= sql.selectList("order.mapper.orderlist",order_num);
+		
+		return orderVo;
 	}
 
 	

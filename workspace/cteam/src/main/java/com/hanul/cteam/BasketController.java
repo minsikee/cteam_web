@@ -26,6 +26,34 @@ public class BasketController {
 	
 	@Autowired BasketServiceImpl service;
 
+	
+	//주문하기
+	
+	@RequestMapping("/cart_order")
+	public void cart_order(Model model, @RequestParam String cart_num) {
+		
+		
+		System.out.println(cart_num);
+		
+		return;
+	}
+	
+	
+	
+	
+	//장바구니 삭제
+	
+	
+	@RequestMapping("/cart_delete")
+	@ResponseBody
+	public String go_cart(Model model,@RequestParam String cart_num) {
+		String success="성공";
+		
+		System.out.println(cart_num);
+		
+		return success;
+	}
+	
 	//장바구니로 가기
 	@RequestMapping("/cart.bs")
 	public String go_cart(HttpSession session,Model model) {
@@ -36,7 +64,6 @@ public class BasketController {
 		String member_id=login.getMember_id();
 		
 		model.addAttribute("list",service.cart_select(member_id));
-			
 		
 		return "basket/cart";
 	}

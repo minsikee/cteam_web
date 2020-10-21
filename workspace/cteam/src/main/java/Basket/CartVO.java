@@ -1,8 +1,31 @@
 package Basket;
 
+import java.util.List;
+
+import order.ItemVO;
 
 public class CartVO {
-	private String item_num, option_info, totalPrice, member_id;
+	private String item_num, option_info, totalPrice, member_id, cart_num;
+	private ItemVO order_item;
+
+	
+	public ItemVO getOrder_item() {
+		return order_item;
+	}
+	
+
+	public void setOrder_item(ItemVO order_item) {
+		this.order_item = order_item;
+	}
+
+	public String getCart_num() {
+		return cart_num;
+	}
+
+	public void setCart_num(String cart_num) {
+		this.cart_num = cart_num;
+	}
+
 
 	public String getItem_num() {
 		return item_num;

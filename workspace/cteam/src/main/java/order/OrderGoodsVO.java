@@ -4,6 +4,30 @@ public class OrderGoodsVO {
 	private int item_num;
 	private String option_name, item_price, item_name, item_imgpath,totalPrice;
 	
+	private String option_info,order_num;
+	int orderlist_goods_num;
+	
+	
+	
+	
+	public String getOption_info() {
+		return option_info;
+	}
+	public void setOption_info(String option_info) {
+		this.option_info = option_info;
+	}
+	public String getOrder_num() {
+		return order_num;
+	}
+	public void setOrder_num(String order_num) {
+		this.order_num = order_num;
+	}
+	public int getOrderlist_goods_num() {
+		return orderlist_goods_num;
+	}
+	public void setOrderlist_goods_num(int orderlist_goods_num) {
+		this.orderlist_goods_num = orderlist_goods_num;
+	}
 	public String getItem_price() {
 		return item_price;
 	}
