@@ -50,7 +50,7 @@ label {
 <c:forEach items="${orderlist }" var="vo"> 
 <table style="width: 80%">
 	<tr id="title">
-		<th colspan="6" id="ordernum"> <label>주문날짜 ${vo.order_date }</label> 주문번호 》 <a style="color: white;" href="orderdetail.my?order_num=${vo.order_num }" >${vo.order_num }</a></th>
+		<th colspan="5" id="ordernum"> <label>주문날짜 ${vo.order_date }</label> 주문번호 》 <a style="color: white;" href="orderdetail.my?order_num=${vo.order_num }" >${vo.order_num }</a></th>
 	<tr/>
 	<tr style="text-align: center;">
 		<th>상품</th>
@@ -58,7 +58,7 @@ label {
 		<th>상품금액/수량</th>
 		<th>주문상태</th>
 		<th>금액</th>
-		<th>리뷰</th>
+		<!-- <th>리뷰</th> -->
 	</tr>
 		
 	<c:set var = "total" value = "0" />
@@ -78,7 +78,7 @@ label {
 			<td>${item.item_price  }￦ / ${detail[1]}개</td>
 			<td>${vo.order_state }</td>
 			<td class="price">${item.item_price * detail[1]}</td>
-			<td><button value="리뷰작성" class="test">리뷰작성</button></td>
+			<!-- <td><button value="리뷰작성" class="test">리뷰작성</button></td> -->
 		</tr>
 		<c:set var= "total" value="${total + item.item_price * detail[1]}"/>
 	
@@ -89,19 +89,19 @@ label {
 			
 		<c:if test="${total lt 50000 }">
 		<tr align="right"  style="border-top: 1px solid #FFB4BE;">
-			<td colspan="5">(5만원 이상 무료배송) 배송비</td><td>＋ 2500￦</td>
+			<td colspan="4">(5만원 이상 무료배송) 배송비</td><td>＋ 2500￦</td>
 		</tr>
 		<tr align="right" id="last">
-			<td colspan="5">총액</td><td><c:out value="${total + 2500}"/>￦</td>
+			<td colspan="4">총액</td><td><c:out value="${total + 2500}"/>￦</td>
 		</tr>
 		</c:if>
 		
 		<c:if test="${total gt 50000 }">
 		<tr align="right" style="border-top: 1px solid #FFB4BE;">
-			<td colspan="5">(5만원 이상 무료배송) 배송비</td><td>＋ 0￦</td>
+			<td colspan="4">(5만원 이상 무료배송) 배송비</td><td>＋ 0￦</td>
 		</tr>
 		<tr align="right" id="last">
-			<td colspan="5">총액</td><td><c:out value="${total}"/>￦</td>
+			<td colspan="4">총액</td><td><c:out value="${total}"/>￦</td>
 		</tr>
 		</c:if> 
 		
