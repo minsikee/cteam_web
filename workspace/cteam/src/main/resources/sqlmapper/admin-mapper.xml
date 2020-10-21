@@ -35,8 +35,7 @@
 	(select * from memberjoin  where not member_id in ('admin'))  n order by no desc) n
 	where no between #{beginList} and #{endList}
 </select>
-<!-- where not member_id in ('admin')
- -->
+                                                            
 <select id="detail" resultType="member.MemberVO">
 	select * from memberjoin where member_id = #{member_id}
 </select>
@@ -57,5 +56,36 @@ order by order_num desc,  o.item_num
 	update set order_state = #{order_state}
 	where ordernum = #{order_num}
 </update>
+
+<select id="optionlist" resultType="admin.OptionVO">
+	select *
+	from sell_item_option
+	where item_num = #{item_num}
+</select>
+
+<select id="itemmodify" resultType="admin.SellItemVO">
+	select * from sell_item
+	where item_num = #{item_num}
+</select>
+
+<delete id="optionDelete">
+	delete from sell_item_option where item_num = #{item_num}
+</delete>
+ 
+<update id="update">
+<!-- 	<selectKey keyProperty="item_num" resultType="int" order="AFTER">
+		select item_num from sell_item
+	</selectKey> -->
+	update sell_item set item_code = #{item_code}, item_name = #{item_name}, item_price = #{item_price},item_imgpath = #{item_imgpath, jdbcType=VARCHAR}, 
+	item_content = #{item_content }, item_content_imgpath = #{item_content_imgpath, jdbcType=VARCHAR}
+	where item_num = #{item_num}
+</update>
+<insert id="option_Re_insert">
+	<foreach collection="option_name" item="option"  separator=" " 
+	open="insert all" close="SELECT * FROM DUAL">
+	into sell_item_option (item_num, item_code, option_name)
+	values( #{item_num}, #{item_code}, #{option} )
+    </foreach>
+</insert>
 
 </mapper>

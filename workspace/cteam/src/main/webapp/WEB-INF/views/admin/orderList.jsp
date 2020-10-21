@@ -73,7 +73,7 @@ label {
 	
 	<c:forEach items="${vo.order_item}" var="item"> 
 	<tr style="text-align: center;">
-		<td><img id="item_content_imgpath" src="<c:url value='/' />${item.item_imgpath }"/></td>
+		<td><a href="item.detail?item_num=${item.item_num }"><img id="item_content_imgpath" src="<c:url value='/' />${item.item_imgpath }"/></a></td>
 		<td>${item.item_name }</td>
 		<td>${item.item_price  }￦ / ${item.item_su }개</td>
 		<td class="price">${item.item_price * item.item_su }</td>

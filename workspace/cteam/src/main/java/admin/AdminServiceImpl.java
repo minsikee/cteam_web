@@ -44,9 +44,35 @@ public class AdminServiceImpl implements AdminService {
 		return dao.order_list();
 	}
 
+	/*
+	 * @Override public void state_update(HashMap<String, String> map) {
+	 * dao.state_update(map);
+	 * 
+	 * }
+	 */
+
 	@Override
-	public void state_update(HashMap<String, String> map) {
-		dao.state_update(map);
-		
+	public SellItemVO item_select(int item_num) {
+
+		return dao.item_select(item_num);
 	}
+
+	@Override
+	public List<OptionVO> option_select(int item_num) {
+		return dao.option_select(item_num);
+	}
+
+	@Override
+	public int option_delete(int item_num) {
+		// TODO Auto-generated method stub
+		return dao.option_delete(item_num);
+	}
+
+	@Override
+	public int item_update(SellVO vo) {
+		// TODO Auto-generated method stub
+		return dao.item_update(vo);
+	}
+
+	
 }
