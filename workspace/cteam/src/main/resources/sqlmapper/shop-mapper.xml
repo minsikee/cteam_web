@@ -8,10 +8,10 @@
 </select>
 
 <sql id="search_where">
-<if test="search=='item_name' or search=='item_content'">
+<if test="search!=null and (search=='item_name' or search=='item_content')">
 	where ${search} like '%' || #{keyword} || '%'	
 </if> 
-<if test="search=='all'">
+<if test="search!=null and search=='all'">
 	where item_name like '%' || #{keyword} || '%'
 	or item_content like '%' || #{keyword} || '%'
 </if>
@@ -39,6 +39,7 @@
 	
 	<select id="list" resultType="shop.ShopVO">
 	
+	<!--  
 		select n.*, s.option_name
        from (select rownum no, n.* 
        from (select *
@@ -48,6 +49,10 @@
        where rownum between #{beginList} and #{endList}) n LEFT OUTER JOIN sell_item_option s
        ON n.item_num=s.item_num
        order by n.item_num desc
+	-->
+	select * from 
+       (select n.*, rownum no from (select * from sell_item n <include refid="search_where"/>  order by n.item_num desc) n)
+       where no between #{beginList} and #{endList}    
         
 	</select>
 

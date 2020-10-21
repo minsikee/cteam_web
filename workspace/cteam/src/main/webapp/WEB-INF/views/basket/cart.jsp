@@ -47,7 +47,8 @@ input {
 <body>
 	<div>
 		<h1>Cart</h1>
-		<form action="order.sh" method="post">
+
+	<form action="order.sh" method="post">
 			<table style="margin: 0 auto;">
 				<tr style="color: #777; font-size: 12px;">
 					<th class="w-px120 th-top">사진</th>
@@ -57,33 +58,40 @@ input {
 					<th class="w-px120 th-top">수량</th>
 					<th class="w-px200 th-top">합계</th>
 				</tr>
-				<c:set var="options" value="${fn:split(vo.option_name, '/')}" />
-				<c:forEach begin="0" end="${fn:length(options)-1}"
-					varStatus="optionsStatus">
-					<c:set var="option" value="${options[optionsStatus.index]}" />
-					<c:set var="detail" />
-					<c:forEach begin="0" end="${fn:length(option)-1}"
-						varStatus="optionStatus">
-						<c:set var="detail" value="${fn:split(option, '@')}" />
+		
+				<c:forEach var="vo" items="${list }" varStatus="status">
+					
+					
+					<c:set var="options" value="${fn:split(vo.option_info, '/')}" />
+					<c:forEach begin="0" end="${fn:length(options)-1}"
+						varStatus="optionsStatus">
+						<c:set var="option" value="${options[optionsStatus.index]}" />
+						<c:set var="detail" />
+						<c:forEach begin="0" end="${fn:length(option)-1}"
+							varStatus="optionStatus">
+							<c:set var="detail" value="${fn:split(option, '@')}" />
+						</c:forEach>
+						<tr>
+						<%-- 	<td><img class="imgpath"
+								src="<c:url value='/' />${vo.item_imgpath }"
+								style="width: 80; height: 113px;"></td>
+	
+							<td>${vo.item_name }</td> --%>
+							<td>${detail[0]}</td>
+<%-- 							<td>${vo.item_price }원</td>
+ --%>							<td>${detail[1]}</td>
+					<%-- 		<td>${ vo.item_price * detail[1]}원</td> --%>
+	
+						</tr>
 					</c:forEach>
-					<tr>
-						<td><img class="imgpath"
-							src="<c:url value='/' />${vo.item_imgpath }"
-							style="width: 80; height: 113px;"></td>
-
-						<td>${vo.item_name }</td>
-						<td>${detail[0]}</td>
-						<td>${vo.item_price }원</td>
-						<td>${detail[1]}</td>
-						<td>${ vo.item_price * detail[1]}원</td>
-
+					
+					<tr
+						style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
+						<td colspan="6" style="padding: 10px;" class="right">total
+							cost : ${vo.totalPrice } 원</td>
 					</tr>
-				</c:forEach>
-				<tr
-					style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
-					<td colspan="6" style="padding: 10px;" class="right">total
-						cost : ${vo.totalPrice } 원</td>
-				</tr>
+					
+				</c:forEach>	
 			</table>
 
 

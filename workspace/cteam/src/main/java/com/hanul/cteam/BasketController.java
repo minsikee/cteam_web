@@ -36,7 +36,7 @@ public class BasketController {
 		String member_id=login.getMember_id();
 		
 		model.addAttribute("list",service.cart_select(member_id));
-		
+			
 		
 		return "basket/cart";
 	}

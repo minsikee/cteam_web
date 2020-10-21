@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
     
 <!DOCTYPE html>
@@ -37,7 +38,8 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 			
 			
 		<div style="float:right;">
-			
+		
+		
 			<ul>
 				<li >
 					<select id="search" name="search" class='w-px80'>
@@ -59,10 +61,7 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 				<c:set var="fir" value="0"/>
 				
 				<c:forEach items="${page.list }" var="vo" varStatus="status">
-						
-					<!-- 첫째로 돌때  -->
-					<c:if test="${status.index==0 }">
-						<li>
+							<li>
 							<div style="width: 306px; box-sizing: border-box;" >
 							<c:if test="${!empty vo.item_num }">
 									<a href="javascript:go_detail(${vo.item_num })"><img src="<c:url value='/' />${vo.item_imgpath }" class="shop-img"/></a>	
@@ -73,47 +72,11 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 								</a>
 							</div>
 						</li>
-						<c:set var="fir" value="${vo.item_num }"/>
-					</c:if>
-							<!-- 두번재부터 돌때 전값이랑 비교해서 동일하면 출력x -->
-					<c:if test="${status.index!=0}">
-						<c:set var="item_num" value="${vo.item_num }"></c:set>
-					
-						<c:if test="${ item_num != fir }">
-						
-							<li>	
-								<div style="width: 306px; box-sizing: border-box;" >
-									
-									<c:if test="${!empty vo.item_num }">
-									<a href="javascript:go_detail(${vo.item_num })"><img src="<c:url value='/' />${vo.item_imgpath }" class="shop-img"/></a>	
-									</c:if>
-									<a href="javascript:go_detail(${vo.item_num })">
-										<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
-										<span class="item-price">${vo.item_price}</span>
-									</a>
-								</div>
-							</li>	
-							
-							<c:set var="fir" value="${vo.item_num }"/>
-						</c:if>
-							
-						
-					</c:if>
-					
-					
 					
 				</c:forEach>
 				
-					<%-- <li>
-						<div>
-							<a href="item.detail"><img class="shop-img" src="<spring:url value='/image/cat.jpg'/>" /></a>	
-							<a href="item.detail">
-								<span class="item-title">iot 개방석</span>
-								<span class="item-price">24000원</span>
-							</a>
-						</div>
-					</li> --%>
-			</ul>
+				
+			</ul> 
 		</div>
 		
 		<div class='btnSet'>
