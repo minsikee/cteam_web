@@ -16,6 +16,7 @@ import admin.AdminServiceImpl;
 import admin.ListPage;
 import admin.MemberListPage;
 import admin.SellItemVO;
+import admin.SellModifyVO;
 import admin.SellVO;
 import common.CommonService;
 
@@ -36,7 +37,7 @@ public class AdminController {
 	//상품리스트페이지 불러오기
 	@RequestMapping("/list.ad")
 	public String item_list(Model model, HttpSession session,@RequestParam(defaultValue="1") int curPage,
-			@RequestParam(defaultValue="5") int pageList) {
+			@RequestParam(defaultValue="10") int pageList) {
 		session.setAttribute("category", "ad");
 		
 		//DB에서 방명록 정보를 조회하여 목록화면에 출력
@@ -118,7 +119,7 @@ public class AdminController {
 	 	
 	 	//상품 수정 저장처리
 	 	@RequestMapping("/update.ad")
-	 	public String item_update(SellVO vo ,int item_num, String attach, MultipartFile file1, MultipartFile file2, HttpSession session, Model model) {
+	 	public String item_update(SellModifyVO vo ,int item_num, String attach, MultipartFile file1, MultipartFile file2, HttpSession session, Model model) {
 
 			String uuid = session.getServletContext().getRealPath("resources");
 	 		System.out.println("vo.getItem_num" + vo.getItem_num());
@@ -186,7 +187,7 @@ public class AdminController {
 			service.option_delete(item_num);
 			service.item_update(vo);
 			
-	 		model.addAttribute("url", "itemModify.ad");
+	 		model.addAttribute("url", "list.ad");
 	 		model.addAttribute("item", service.item_select(item_num));
 	 		return "admin/redirect";
 	 	}

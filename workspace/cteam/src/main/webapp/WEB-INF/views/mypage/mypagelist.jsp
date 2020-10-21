@@ -141,15 +141,31 @@ ol {
             <ol>
               <li class="">
                 <b>상품준비중</b>
-                <strong><c:out value="${orderlist.pre }"/></strong>
+                <strong>
+                <c:if test="${orderlist.pre eq null }">
+                	0
+                </c:if>
+                <c:out value="${orderlist.pre }"/>
+                
+                </strong>
               </li>
               <li class="">
                  <b>배송중</b>
-                 <strong><c:out value="${orderlist.ship }"/></strong>
+                 <strong>
+				<c:if test="${orderlist.ship eq null }">
+                	0
+                </c:if>                 
+                 <c:out value="${orderlist.ship }"/>
+                 </strong>
    	          </li>
               <li class="">
                   <b>배송완료</b>
-                  <strong><c:out value="${orderlist.finish }"/></strong>
+                  <strong>
+                  <c:if test="${orderlist.ship eq null }">
+                	0
+              	  </c:if> 
+                  <c:out value="${orderlist.finish }"/>
+                  </strong>
               </li>
             </ol>
         </div>

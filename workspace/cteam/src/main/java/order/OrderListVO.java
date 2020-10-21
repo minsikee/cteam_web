@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OrderListVO {
-	private int order_num;
+	private String order_num;
+	private String order_date;
+	private String order_state;
+	
 	private String item_name;
 	private String member_id;
 	private String item_price;
 	private String item_su;
-	private String order_date;
-	private String order_state;
 	private List<ItemVO> order_item;
 	
 	public List<ItemVO> getOrder_item() {
@@ -37,10 +38,10 @@ public class OrderListVO {
 	public void setItme_price(String itme_price) {
 		this.item_price = itme_price;
 	}
-	public int getOrder_num() {
+	public String getOrder_num() {
 		return order_num;
 	}
-	public void setOrder_num(int order_num) {
+	public void setOrder_num(String order_num) {
 		this.order_num = order_num;
 	}
 	public String getItem_name() {

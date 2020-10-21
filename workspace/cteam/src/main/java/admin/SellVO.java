@@ -1,7 +1,7 @@
 package admin;
 
 public class SellVO {
-	//private int order_num;
+	private int order_num;
 	private int item_price, item_num;
 	private String item_code, item_name, item_imgpath, item_content, item_content_imgpath, option_name[];
 	
@@ -25,10 +25,9 @@ public class SellVO {
 		this.option_name = option_name;
 	}
 
-	/*
-	 * public int getOrder_num() { return order_num; } public void setOrder_num(int
-	 * order_num) { this.order_num = order_num; }
-	 */
+	public int getOrder_num() { return order_num; } public void setOrder_num(int
+	order_num) { this.order_num = order_num; }
+	
 	public int getItem_price() {
 		return item_price;
 	}
