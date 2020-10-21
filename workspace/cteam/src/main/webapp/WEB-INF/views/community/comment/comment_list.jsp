@@ -176,7 +176,7 @@ $('.comment_delete').on('click', function() {
 		if(confirm('정말 삭제하시겠습니까?')) {
 			$.ajax({
 				url:'community/comment/delete/' + $div.data('comment_num'),
-				success: function(){
+				success: function() {
 					comment_list();
 				},
 				error: function(req, text) {

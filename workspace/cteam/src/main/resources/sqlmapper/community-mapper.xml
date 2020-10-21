@@ -14,7 +14,7 @@ ORDER BY comment_num
 <!-- 댓글 작성 -->
 <insert id="comment_regist">
 INSERT INTO board_comment (board_num, member_id, content)
-VALUES(#{board_num}, #{member_id}, #{content})
+VALUES (#{board_num}, #{member_id}, #{content})
 </insert>
 
 <!-- 댓글 수정 -->

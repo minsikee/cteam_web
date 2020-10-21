@@ -9,7 +9,7 @@
 <title>커뮤니티<</title>
 
 <style type="text/css">
-button {
+/* button {
 	height: 25px;
 	background-color: #FFB4BE;
 	border: 1px groove #333333;
@@ -20,7 +20,7 @@ button a {
 	display: block;
 	color: #111111;
 	font-weight: bold;
-}
+} */
 
 table {
 	margin: 0 auto;
@@ -96,6 +96,7 @@ table th {
 	color: #333333;
 	vertical-align: middle;
 	background-color: white;
+	cursor: pointer;
 }
 
 /* 클릭시 placeholder 문구 사라짐 */
@@ -245,8 +246,8 @@ function comment_list(){
 		url : 'community/comment/${vo.board_num}',
 		success: function(data){
 			$('#comment_list').html(data);
-			
-		},error: function(req, text){
+		},
+		error: function(req, text){
 			alert(text+':'+req.status);
 		}
 	});
@@ -258,7 +259,7 @@ function comment_regist(){
 		return;
 	} else if( $('#comment_write').val() == '' ){
 		alert('댓글을 입력하세요!');
-		$('#comment_writet').focus();
+		$('#comment_write').focus();
 		return;
 	}
 

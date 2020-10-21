@@ -16,4 +16,28 @@ public class QnaServiceImpl implements QnaService {
 		return dao.qna_list();
 	}
 
+	//QnA 작성
+	@Override
+	public int qna_regist(QnaVO vo) {
+		return dao.qna_regist(vo);
+	}
+
+	//QnA 삭제
+	@Override
+	public int qna_delete(int qna_num) {
+		return dao.qna_delete(qna_num);
+	}
+
+	//QnA 질문수정
+	@Override
+	public int qna_update_title(QnaVO vo) {
+		return dao.qna_update_title(vo);
+	}
+	
+	//QnA 답변수정
+	@Override
+	public int qna_update_content(QnaVO vo) {
+		return dao.qna_update_content(vo);
+	}
+
 }
