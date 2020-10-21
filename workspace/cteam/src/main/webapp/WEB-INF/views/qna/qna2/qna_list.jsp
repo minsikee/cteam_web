@@ -187,7 +187,7 @@ $('.qna_content_modify_button').on('click', function(){
 $('.qna_delete_button').on('click', function() {
 	var $div = $(this).closest('div');
 	if($(this).text() == '취소'){
-		console.log( $div.find('.qna_title_modify_button').text(), $div.find('.qna_content_modify_button').text())
+		/* console.log( $div.find('.qna_title_modify_button').text(), $div.find('.qna_content_modify_button').text()) */
 		if( $div.find('.qna_title_modify_button').text()=='수정완료' ) display_title($div, 'd');
 		else if( $div.find('.qna_content_modify_button').text()=='수정완료' ) display_content($div, 'd');
 	} else {
@@ -211,6 +211,7 @@ function display_title(div, mode){
 	div.children('.title_original').css('display', mode == 'tm' ? 'none' : 'block' );
 	div.children('.title_modify').css('display', mode == 'tm' ? 'block' : 'none' );
 }
+
 function display_content(div, mode){
 	div.find('.qna_content_modify_button').text(mode == 'cm' ? '수정완료' : '답변수정' ).css('background-color',  mode == 'cm' ? '#FFB4BE' : '#fff');
 	div.find('.qna_delete_button').text(mode == 'cm' ? '취소' : '삭제').css('background-color', mode == 'cm' ? '#FFB4BE' : '#fff' );
@@ -223,7 +224,6 @@ $(".title").on('click',function() {
 		  $(this).parent(".qna_title").next(".content").slideToggle(100);
 	  else 
 		  $(this).next(".content").slideToggle(100);
-		  
 });
 
 </script>
