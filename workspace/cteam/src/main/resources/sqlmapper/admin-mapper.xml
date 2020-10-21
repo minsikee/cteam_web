@@ -73,9 +73,6 @@ order by order_num desc,  o.item_num
 </delete>
  
 <update id="update">
-<!-- 	<selectKey keyProperty="item_num" resultType="int" order="AFTER">
-		select item_num from sell_item
-	</selectKey> -->
 	update sell_item set item_code = #{item_code}, item_name = #{item_name}, item_price = #{item_price},item_imgpath = #{item_imgpath, jdbcType=VARCHAR}, 
 	item_content = #{item_content }, item_content_imgpath = #{item_content_imgpath, jdbcType=VARCHAR}
 	where item_num = #{item_num}

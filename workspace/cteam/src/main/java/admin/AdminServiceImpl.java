@@ -69,7 +69,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int item_update(SellVO vo) {
+	public int item_update(SellModifyVO vo) {
 		// TODO Auto-generated method stub
 		return dao.item_update(vo);
 	}

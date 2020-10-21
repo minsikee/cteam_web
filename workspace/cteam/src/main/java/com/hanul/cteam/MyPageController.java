@@ -52,12 +52,14 @@ public class MyPageController {
 		else	return "mypage/orderdetail";
 	}
 	
+	//내가 쓴 글, 댓글 보기
 	@RequestMapping("/myWrite.my")
 	public String my_write(Model model, HttpSession session) {
 		String member_id = ((MemberVO)session.getAttribute("login_info")).getMember_id();
 		session.setAttribute("category", "my");
-		model.addAttribute("list",service.my_write(member_id));
 		
+		model.addAttribute("board", service.my_board(member_id));
+		model.addAttribute("comment", service.my_comment(member_id));
 		return "mypage/myWrite";
 	}
 	

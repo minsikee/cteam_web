@@ -9,10 +9,6 @@ public class OrderVO {
 	
 	private String order_state="상품준비중";
 
-	
-	
-	
-	
 	public String getOrder_seq() {
 		return order_seq;
 	}

@@ -2,8 +2,15 @@ package order;
 
 public class ItemVO {
 	private int item_num, item_price;
-	private String item_name, item_imgpath, item_content_imgpath, content, item_su;
+	private String item_name, item_imgpath, item_content_imgpath, content, option_info;
 	
+	
+	public String getOption_info() {
+		return option_info;
+	}
+	public void setOption_info(String option_info) {
+		this.option_info = option_info;
+	}
 	public int getItem_num() {
 		return item_num;
 	}
@@ -39,12 +46,6 @@ public class ItemVO {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getItem_su() {
-		return item_su;
-	}
-	public void setItem_su(String item_su) {
-		this.item_su = item_su;
 	}
 
 }

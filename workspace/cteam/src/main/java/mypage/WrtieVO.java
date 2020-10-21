@@ -1,11 +1,9 @@
 package mypage;
 
-import java.util.List;
-
 public class WrtieVO {
+	
 	private String board_subject, board_title, board_date;
 	private int board_num;
-	private List<CommentVO> comment;
 	
 	public String getBoard_subject() {
 		return board_subject;
@@ -31,12 +29,4 @@ public class WrtieVO {
 	public void setBoard_num(int board_num) {
 		this.board_num = board_num;
 	}
-	public List<CommentVO> getComment() {
-		return comment;
-	}
-	public void setComment(List<CommentVO> comment) {
-		this.comment = comment;
-	}
-	
-	
 }

@@ -78,7 +78,7 @@ import order.OrderListVO;
 	}
 
 	@Override
-	public int item_update(SellVO vo) {
+	public int item_update(SellModifyVO vo) {
 		sql.insert("admin.mapper.option_Re_insert", vo);
 		return sql.update("admin.mapper.update", vo);
 	}

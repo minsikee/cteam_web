@@ -10,14 +10,20 @@
 	(select item_su from orderlist_goods where order_num = (select order_num from orderlist where member_id = #{member_id} and
 	item_num = (select a.item_num from orderlist a where member_id = #{member_id}) )) item_su, order_state
 	from orderlist where member_id = #{member_id}
--->
+
+ -->
 
 select order_num, order_date, order_state
 from orderlist where member_id = #{member_id} order by order_date desc
+<!-- select o.* ,g.item_num, g.option_info -->
+<!-- from orderlist o, orderlist_goods g -->
+<!-- where o.order_num = g.order_num -->
+<!-- and o.member_id = #{member_id} -->
+<!-- ORDER by order_date DESC, g.order_num -->
 </select>
 
 <select id="orderlist_item" resultType="order.ItemVO">
-select order_num, o.item_num, item_su, item_name, item_price, item_imgpath, item_content_imgpath
+select order_num, o.item_num, o.option_info, item_name, item_price, item_imgpath, item_content_imgpath
 from orderlist_goods o, sell_item p 
 where order_num = #{order_num}
 and o.item_num = p.item_num 
@@ -32,15 +38,18 @@ from orderlist
 where member_id = #{member_id}
 </select>
 
-<!-- <select id="writelist" resultType="mypage.WriteVO">
+<select id="myboard" resultType="mypage.WrtieVO">
 	select board_subject, board_title, board_date, board_num
 	from board
 	where member_id = #{member_id}
+	<!-- order by board_date desc -->
 </select>
 
-<select id="comment" resultType="mypage.CommentVO">
+<select id="mycomment" resultType="mypage.CommentVO">
 	select content, writedate, comment_num
 	from board_comment
 	where member_id = #{member_id}
-</select> -->
+	<!-- order by writedate desc -->
+</select>
+
 </mapper>

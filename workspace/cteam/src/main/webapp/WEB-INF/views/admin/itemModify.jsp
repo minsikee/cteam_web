@@ -92,6 +92,8 @@ table th:not(:last-child) {
 		<form method="post" action="update.ad" enctype="multipart/form-data">
 		<input type="hidden" name="attach" />
 		<input type="hidden" name="item_num" value="${item.item_num}"/>
+		<input type="hidden" name="item_imgpath" value="${item.item_imgpath}"/>
+		<input type="hidden" name="item_content_imgpath" value="${item.item_content_imgpath}"/>
 			<table>
 				<tr align="center">
 					<td colspan="2">
