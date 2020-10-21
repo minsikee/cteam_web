@@ -37,6 +37,7 @@ public class BasketController {
 		
 		model.addAttribute("list",service.cart_select(member_id));
 		
+		
 		return "basket/cart";
 	}
 	

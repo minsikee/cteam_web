@@ -3,7 +3,7 @@
 <mapper namespace="cart.mapper">
 
 
-	<select id="cart_select" resultType="Basket.cartVO">
+	<select id="cart_select" resultType="Basket.CartVO">
 		select * from cart where member_id = #{member_id}
 	</select>
 
