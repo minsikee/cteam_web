@@ -43,10 +43,23 @@ table th {
 
 select { height:32px; }
 
+button {
+	height: 35px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-size: 15px;
+	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
-<h1>공지사항</h1>
 
 <table>
 	<tr>
@@ -79,14 +92,14 @@ select { height:32px; }
 </table>
 	<div class="btnSet">
 		<!-- <a class='btn-fill' href='list.no'>목록으로</a> -->
-		<a class='btn-fill' href='javascript:$("form").submit()'>목록으로</a>
+		<button><a href='javascript:$("form").submit()'>목록으로</a></button>
 		<c:if test="${login_info.admin eq 'Y' }">
-		<a class="btn-fill" href='modify.no?id=${vo.id }'>수정</a>
-		<a class="btn-fill" onclick="if(confirm('정말 삭제하시겠습니까?')){ href='delete.no?id=${vo.id }'}" >삭제</a>
+		<button><a href='modify.no?id=${vo.id }'>수정</a></button>
+		<button><a onclick="if(confirm('정말 삭제하시겠습니까?')){ href='delete.no?id=${vo.id }'}" >삭제</a></button>
 		</c:if>
 		<!-- 로그인한 경우 무조건 답글작성 가능하다고 가정 -->
 		<c:if test="${!empty login_info }">
-		<a class="btn-fill" href="reply.no?id=${vo.id }">답글쓰기</a>
+		<button><a href="reply.no?id=${vo.id }">답글쓰기</a></button>
 		</c:if>
 	</div>
 <br/>

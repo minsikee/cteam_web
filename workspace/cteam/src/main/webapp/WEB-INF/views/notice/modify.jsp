@@ -38,10 +38,32 @@ table th {
 }
 
 select { height:32px; }
+
+button {
+	height: 35px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-weight: bold;
+}
+
+.cancel, .submit {
+	width: 75px;
+	height: 30px;
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
+}
+
 </style>
 </head>
 <body>
-<h1>공지사항 수정</h1>
+
 <form action="update.no" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="${vo.id }" />
 <input type="hidden" name="attach" />
@@ -71,8 +93,8 @@ select { height:32px; }
 <div class="btnSet">
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>
-<a class="btn-fill" onclick="if( necessary()){$('[name=attach]').val($('#file-name').text());  $('form').submit();}">저장</a>
-<a class="btn-empty" href="javascript:history.go(-1)">취소</a>
+<button class='cancel'><a href="javascript:history.go(-1)">취소</a></button>
+<button class='submit' onclick="if( necessary()){$('[name=attach]').val($('#file-name').text());  $('form').submit();}">저장</button>
 </div>
 <br/>
 <script type="text/javascript">

@@ -117,8 +117,8 @@
 <!-- 회원 모드 : 수정, 삭제 버튼 보이지 않음 -->
 <c:if test='${login_info.member_id ne "admin"}'>
 	<c:forEach items="${list}" var="vo">
-		<div class="qna_title title">${vo.qna_title}</div>
-		<div class="qna_content content">${vo.qna_content}</div>
+		<div class="qna_title title">${fn:replace(fn:replace( vo.qna_title, lf, '<br>' ), crlf, '<br>')}</div>
+		<div class="qna_content content">${fn:replace(fn:replace( vo.qna_content, lf, '<br>' ), crlf, '<br>')}</div>
 	</c:forEach>
 </c:if>
 
@@ -159,8 +159,6 @@ $('.qna_content_modify_button').on('click', function(){
 	$div.next('.qna_content').css('height', $div.next('.qna_content'));
 
 	if($(this).text() == '답변수정') {
-		/* var tag = $div.children('.qna_content').html().replace(/<br>/g,'\n'); */
-		/* $div.children('.qna_content').html( tag ); */
 		var tag = $div.next('.qna_content').html().replace(/<br>/g,'\n');
 		$div.next('.qna_content').next('.content_modify').html( tag );
 		display_content( $div, 'cm' );
@@ -190,6 +188,8 @@ $('.qna_delete_button').on('click', function() {
 		/* console.log( $div.find('.qna_title_modify_button').text(), $div.find('.qna_content_modify_button').text()) */
 		if( $div.find('.qna_title_modify_button').text()=='수정완료' ) display_title($div, 'd');
 		else if( $div.find('.qna_content_modify_button').text()=='수정완료' ) display_content($div, 'd');
+
+		
 	} else {
 		if(confirm('질문과 답변이 모두 삭제됩니다. 정말 삭제하시겠습니까?')) {
 			$.ajax({
@@ -220,10 +220,15 @@ function display_content(div, mode){
 }
  
 $(".title").on('click',function() {
-	  if( ${login_info.member_id eq "admin"} )
-		  $(this).parent(".qna_title").next(".content").slideToggle(100);
-	  else 
-		  $(this).next(".content").slideToggle(100);
+	if(${login_info.member_id eq "admin"}) {
+		$(this).parent(".qna_title").next(".content").slideToggle(100);
+	  
+		if($(".content_modify").css('display', 'block')) {
+			$(".content_modify").css('display', 'none'); 
+		}
+	} else {
+		$(this).next(".content").slideToggle(100);
+	} 
 });
 
 </script>

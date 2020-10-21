@@ -19,7 +19,6 @@
 			<a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } ><div class='header_menu'>상품페이지</div></a>
 			<a href="list.bo" ${category eq 'bo' ? 'class="active"' : '' } ><div class='header_menu'>커뮤니티</div></a>
 			<a href="list.qn" ${category eq 'qn' ? 'class="active"' : '' } ><div class='header_menu'>Q&A</div></a>	
-			<a href=""><div class='header_menu'>반려동물정보</div></a>
 			<a href=""><div class='header_menu'>내펫정보</div></a>
 			<div class='header_menu1'>
 			
@@ -97,7 +96,7 @@
 	
 	<style type="text/css">
 		.header_menu, .header_menu1 { 
-			width:12.5%;
+			width:14.28%;
 			height: 60px;
 			float: left;
 		}

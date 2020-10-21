@@ -163,7 +163,7 @@ public class NoticeController {
 	//공지사항목록화면 요청
 	@RequestMapping("/list.no")
 	public String list(Model model, HttpSession session, String search, String keyword,
-			@RequestParam(defaultValue ="1") int curPage) {
+			@RequestParam(defaultValue ="1") int curPage, @RequestParam(defaultValue="15") int pageList) {
 		//임시 테스트용 관리자 로그인
 		/*
 		 * HashMap<String, String> map = new HashMap<String, String>();
@@ -171,6 +171,7 @@ public class NoticeController {
 		 * session.setAttribute("login_info", member.member_login(map));
 		 */
 		session.setAttribute("category", "no");
+		page.setPageList(pageList);
 		page.setCurPage(curPage);
 		page.setSearch(search);
 		page.setKeyword(keyword);
