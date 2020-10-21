@@ -113,6 +113,8 @@ public class ShopCotroller {
 		page.setKeyword(keyword);
 		model.addAttribute("page", service.shop_list(page));
 		
+	
+		
 		return "shop/shopPage";
 	}
 	
