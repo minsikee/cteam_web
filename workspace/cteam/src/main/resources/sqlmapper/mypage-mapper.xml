@@ -3,23 +3,9 @@
 <mapper namespace="mypage.mapper">
 
 <select id="orderlist" resultType="order.OrderListVO">
-<!--  
-	select order_num,(select item_name from sell_item where item_num=(select item_num from orderlist where member_id = #{member_id}) ) item_name,
-	member_id, item_imgpath, order_date, order_state, 
-	(select item_price from sell_item where item_num=(select o.item_num from orderlist o where member_id = #{member_id})) item_price,
-	(select item_su from orderlist_goods where order_num = (select order_num from orderlist where member_id = #{member_id} and
-	item_num = (select a.item_num from orderlist a where member_id = #{member_id}) )) item_su, order_state
-	from orderlist where member_id = #{member_id}
-
- -->
-
 select order_num, order_date, order_state
 from orderlist where member_id = #{member_id} order by order_date desc
-<!-- select o.* ,g.item_num, g.option_info -->
-<!-- from orderlist o, orderlist_goods g -->
-<!-- where o.order_num = g.order_num -->
-<!-- and o.member_id = #{member_id} -->
-<!-- ORDER by order_date DESC, g.order_num -->
+
 </select>
 
 <select id="orderlist_item" resultType="order.ItemVO">
