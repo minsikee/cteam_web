@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문목록</title>
+<title>주문상세</title>
 <style type="text/css">
-table {
+.detail {
 	border-collapse: collapse;
 	margin-bottom: 50px;
-	border: 1px solid #969696
-	;
+	border: 1px solid #969696;
 }
-table td {
+.detail td {
 	padding: 5px;
 }
-table th {
+.detail th {
  border-bottom: 1px solid #FFB4BE;	
  width: 300px;
  padding: 5px;
@@ -42,31 +42,31 @@ label {
 	width: 80px;
 	height: 80px;
 }
+.ship {
+	border-collapse: collapse;
+	margin-bottom: 50px;
+	border: 1px solid #969696;
+}
+
+.ship th {
+ padding: 5px;
+ width: 40%;
+}
 </style>
 </head>
 <body>
 <div align="center">
-<h1>주문관리</h1>
+<h1>주문번호 [${list.order_num }] 상세내역</h1>
 		
-<c:forEach items="${orderlist }" var="vo"> 
-<table style="width: 80%">
+
+<table class="detail" style="width: 80%">
 	<tr id="title">
-		<th colspan="3" id="ordernum"> <label>주문날짜 ${vo.order_date }</label> 주문번호 》 
-		<a style="color: white;" href="adOrderdetail.my?order_num=${vo.order_num }">${vo.order_num }</a>
-		</th>
-		<th>
-		<form action="stateUpdate.ad" method="post">
-		<select name="order_state">
-			<option value="상품준비중" ${vo.order_state eq '상품준비중' ? 'selected' : ''}>상품준비중</option>
-			<option value="배송중"  ${vo.order_state eq '배송중' ? 'selected' : ''}>배송중</option>
-			<option value="배송완료" ${vo.order_state eq '배송완료' ? 'selected' : ''}>배송완료</option>
-		</select><a style="margin-left: 5px;"class="btn-fill-s">확인</a>
-		</form>
-		</th>
+		<th colspan="3" id="ordernum"> <label>주문날짜 ${list.order_date }</label> 주문번호 》${list.order_num }</th>
+		<th>${list.order_state}</th>
 	<tr>
 	<tr>
 		<th>주문자</th>
-		<td colspan="3" style="border-bottom: 1px solid #FFB4BE; font-weight: bold;">${vo.member_id}</a></td>
+		<td colspan="3" style="border-bottom: 1px solid #FFB4BE; font-weight: bold;">${list.member_id}</td>
 	</tr>
 	<tr style="text-align: center;">
 		<th>상품</th>
@@ -75,10 +75,10 @@ label {
 		<th>금액</th>
 	</tr>
 	
-	<c:forEach items="${vo.order_item}" var="item"> 
+	<c:forEach items="${list.order_item}" var="item"> 
 	</c:forEach>
 	<c:set var = "total" value = "0" />
- 	<c:forEach items="${vo.order_item}" var="item"> 
+ 	<c:forEach items="${list.order_item}" var="item"> 
 		<c:set var="options" value="${fn:split(item.option_info, '/')}" />
 			<c:forEach begin="0" end="${fn:length(options)-1}" varStatus="optionsStatus">
 			<c:set var="option" value="${options[optionsStatus.index]}" />
@@ -92,7 +92,7 @@ label {
 			
 			<td>${item.item_name } / ${detail[0]}</td>
 			<td>${item.item_price  }￦ / ${detail[1]}개</td>
-			<td class="price">${item.item_price * detail[1]}</td>
+			<td class="price">${item.item_price * detail[1]} ￦</td>
 		</tr>
 		<c:set var= "total" value="${total + item.item_price * detail[1]}"/>
 	
@@ -119,11 +119,38 @@ label {
 		</tr>
 		</c:if> 
 		</table>		
-		
-	</c:forEach>
-		
-
-
+	<div  class="ship" >
+	<table style="width: 80%; margin-bottom: 20px;">
+		<tr><th colspan="2">주문자 정보</th><tr>
+		<tr>
+			<th>성함</th><td>${list.member_name }</td>
+		</tr>	
+		<tr>
+			<th>전화번호</th><td>${list.member_phonenum }</td>
+		</tr>
+		<tr>	
+			<th>이메일</th><td>${list.member_email }</td>
+		</tr>			
+	</table>
+	
+	<table style="width: 80%; margin-bottom: 50px;">
+		<tr>
+			<th colspan="2">배송 정보</th>
+		</tr>
+		<tr>
+			<th>성명</th><td>${list.shipping_name }</td>
+		</tr>
+		<tr>
+			<th>전화번호</th><td>${list.shipping_phonenum }</td>
+		</tr>
+		<tr>
+			<th>배송 메세지</th><td>${list.shipping_message }</td>
+		</tr>
+		<tr>
+			<th style="margin-bottom: 1px solid #969696;">배송지 주소</th><td>${list.shipping_address }<br/>${list.shipping_address2 }</td>
+		</tr>
+		<tr></tr>
+	</table>
 </div>
-</body>
+</div>
 </html>

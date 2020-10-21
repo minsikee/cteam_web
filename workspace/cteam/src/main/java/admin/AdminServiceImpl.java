@@ -4,16 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import member.MemberVO;
-import order.ItemVO;
 import order.OrderListVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
-@Autowired private AdminDAO dao;
+	
+	@Autowired private AdminDAO dao;
 	@Override
 	public int item_insert(SellVO vo) {
 		// TODO Auto-generated method stub
@@ -73,6 +72,13 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.item_update(vo);
 	}
+
+	@Override
+	public DetailVO order_detail(String order_num) {
+		// TODO Auto-generated method stub
+		return dao.order_detail(order_num);
+	}
+	
 
 	
 }

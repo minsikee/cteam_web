@@ -83,4 +83,13 @@ import order.OrderListVO;
 		return sql.update("admin.mapper.update", vo);
 	}
 
+	@Override
+	public DetailVO order_detail(String order_num) {
+		
+		DetailVO item = sql.selectOne("admin.mapper.orderDetail", order_num);
+		item.setOrder_item(sql.selectList("admin.mapper.detailList_item",order_num));	
+			
+		return item;
+	}
+
 }
