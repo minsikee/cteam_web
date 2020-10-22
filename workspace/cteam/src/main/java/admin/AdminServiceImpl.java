@@ -79,6 +79,17 @@ public class AdminServiceImpl implements AdminService {
 		return dao.order_detail(order_num);
 	}
 	
+	@Override
+	public int item_delete(int item_num) {
+		// TODO Auto-generated method stub
+		return dao.item_delete(item_num);
+	}
+
+	@Override
+	public boolean code_check(String code) {
+		// TODO Auto-generated method stub
+		return dao.code_check(code);
+	}
 
 	
 }

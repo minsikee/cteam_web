@@ -21,4 +21,6 @@ public interface AdminService {
 	int option_delete(int item_num);					//옵션삭제
 	int item_update(SellModifyVO vo);					//옵션수정기능
 	DetailVO order_detail(String order_num);		//상세화면 수정
+	int item_delete(int item_num);
+	boolean code_check(String code);
 }

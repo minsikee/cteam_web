@@ -91,5 +91,15 @@ import order.OrderListVO;
 			
 		return item;
 	}
+	@Override
+	public int item_delete(int item_num) {
+		// TODO Auto-generated method stub
+		return sql.delete("admin.mapper.item_delete",item_num);
+	}
 
+	@Override
+	public boolean code_check(String code) {
+		// TODO Auto-generated method stub
+		return (Integer)sql.selectOne("admin.mapper.code_check", code) >0? false: true;
+	}
 }

@@ -62,7 +62,8 @@
 			<td>${list.item_name }</td>
 			<td>${list.item_price } 원</td>
 			<td><a href="itemModify.ad?item_num=${list.item_num }" class="btn-fill-s" style="background-color: pink; color: #666;">수정</a>
-			<a class="btn-empty-s" style="color: white; background-color: #666;">삭제</a> </td>
+<%-- 			<a href="item_delete.ad?item_num=${list.item_num } onclick="if( confirm('정말 삭제?') ) { $('form').attr('action','item_delete.ad?item_num=${list.item_num } ');  --%>
+<!-- 			$('form').submit() }" class="btn-empty-s" style="color: white; background-color: #666;">삭제</a> </td> -->
 		</tr>
 	</c:forEach>
 	</table>

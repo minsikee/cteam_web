@@ -12,6 +12,7 @@
 	border-collapse: collapse;
 	margin-bottom: 50px;
 	border: 1px solid #969696;
+	line-height: 1.5;
 }
 .detail td {
 	padding: 5px;
@@ -42,15 +43,43 @@ label {
 	width: 80px;
 	height: 80px;
 }
-.ship {
-	border-collapse: collapse;
-	margin-bottom: 50px;
-	border: 1px solid #969696;
-}
 
-.ship th {
- padding: 5px;
- width: 40%;
+
+
+.head {
+	background-color: #999999;
+}
+table.type07 {
+    /* text-align: left; */
+    border: 1px solid #ccc;
+    /*margin: 20px 10px; */
+    width: 100%;
+    margin-bottom: 20px;
+}
+table.type07 thead {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #D8EBA3;
+}
+table.type07 thead th {
+    padding: 5px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #3C422C;
+}
+table.type07 tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #F9F6D9;
+}
+table.type07 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
 }
 </style>
 </head>
@@ -119,38 +148,57 @@ label {
 		</tr>
 		</c:if> 
 		</table>		
-	<div  class="ship" >
-	<table style="width: 80%; margin-bottom: 20px;">
-		<tr><th colspan="2">주문자 정보</th><tr>
-		<tr>
-			<th>성함</th><td>${list.member_name }</td>
-		</tr>	
-		<tr>
-			<th>전화번호</th><td>${list.member_phonenum }</td>
-		</tr>
-		<tr>	
-			<th>이메일</th><td>${list.member_email }</td>
-		</tr>			
-	</table>
-	
-	<table style="width: 80%; margin-bottom: 50px;">
-		<tr>
-			<th colspan="2">배송 정보</th>
-		</tr>
-		<tr>
-			<th>성명</th><td>${list.shipping_name }</td>
-		</tr>
-		<tr>
-			<th>전화번호</th><td>${list.shipping_phonenum }</td>
-		</tr>
-		<tr>
-			<th>배송 메세지</th><td>${list.shipping_message }</td>
-		</tr>
-		<tr>
-			<th style="margin-bottom: 1px solid #969696;">배송지 주소</th><td>${list.shipping_address }<br/>${list.shipping_address2 }</td>
-		</tr>
-		<tr></tr>
-	</table>
+	<div  class="ship" style="width: 80%" >
+	<table class="type07">
+    <thead>
+    <tr>
+        <th colspan="2" style="text-align: center;font-size: 1.2em" >주문자 정보</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">성명</th>
+        <td>${list.member_name }</td>
+    </tr>
+    <tr>
+        <th scope="row">전화번호</th>
+        <td>${list.member_phonenum }</td>
+    </tr>
+    <tr>
+        <th scope="row">이메일</th>
+        <td>${list.member_email }</td>
+    </tr>
+    </tbody>
+</table>
+	<table class="type07">
+    <thead>
+    <tr>
+        <th colspan="2" style="text-align: center;font-size: 1.2em" >배송지 정보</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">성명</th>
+        <td>${list.shipping_name }</td>
+    </tr>
+    <tr>
+        <th scope="row">전화번호</th>
+        <td>${list.shipping_phonenum }</td>
+    </tr>
+    <tr>
+        <th scope="row">항목명</th>
+        <td>내용이 들어갑니다.</td>
+    </tr>
+    <tr>
+        <th scope="row">배송 메세지</th>
+        <td>${list.shipping_message }</td>
+    </tr>
+    <tr>
+        <th scope="row">배송지 주소</th>
+        <td>${list.shipping_address }<br/>${list.shipping_address2 }</td>
+    </tr>
+    </tbody>
+</table>
 </div>
 </div>
 </html>

@@ -10,7 +10,7 @@ public class MemberVO {
 	private String member_email;
 	private String member_address;
 	private String member_address2;
-	private String member_post;
+	private int member_post;
 	private String admin;
 	
 	
@@ -35,10 +35,10 @@ public class MemberVO {
 	public void setMember_address(String member_address) {
 		this.member_address = member_address;
 	}
-	public String getMember_post() {
+	public int getMember_post() {
 		return member_post;
 	}
-	public void setMember_post(String member_post) {
+	public void setMember_post(int member_post) {
 		this.member_post = member_post;
 	}
 	public String getMember_email() {

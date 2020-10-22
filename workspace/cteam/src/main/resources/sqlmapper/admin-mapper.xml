@@ -81,7 +81,7 @@ order by order_num desc,  o.item_num
 	<foreach collection="option_name" item="option"  separator=" " 
 	open="insert all" close="SELECT * FROM DUAL">
 	into sell_item_option (item_num, item_code, option_name)
-	values( #{item_num}, #{item_code}, #{option} )
+	values( #{item_num}, #{item_code, jdbcType=VARCHAR}, #{option, jdbcType=VARCHAR} )
     </foreach>
 </insert>
 
@@ -98,6 +98,14 @@ order by order_num desc,  o.item_num
 	where order_num = #{order_num}
 	and o.item_num = p.item_num 
 	order by order_num desc,  o.item_num
+</select>
+
+<delete id="item_delete">
+	delete from sell_item where item_num = #{item_num}
+</delete>
+
+<select id="code_check" resultType="integer" >
+	select COUNT(*) from sell_item where item_code = #{code }
 </select>
 
 </mapper>
