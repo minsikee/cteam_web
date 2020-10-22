@@ -3,6 +3,7 @@
     
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+        <%@ taglib prefix="fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,9 +100,9 @@ a.orderbtn{
 				
 	
 							<td style="color:#666666">${vo.order_item.item_name } / ${detail[0]}</td>
-							<td>${vo.order_item.item_price }원</td>
+							<td><fmt:formatNumber value="${vo.order_item.item_price}" />원</td>
 							<td>${detail[1]}</td>
-							<td>${vo.order_item.item_price * detail[1]}원</td>
+							<td><fmt:formatNumber value="${vo.order_item.item_price * detail[1]}" />원</td>
 							<td><a class="deletebtn" onclick="delete_cart(${vo.cart_num})">delete</a></td>
 							
 							
@@ -119,7 +120,8 @@ a.orderbtn{
 				
 				<tr style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
 						<td colspan="7" style="padding: 10px;" class="right">total
-							cost : <c:out value= "${total}"/>￦</td>
+							cost : <fmt:formatNumber value="${total}" />￦</td>
+<%-- 							cost : <c:out value= "${total}"/>￦</td> --%>
 				</tr>
 					
 					

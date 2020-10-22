@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+ <%@ taglib prefix="fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,9 +71,9 @@ input {
 
 						<td>${vo.item_name }</td>
 						<td>${detail[0]}</td>
-						<td>${vo.item_price }원</td>
+						<td><fmt:formatNumber value="${vo.item_price}" />원</td>
 						<td>${detail[1]}</td>
-						<td>${ vo.item_price * detail[1]}원</td>
+						<td><fmt:formatNumber value="${ vo.item_price * detail[1]}" />원</td>
 
 					</tr>
 				</c:forEach>

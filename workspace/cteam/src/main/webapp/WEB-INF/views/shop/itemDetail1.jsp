@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-   
+ <%@ taglib prefix="fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -100,7 +100,7 @@
 			<c:if test="${  status.index == ( fn:length( list ) ) - 1 }">
 					
 								
-					<span class="y" style="display: none;">${vo.item_price }</span>
+					<span class="y" style="display: none;">${vo.item_price}</span>
 				<%-- 	<div class="desc-div list-div invisible" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">
 			
 					
@@ -126,13 +126,13 @@
 						<span class="ship">배송비:</span>	
 						<c:choose>
 						<c:when test="${vo.item_price gt 50000 }"><span>무료</span></c:when>
-						<c:otherwise><span>2500원</span></c:otherwise>
+						<c:otherwise><span>2,500원</span></c:otherwise>
 						</c:choose>
 					</div>
 					
 					<div class="desc-div price-div" style="float:left; width:300px; color: #333333;" >
 						<span class="price">총 상품금액:</span>	
-						<Strong class="price-strong">${vo.item_price }</Strong>
+						<Strong class="price-strong"> <fmt:formatNumber value="${vo.item_price}" /></Strong>
 						<span class="won">원</span>
 					</div>
 					
@@ -233,19 +233,19 @@
 					
 					'<a class="option_minus" onclick="minus(this)"> - </a>'+
 				
-					'<span class="won" style="padding-right:5px;" data-option='+ price +'>'+ price +  '원 </span>'+
+					'<span class="won" style="padding-right:5px;" data-option='+ price +'>'+ price.toLocaleString() +  '원 </span>'+
 					
 					'<a class="list-delete" width="12px" height="13px" onclick="wrap(this);"><i class="fas fa-times"></i></a>'+
 					'</div>';			
 				
 				var divHtml = $('.y');
 				divHtml.after(addDiv);
-				eachPrice=parseInt( $(".won").text() );
+// 				eachPrice=parseInt( $(".won").text() );
+				eachPrice=parseInt( $(".won").data('option') );
 					totalPrice += eachPrice; //옵션추가시 토탈금액 늘어남
 
-					$(".price-strong").text(totalPrice);
+					$(".price-strong").text(totalPrice.toLocaleString());
 					//토탈금액 세팅
-					
 					
 					
 				}
@@ -359,14 +359,14 @@
 			//var plus=parseInt($(p).siblings('#won').html());
 			var value= price * parseInt(su);
 
-			$(p).next().siblings('.won').html(value);
+			$(p).next().siblings('.won').html(value.toLocaleString());
 
 			totalPrice += price; 
 			
 			$(p).next().val(su);
 
 			
-			$(".price-strong").text(totalPrice);
+			$(".price-strong").text(totalPrice.toLocaleString());
 			
 		};
 
@@ -375,15 +375,13 @@
 			var su=$(m).prev().val();
 			if(su>1){
 				--su;
-				var minus=parseInt($(m).next().html());
+				var minus=parseInt($(m).next().html().replace(/,/g, ''));
 				var value= minus - price;
-
 				
-				
-				$(m).next().html(value);
+				$(m).next().html(value.toLocaleString());
 
 				totalPrice -= price;
-				$(".price-strong").text(totalPrice);
+				$(".price-strong").text(totalPrice.toLocaleString());
 				
 			}
 			$(m).prev().val(su);

@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.btn {margin-top:20px; border: 1px solid #000000;  font-size:13px; background-color: #000000; width:329px; height: 40px; color: white;}
-	a.btn-danger { margin:5px auto; box-shadow: 2px 2px 2px #969696; font-size:13px;  border: 1px solid #000000; color:black; background-color: white; width:329px; height: 40px; display: block; line-height: 40px;}
+	.btn {margin-top:20px; border: 1px solid #000000;  font-size:14px; background-color: #FFB4BE; width:329px; height: 40px; color: black;}
+	a.btn-danger { margin:5px auto; font-size:14px;  border: 1px solid #000000; color:black; background-color: #96969650; width:329px; height: 40px; display: block; line-height: 40px;}
 	div.custom-radio{ display: inline-block; }
 	.label {font-size: 15px; text-align: left; display: inline-block; vertical-align:-1px; color:#777777;}
 	input {width: 300px; outline-color: pink; height: 40px; padding-left: 20px; color: #565656; height: 40px; 
@@ -23,6 +23,29 @@
 	p { margin-bottom: 30px;}
 	.custom-control { margin: 0px 10px 0px 10px; margin-bottom:20px;}
 	h3 { margin-bottom: 5px; margin-top: 30px;}
+
+
+/* 클릭시 placeholder 문구 사라짐 */
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder{
+	/*webkit browser */
+	color: transparent;
+}
+input:focus:-moz-input-placeholder,
+textarea:focus:-moz-input-placeholder{
+	/* Mozila Firefox 4 to 18 */
+	color: transparent;
+}
+input:focus::-moz-input-placeholder,
+textarea:focus::-moz-input-placeholder{
+	/* Mozila Firefox 19+ */
+	color: transparent;
+}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder{
+	/* Internet Explorer 10+ */
+	color: transparent;
+}
 	
 </style>
 </head>

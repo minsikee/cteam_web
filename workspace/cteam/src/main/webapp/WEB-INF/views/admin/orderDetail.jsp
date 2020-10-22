@@ -120,8 +120,8 @@ table.type07 td {
 			<td><img id="item_content_imgpath" src="<c:url value='/' />${item.item_imgpath }"/></td>
 			
 			<td>${item.item_name } / ${detail[0]}</td>
-			<td>${item.item_price  }￦ / ${detail[1]}개</td>
-			<td class="price">${item.item_price * detail[1]} ￦</td>
+			<td><fmt:formatNumber value="${item.item_price  }" />￦ / ${detail[1]}개</td>
+			<td class="price"><fmt:formatNumber value="${item.item_price * detail[1]}" /> ￦</td>
 		</tr>
 		<c:set var= "total" value="${total + item.item_price * detail[1]}"/>
 	
@@ -132,10 +132,10 @@ table.type07 td {
 			
 		<c:if test="${total lt 50000 }">
 		<tr align="right"  style="border-top: 1px solid #FFB4BE;">
-			<td colspan="3">(5만원 이상 무료배송) 배송비</td><td>＋ 2500￦</td>
+			<td colspan="3">(5만원 이상 무료배송) 배송비</td><td>＋ 2,500￦</td>
 		</tr>
 		<tr align="right" id="last">
-			<td colspan="3">총액</td><td><c:out value="${total + 2500}"/>￦</td>
+			<td colspan="3">총액</td><td><fmt:formatNumber value="${total+2500}" />￦</td>
 		</tr>
 		</c:if>
 
@@ -144,7 +144,7 @@ table.type07 td {
 			<td colspan="3">(5만원 이상 무료배송) 배송비</td><td>＋ 0￦</td>
 		</tr>
 		<tr align="right" id="last">
-			<td colspan="3">총액</td><td><c:out value="${total}"/>￦</td>
+			<td colspan="3">총액</td><td><fmt:formatNumber value="${total}" />￦</td>
 		</tr>
 		</c:if> 
 		</table>		

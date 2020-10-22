@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <%@ taglib prefix="fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
  <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
     
 <!DOCTYPE html>
@@ -68,7 +69,7 @@ input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px;
 							</c:if>	
 								<a href="javascript:go_detail(${vo.item_num })">
 									<span class="item-name" style="font-weight: bold">${vo.item_name}</span>
-									<span class="item-price">${vo.item_price}</span>
+									<span class="item-price"> <fmt:formatNumber value="${vo.item_price}" /></span>
 								</a>
 							</div>
 						</li>

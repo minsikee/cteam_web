@@ -9,14 +9,88 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/common.css?v="<%=new java.util.Date().getTime() %>">
 <style type="text/css">
-	li {text-align: center;}
-	.btn-login{	line-height: 40px; margin:5px auto; box-shadow: 2px 2px 2px #969696; font-size:13px;  border: 1px solid #000000; color:white; background-color: black; width:385px; height: 40px; display: block; }
-	.btn-signin{ line-height: 40px; margin:5px auto; box-shadow: 2px 2px 2px #969696; font-size:13px;  border: 1px solid #000000; color:black; background-color: white; width:385px; height: 40px; display: block;  }
+
+.login {
+	width: 100%;
+	margin: 0 auto;
+	padding: 100px 0 125px 0;
+}
+
+#userid, #userpwd {
+	height: 40px;
+	width: 300px;
+	outline-color: pink;
+	box-sizing: border-box;
+	border: 1px solid #969696;
+	border-radius: 5px;
+	margin-top: 10px;
+	padding: 0 20px;
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+#find {
+	display: block;
+	margin: 20px 0px;
+}
+
+.btn-login, .btn-signin {
+	width: 300px;
+	height: 40px;
+	box-sizing: border-box;
+	border: 1px solid #000000;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #969696;
+}
+
+.btn-login {
+	background-color: #FFB4BE;
+	color: white;
+}
+
+.btn-signin {
+	margin-top: 10px;
+}
+
+.btn-login a {
+	font-size: 14px;
+	font-weight: bold;
+	color: #333333;
+}
+
+.btn-signin a {
+	font-size: 14px;
+	font-weight: bold;
+	color: #333333;
+}
+
+/* 클릭시 placeholder 문구 사라짐 */
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder{
+	/*webkit browser */
+	color: transparent;
+}
+input:focus:-moz-input-placeholder,
+textarea:focus:-moz-input-placeholder{
+	/* Mozila Firefox 4 to 18 */
+	color: transparent;
+}
+input:focus::-moz-input-placeholder,
+textarea:focus::-moz-input-placeholder{
+	/* Mozila Firefox 19+ */
+	color: transparent;
+}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder{
+	/* Internet Explorer 10+ */
+	color: transparent;
+}
+
 </style>
 </head>
 <body>
 
-
+<%-- 
 	<br>
 		<c:choose>
 			<c:when test="${sessionId != null}">
@@ -27,43 +101,36 @@
 				</h3>
 			</c:when>
 			<c:otherwise>
+			 --%>
+			 
 				<div class="login">
-					<ul class="login-ul" style="overflow: hidden;">
-							<li><h3>로그인</h3></li>
-							<br/>
-							<li>
-								<span>
-								<input type="text" style="margin-bottom: 10px; width:356px; outline-color:pink; border: 1px solid #7e7e7e;  padding: 0 20px; height:40px;" id="userid" placeholder="아이디"/>		<br/>
-								<input onkeypress="if(event.keyCode==13){go_login()}" style=" outline-color:pink; width:356px; border: 1px solid #7e7e7e; padding:0 20px; height:40px;" type="password" id="userpwd" placeholder="비밀번호"/>
-								</span>	
-							</li>
-							
+				
+					<h2 style='color:#333333'>로그인</h2>
+					
+						<input type="text" id="userid" placeholder="아이디"/><br/>
+						<input onkeypress="if(event.keyCode==13){go_login()}" type="password" id="userpwd" placeholder="비밀번호"/><br/>
 						
-							<li style="margin-top:10px;  float: right;" ><a href="idFind" style="font-size: 13px;">아이디찾기 ｜ 비밀번호 찾기</a></li>
+						<span id="find"><a href="idFind" style="font-size:15px;"> 아이디 & 비밀번호 찾기 </a></span>
 							
-							<li style="margin:50px 0 10px 0; text-align: center;"><a class='btn-login' onclick="go_login()">로그인</a></li>
-							<li style="margin-bottom:10px; text-align: center;"><a href="email.do" class='btn-signin'>회원가입</a></li>
-					</ul>
-			
+						<button class='btn-login'><a onclick="go_login()">로그인</a></button><br/>
+						<button class='btn-signin'><a href="email.do">회원가입</a></button>
+<%-- 		
 				<!-- 네이버 로그인 창으로 이동 -->
 				<div id="naver_id_login" style="text-align: center">
 					<a href="${url}"> <img width="223"
 						src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
 				</div>
 				<br>
+				 --%>
 			</div>	
-				
+<%-- 				
 			</c:otherwise>
 		</c:choose>
 
-	
+	 --%>
 
-<script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
  
- 
- 
- 
- 
+
 <!-- <script type="text/javascript">
  
          var naver_id_login = new naver_id_login("5KDJ2AowQdWU418eNmvz", "http://localhost:8089/cteam/");    // Client ID, CallBack URL 삽입
@@ -76,10 +143,9 @@
          naver_id_login.setPopup();
          naver_id_login.init_naver_id_login();
  
-</script>
- -->
-	
+</script> -->
 
+<script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript">
 function go_login(){
 	if($("#userid").val()==''){
@@ -107,11 +173,7 @@ function go_login(){
 		}
 
 	});
-
-	
 }
-
-
 </script>
 </body>
 </html>
