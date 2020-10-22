@@ -20,5 +20,7 @@ public interface BasketService {
 	
 	OrderVO cartOrder_insert(OrderVO orderVo,List<CartVO> carts);
 	/* List<CartVO> cartOrder_select(String member_id); */
+	
+	boolean cart_delete(int cart_num);
 
 }

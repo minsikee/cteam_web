@@ -125,7 +125,7 @@
 					<div class="desc-div ship-div" style="float:left; width:300px;">
 						<span class="ship">배송비:</span>	
 						<c:choose>
-						<c:when test="${vo.item_price gt 50000 }"><span>무료</span></c:when>
+						<c:when test="${vo.item_price gt 50000 }"><span id="ship">무료</span></c:when>
 						<c:otherwise><span>2,500원</span></c:otherwise>
 						</c:choose>
 					</div>
@@ -145,7 +145,7 @@
 					
 					<c:if test="${login_info.member_id == 'admin' }">
 						<div class="desc-div modify-div">
-							<a class='modify-btn' onclick="$('form').attr('action','modify.sh'); $('form').submit()">수정</a>
+							<a class='modify-btn' onclick="$('form').attr('action','itemModify.ad'); $('form').submit()">수정</a>
 							<a class='delete-btn' onclick="if(confirm('정말 삭제하시겠습니까?') ){$('form').attr('action','delete.sh'); $('form').submit() }">삭제</a>
 						</div>
 					</c:if>

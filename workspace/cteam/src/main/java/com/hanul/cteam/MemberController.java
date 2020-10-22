@@ -124,7 +124,7 @@ public class MemberController {
 							
 							 System.getProperty("line.separator") +
 	
-							 "임시 비밀번호는  + key + 이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다." +
+							 "임시 비밀번호는  "+ key + "이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다." +
 	
 							 System.getProperty("line.separator") +
 	
@@ -175,7 +175,7 @@ public class MemberController {
 
 		if (service.member_insert(vo)) {
 			common.sendEmail(vo.getMember_email(), vo.getMember_name(), session);
-			msg += "alert('회원가입이 완료되었습니다'); location='http://192.168.0.100:8089/cteam/loginPage'";
+			msg += "alert('회원가입이 완료되었습니다'); location='http://192.168.0.141:8080/cteam/loginPage'";
 		} else {
 			msg += "alert('회원가입에 실패했습니다') history.go(-1)";
 
