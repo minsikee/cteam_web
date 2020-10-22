@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,9 +87,9 @@ a.listBtn{
 							src="<c:url value='/' />${shopVO.item_imgpath }"
 							style="width: 80; height: 113px;"></td>
 						<td>${shopVO.item_name } / ${detail[0]}</td>
-						<td>${shopVO.item_price }원</td>
+						<td><fmt:formatNumber value="${shopVO.item_price }" /> 원</td>
 						<td>${detail[1] }</td>
-						<td>${shopVO.item_price * detail[1] } ￦</td>
+						<td><fmt:formatNumber value="${shopVO.item_price * detail[1] }" /> ￦</td>
 						
 						<c:set var="total" value="${total + shopVO.item_price * detail[1] }"/>
 					</tr>
@@ -102,13 +103,13 @@ a.listBtn{
 				<c:when test="${total lt 50000 }">
 					<tr
 					style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
-					<td colspan="6" style="padding: 10px;" class="right">total cost: ${total} +배송비 2500 = ${total+2500} ￦
+					<td colspan="6" style="padding: 10px;" class="right">total cost: <fmt:formatNumber value="${total}" /> + 배송비 2,500 = <fmt:formatNumber value="${total+2500}" /> ￦
 					</tr>
 				</c:when>
 				<c:otherwise>
 					<tr
 						style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
-						<td colspan="6" style="padding: 10px;" class="right">total cost: ${total } + 배송비 0 = ${total } ￦
+						<td colspan="6" style="padding: 10px;" class="right">total cost: <fmt:formatNumber value="${total}" /> + 배송비 0 = <fmt:formatNumber value="${total}" /> ￦
 					</tr>
 				
 				</c:otherwise>

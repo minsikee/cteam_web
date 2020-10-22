@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri= "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,9 +76,9 @@ label {
 			<td><img id="item_content_imgpath" src="<c:url value='/' />${item.item_imgpath }"/></td>
 			
 			<td>${item.item_name } / ${detail[0]}</td>
-			<td>${item.item_price  }￦ / ${detail[1]}개</td>
+			<td><fmt:formatNumber value="${item.item_price  }" />￦ / ${detail[1]}개</td>
 			<td>${vo.order_state }</td>
-			<td class="price">${item.item_price * detail[1]}</td>
+			<td class="price"><fmt:formatNumber value="${item.item_price * detail[1]}" /></td>
 			<!-- <td><button value="리뷰작성" class="test">리뷰작성</button></td> -->
 		</tr>
 		<c:set var= "total" value="${total + item.item_price * detail[1]}"/>
@@ -89,10 +90,11 @@ label {
 			
 		<c:if test="${total lt 50000 }">
 		<tr align="right"  style="border-top: 1px solid #FFB4BE;">
-			<td colspan="4">(5만원 이상 무료배송) 배송비</td><td>＋ 2500￦</td>
+			<td colspan="4">(5만원 이상 무료배송) 배송비</td><td>＋ 2,500￦</td>
 		</tr>
 		<tr align="right" id="last">
-			<td colspan="4">총액</td><td><c:out value="${total + 2500}"/>￦</td>
+<%-- 			<td colspan="4">총액</td><td><c:out value="${total + 2500}"/>￦</td> --%>
+			<td colspan="4">총액</td><td><fmt:formatNumber value="${total + 2500}" />￦</td>
 		</tr>
 		</c:if>
 		
@@ -101,7 +103,8 @@ label {
 			<td colspan="4">(5만원 이상 무료배송) 배송비</td><td>＋ 0￦</td>
 		</tr>
 		<tr align="right" id="last">
-			<td colspan="4">총액</td><td><c:out value="${total}"/>￦</td>
+<%-- 			<td colspan="4">총액</td><td><c:out value="${total}"/>￦</td> --%>
+			<td colspan="4">총액</td><td><fmt:formatNumber value="${total}" />￦</td>
 		</tr>
 		</c:if> 
 		

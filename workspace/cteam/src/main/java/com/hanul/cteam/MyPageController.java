@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import admin.AdminServiceImpl;
 import member.MemberVO;
 import mypage.MypageServiceImpl;
 
 @Controller
 public class MyPageController {
 	@Autowired private MypageServiceImpl service;
+	@Autowired private AdminServiceImpl admin;
 	
 	//마이페이지 선택항목불러오기
 	@RequestMapping("/list.my")
@@ -44,12 +46,13 @@ public class MyPageController {
 	
 	//내 주문 상세조회
 	@RequestMapping("/orderdetail.my")
-	public String orderdetail(Model model, HttpSession session) {
-		
+	public String orderdetail(Model model, HttpSession session,  String order_num) {
+		model.addAttribute("list", admin.order_detail(order_num));
 		session.setAttribute("category", "my");
 		if( session.getAttribute("login_info")==null ) 
 				return "redirect:/";
-		else	return "mypage/orderdetail";
+		else	return "admin/orderDetail";
+//		else	return "mypage/orderdetail";
 	}
 	
 	//내가 쓴 글, 댓글 보기
