@@ -34,10 +34,17 @@ public class NoticeController {
 	
 	//공지들에 대한 답글쓰기저장처리 요청
 		@RequestMapping("/reply_insert.no")
-		public String reply_insert(NoticeVO vo,HttpSession session) {
+		public String reply_insert(NoticeVO vo,MultipartFile file,HttpSession session) {
 			//화면에서 입력한 정보를 DB에 답글로 저장한후
 			//목록화면으로 연결
 			vo.setWriter(((MemberVO)session.getAttribute("login_info")).getMember_id());
+			
+			//첨부파일이 있는 경우 파일정보를 데이터객체에 담는다
+			if (!file.isEmpty()) {
+				vo.setFilename(file.getOriginalFilename());
+				vo.setFilepath(common.upload("notice", file, session));
+			}
+			
 			service.notice_reply_insert(vo);
 			return "redirect:list.no";
 		}

@@ -19,7 +19,7 @@
 			<a href="list.sh" ${category eq 'sh' ? 'class="active"' : '' } ><div class='header_menu'>상품페이지</div></a>
 			<a href="list.bo" ${category eq 'bo' ? 'class="active"' : '' } ><div class='header_menu'>커뮤니티</div></a>
 			<a href="list.qn" ${category eq 'qn' ? 'class="active"' : '' } ><div class='header_menu'>Q&A</div></a>	
-			<a href=""><div class='header_menu'>내펫정보</div></a>
+			<a href="list.mp"><div class='header_menu'>내펫정보</div></a>
 			<div class='header_menu1'>
 			
 

@@ -30,7 +30,17 @@
  a.modify-btn{background-color: #EAEAEA; color: #747474;}
  a.delete-btn{background-color: black; color: white;}
  input[type=number] {width:25px; height: 15px; background-color: #F2F2F2; border: none; font-size: 15px; outline: none; }
- 
+ a.go_list{
+
+	background-color: black;
+	color:white;
+	font-size: 13px;
+	padding: 10px;
+	display:inline-block;
+	width: 200px;
+	margin: 20px auto;
+
+ }
 </style> 
 </head>
 <body>
@@ -122,13 +132,13 @@
 							<a class="list-delete" width="12px" height="13px"><i class="fas fa-times"></i></a>
 					</div>	 --%>
 						
-					<div class="desc-div ship-div" style="float:left; width:300px;">
+				<%-- 	<div class="desc-div ship-div" style="float:left; width:300px;">
 						<span class="ship">배송비:</span>	
 						<c:choose>
 						<c:when test="${vo.item_price gt 50000 }"><span id="ship">무료</span></c:when>
-						<c:otherwise><span>2,500원</span></c:otherwise>
+						<c:otherwise><span id="shipPrice">2,500원</span></c:otherwise>
 						</c:choose>
-					</div>
+					</div> --%>
 					
 					<div class="desc-div price-div" style="float:left; width:300px; color: #333333;" >
 						<span class="price">총 상품금액:</span>	
@@ -173,6 +183,7 @@
 		</div>
 		
 	
+		<a class="go_list" href="javascript:history.go(-1);">목록보기</a>
 	</div>
 
 
@@ -443,6 +454,10 @@
 
 			su=1;
 
+
+			
+				
+
 			
 			//totalPrice -=deletePrice;
 
@@ -453,7 +468,14 @@
 
 		}
 
-
+/* 
+		if(totalPrice>50000){
+			$("#shipPrice").val("0원");
+			totalPrice+=2500;
+		}else{
+			$("#shipPrice").val("2,500원");
+		}
+ */
 
 		
 	</script>

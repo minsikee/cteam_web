@@ -39,6 +39,27 @@ input {
 	height: 16px;
 	outline: none;
 }
+
+a.btn-pay{
+	background-color: black;
+	color:white;
+	font-size: 13px;
+	padding: 10px;
+	display:inline-block;
+	width: 200px;
+	margin: 50px auto;
+
+}
+ a.btn-back{
+	background-color: white;
+	color:black;
+	border:1px solid black;
+	font-size: 13px;
+	padding: 10px;
+	display:inline-block;
+	width: 200px;
+	margin: 50px auto;
+}
 </style>
 </head>
 
@@ -113,10 +134,10 @@ input {
 
 			<table>
 				<tr>
-					<td class="th-middle-top" colspan="2">수취자</td>
+					<td class="th-middle-top" colspan="2">받으시는 분</td>
 				</tr>
 				<tr>
-					<td class="w-px120 th-middle">수취인:</td>
+					<td class="w-px120 th-middle">수취인 성함:</td>
 					<td class="w-px500 th-middle"><input name="shipping_name"></td>
 				</tr>
 				<tr style="border-top: 1px solid gray">
@@ -155,8 +176,8 @@ input {
 		</form>
 
 		<div class="btnSet">
-			<a onclick="go_pay()" class="btn-pay">결제하기</a>
 			 <a class="btn-back" onclick="history.go(-1);">돌아가기</a>
+			 <a onclick="go_pay()" class="btn-pay">결제하기</a>
 		</div>
 	</div>
 
