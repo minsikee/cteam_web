@@ -64,7 +64,6 @@ public class BasketDAO implements BasketService {
 
 	@Override
 	public OrderVO cartOrder_insert(OrderVO buyer, List<CartVO> carts) {
-			System.out.println(carts.get(1).getCart_num());
 			sql.insert("order.mapper.order_insert", buyer);
 			int order = 0; 
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -82,6 +81,12 @@ public class BasketDAO implements BasketService {
 			
 			
 		return order > 0? buyer : null;
+	}
+
+	@Override
+	public boolean cart_delete(int cart_num) {
+		
+		return sql.delete("cart.mapper.cart_item_delete",cart_num) > 0 ? true : false;
 	}
 
 }

@@ -14,8 +14,9 @@ import order.OrderVO;
 public class BasketServiceImpl implements BasketService {
 	@Autowired private BasketDAO dao;
 	
-		
 	
+
+
 	@Override
 	public boolean cart_insert(CartVO vo) {
 	
@@ -38,6 +39,12 @@ public class BasketServiceImpl implements BasketService {
 	public OrderVO cartOrder_insert(OrderVO orderVo, List<CartVO> carts) {
 		
 		return dao.cartOrder_insert(orderVo, carts);
+	}
+
+	@Override
+	public boolean cart_delete(int cart_num) {
+
+		return dao.cart_delete(cart_num);
 	}
 
 

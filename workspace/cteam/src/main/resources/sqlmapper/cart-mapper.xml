@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cart.mapper">
 
+	<delete id="cart_item_delete">
+		delete from cart where cart_num = #{cart_num}
+	</delete>
+
+
 	<delete id="delete_cart">
 		delete from cart where member_id = #{member_id}
 	</delete>

@@ -105,7 +105,7 @@ a.orderbtn{
 							<td><a class="deletebtn" onclick="delete_cart(${vo.cart_num})">delete</a></td>
 							
 							
-								<td><input type="checkbox" name="cart_num" value="${vo.cart_num }"/></td>
+								<%-- <td><input type="checkbox" name="cart_num" value="${vo.cart_num }"/></td> --%>
 					
 							
 							<c:set var="total" value="${total+vo.order_item.item_price * detail[1] }"/>
@@ -135,12 +135,20 @@ a.orderbtn{
 				url:"cart_delete",
 				data:{cart_num:cart_num},
 				success:function(data){
-					alert("삭제되었습니다");
+					if(data!=""){
+						alert("삭제되었습니다");
+						location.reload();
+					}
 				}
 			});
 	}
 
 	function submit(){
+
+		if(${fn:length(list)} < 1){
+			alert("장바구니에 상품이 없습니다");
+				return false;
+		}
 		
 		$('form').submit();
 

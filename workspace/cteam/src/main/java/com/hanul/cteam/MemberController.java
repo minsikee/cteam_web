@@ -124,7 +124,7 @@ public class MemberController {
 							
 							 System.getProperty("line.separator") +
 	
-							 "임시 비밀번호는  + key + 이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다." +
+							 "임시 비밀번호는  "+ key + "이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다." +
 	
 							 System.getProperty("line.separator") +
 	

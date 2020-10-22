@@ -40,9 +40,12 @@ public class BasketController {
 		
 		//System.out.println(carts.get(0).getCart_num());
 		
-	//	model.addAttribute(attributeName, attributeValue)
+		model.addAttribute("orderVO", orderVo);
 		
 //		model.addAttribute("vo", orderVo);
+		
+		
+
 		return "order/cartOrderSuccess";
 	}
 	
@@ -54,7 +57,7 @@ public class BasketController {
 	//주문하기
 	
 	@RequestMapping("/cart_order")
-	public String cart_order(HttpSession session,Model model, @RequestParam int cart_num) {
+	public String cart_order(HttpSession session,Model model) {
 
 		
 		String member_id=((MemberVO)session.getAttribute("login_info")).getMember_id();
@@ -76,9 +79,13 @@ public class BasketController {
 	@RequestMapping("/cart_delete")
 	@ResponseBody
 	public String go_cart(Model model,@RequestParam int cart_num) {
-		String success="성공";
 		
-		System.out.println(cart_num);
+		String success="";
+		if( service.cart_delete(cart_num) )
+			{
+				success="성공";
+			}
+		System.out.println(success);
 		
 		return success;
 	}

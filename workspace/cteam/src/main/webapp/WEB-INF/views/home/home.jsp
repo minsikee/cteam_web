@@ -164,7 +164,7 @@
 	
 		
 		<div style="margin-bottom:30px; " id="top-img" style="width:100%; height: 400px;">
-    		<img src="img/배너사진.png">
+    		<img src="img/banner-pets-dog-cat-boarding (1).png" style="width:1080px;">
     	</div>
 		
 				
@@ -267,11 +267,16 @@
     
         <div id="container">
             <ul id="slide">
-                <li><img src="img/슬라이드.png"></li>
-                <li><img src="img/슬라이드.png"></li>
-                <li><img src="img/슬라이드.png"></li>
-                <li><img src="img/슬라이드.png"></li>
-                <li><img src="img/슬라이드.png"></li>
+                <li><img src="img/dog1.jpg" style="width:1080px;"></li>
+           
+                <li><img src="img/cat4.jpg" style="width:1080px;"></li>
+           
+                <li><img src="img/dog2.jpg" style="width:1080px;"></li>
+           
+                <li><img src="img/dog5.jpg" style="width:1080px;"></li>
+           
+                <li><img src="img/dog3.jpg" style="width:1080px;"></li>
+           
             </ul>
         </div>
  
