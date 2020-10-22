@@ -47,18 +47,22 @@ label {
 <body>
 <div align="center">
 <h1>주문관리</h1>
-		<form action="stateUpdate.ad" method="post">
+		
 <c:forEach items="${orderlist }" var="vo"> 
 <table style="width: 80%">
-		<input type="hidden" value="${vo.order_num }" />
-		<input type="hidden" value="order_state" />
 	<tr id="title">
-		<th colspan="3" id="ordernum"> <label>주문날짜 ${vo.order_date }</label> 주문번호 》 <a style="color: white;" href="orderdetail.my?order_num=${vo.order_num }">${vo.order_num }</a></th>
-		<th><select name="order_state">
+		<th colspan="3" id="ordernum"> <label>주문날짜 ${vo.order_date }</label> 주문번호 》 
+		<a style="color: white;" href="adOrderdetail.my?order_num=${vo.order_num }">${vo.order_num }</a>
+		</th>
+		<th>
+		<form action="stateUpdate.ad" method="post">
+		<select name="order_state">
 			<option value="상품준비중" ${vo.order_state eq '상품준비중' ? 'selected' : ''}>상품준비중</option>
 			<option value="배송중"  ${vo.order_state eq '배송중' ? 'selected' : ''}>배송중</option>
 			<option value="배송완료" ${vo.order_state eq '배송완료' ? 'selected' : ''}>배송완료</option>
-		</select><a style="margin-left: 5px;"class="btn-fill-s">확인</a></th>
+		</select><a style="margin-left: 5px;"class="btn-fill-s">확인</a>
+		</form>
+		</th>
 	<tr>
 	<tr>
 		<th>주문자</th>
@@ -72,39 +76,52 @@ label {
 	</tr>
 	
 	<c:forEach items="${vo.order_item}" var="item"> 
-	<tr style="text-align: center;">
-		<td><a href="item.detail?item_num=${item.item_num }"><img id="item_content_imgpath" src="<c:url value='/' />${item.item_imgpath }"/></a></td>
-		<td>${item.item_name }</td>
-		<td>${item.item_price  }￦ / ${item.item_su }개</td>
-		<td class="price">${item.item_price * item.item_su }</td>
-	</tr>
 	</c:forEach>
-		<c:set var = "total" value = "0" />
-	<c:forEach var="item" items="${vo.order_item}" varStatus="status">     
-		<c:set var= "total" value="${total + item.item_price * item.item_su}"/>
+	<c:set var = "total" value = "0" />
+ 	<c:forEach items="${vo.order_item}" var="item"> 
+		<c:set var="options" value="${fn:split(item.option_info, '/')}" />
+			<c:forEach begin="0" end="${fn:length(options)-1}" varStatus="optionsStatus">
+			<c:set var="option" value="${options[optionsStatus.index]}" />
+			<c:set var="detail" />
+				<c:forEach begin="0" end="${fn:length(option)-1}" varStatus="optionStatus">
+					<c:set var="detail" value="${fn:split(option, '@')}" />
+				</c:forEach>
+					
+		<tr style="text-align: center;">
+			<td><img id="item_content_imgpath" src="<c:url value='/' />${item.item_imgpath }"/></td>
+			
+			<td>${item.item_name } / ${detail[0]}</td>
+			<td>${item.item_price  }￦ / ${detail[1]}개</td>
+			<td class="price">${item.item_price * detail[1]}</td>
+		</tr>
+		<c:set var= "total" value="${total + item.item_price * detail[1]}"/>
+	
 	</c:forEach>
 	
-	<c:if test="${total lt 50000 }">
-	<tr align="right"  style="border-top: 1px solid #FFB4BE;">
-		<td colspan="3">(5만원 이상 무료배송) 배송비</td><td>＋ 2500￦</td>
-	</tr>
-	<tr align="right" id="last">
-		<td colspan="3">총액</td><td><c:out value="${total + 2500}"/>￦</td>
-	</tr>
-	</c:if>
 	
-	<c:if test="${total gt 50000 }">
-	<tr align="right" style="border-top: 1px solid #FFB4BE;">
-		<td colspan="3">(5만원 이상 무료배송) 배송비</td><td>＋ 0￦</td>
-	</tr>
-	<tr align="right" id="last">
-		<td colspan="3">총액</td><td><c:out value="${total}"/>￦</td>
-	</tr>
-	</c:if>
-	
-	</table>
+	</c:forEach>			
+			
+		<c:if test="${total lt 50000 }">
+		<tr align="right"  style="border-top: 1px solid #FFB4BE;">
+			<td colspan="3">(5만원 이상 무료배송) 배송비</td><td>＋ 2500￦</td>
+		</tr>
+		<tr align="right" id="last">
+			<td colspan="3">총액</td><td><c:out value="${total + 2500}"/>￦</td>
+		</tr>
+		</c:if>
+
+			<c:if test="${total gt 50000 }">
+		<tr align="right" style="border-top: 1px solid #FFB4BE;">
+			<td colspan="3">(5만원 이상 무료배송) 배송비</td><td>＋ 0￦</td>
+		</tr>
+		<tr align="right" id="last">
+			<td colspan="3">총액</td><td><c:out value="${total}"/>￦</td>
+		</tr>
+		</c:if> 
+		</table>		
+		
 	</c:forEach>
-		</form>
+		
 
 
 </div>

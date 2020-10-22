@@ -55,18 +55,17 @@
 			<th>이메일</th>
 			<th>주소</th>
 			<th>우편번호</th>		
-			<th>삭제</th>		
 		</tr>
 	<c:forEach items="${page.list }" var="list"> 
 		
 		<tr>
-			<td style="width:100px;"><a href="memberDetail.ad?member_id=${list.member_id }">${list.member_id }</a></td>
-			<td style="width:100px;">${list.member_name }</td>
+			<td style="width:100px; background-color:#FFF3EC;"><a href="memberDetail.ad?member_id=${list.member_id }">${list.member_id }</a></td>
+			<td style="width:100px; background-color:#F7F9FF; ">${list.member_name }</td>
 			<td>${list.member_phonenum }</td>
 			<td>${list.member_email }</td>
 			<td>${list.member_address }<br/>${list.member_address2 }</td>
-			<td>${list.member_post }</td>
-			<td><a href="" class="btn-fill-s">회원 탈퇴</a></td>
+			<td style="background-color: #FBFFEA;">${list.member_post }</td>
+
 		</tr>
 		
 	</c:forEach>

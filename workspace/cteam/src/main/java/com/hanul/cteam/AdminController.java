@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import admin.AdminServiceImpl;
@@ -99,15 +100,6 @@ public class AdminController {
 			return "admin/orderList";
 		}
 		
-		/*
-		 * @RequestMapping("/stateUpdate.ad") public void state_update(Model model,
-		 * String order_state, String order_num) { HashMap<String, String> map = new
-		 * HashMap<String, String>(); map.put("order_state", order_state);
-		 * map.put("order_num", order_num);
-		 * 
-		 * service.state_update(map); //return "redirect:orderList"; }
-		 */
-		
 		//상품 수정화면 불러오기
 	 	@RequestMapping("/itemModify.ad")
 	 	public String item_modify(Model model, int item_num ) {
@@ -192,6 +184,26 @@ public class AdminController {
 	 		return "admin/redirect";
 	 	}
 	 	
-	 	
+	 	@RequestMapping("/adOrderdetail.my")
+	 	public String order_detail(Model model, HttpSession session, String order_num) {
+	 		
+	 		model.addAttribute("list", service.order_detail(order_num));
+	 		return "admin/orderDetail";
+	 	}
 		
+		/*
+		 * //제품삭제하기
+		 * 
+		 * @ResponseBody @RequestMapping("/item_delete.ad") public String
+		 * item_delete(Model model, HttpSession session, int item_num) {
+		 * model.addAttribute("url", "list.ad"); service.item_delete(item_num); return
+		 * "admin/redirect"; }
+		 * 
+		 * //상품코드 중복확인
+		 * 
+		 * @ResponseBody @RequestMapping("code_check") public boolean code_check(String
+		 * code) {
+		 * 
+		 * return service.code_check(code); }
+		 */
 }

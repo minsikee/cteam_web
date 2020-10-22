@@ -48,4 +48,11 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 
+	@Override
+	public int update(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.update(vo);
+	}
+
+
 }

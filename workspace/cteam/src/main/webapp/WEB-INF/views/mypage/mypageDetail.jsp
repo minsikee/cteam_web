@@ -62,16 +62,23 @@ table td, #member_address {
 	padding: 0px;
 }
 
+table th {
+ text-align: center;
+}
 
+select {
+	height: 40px;
+	width: 80%;
+}
 </style>
 </head>
 <body>
 <h2>마이페이지</h2>
 <div align="center">
-<form action="update.no" method="post">
+<form action="update.my" method="post">
 <input type="hidden" name="member_id" value="${login_info.member_id }" />
 <input type="hidden" name="member_name" value="${login_info.member_name }" />
-<table style="width: 30%; margin-top: 50px;">
+<table style="width: 40%; margin-top: 50px;">
 	<tr>
 		<th id="member_id">아이디</th>
 		<td>${login_info.member_id }</td>
@@ -82,11 +89,11 @@ table td, #member_address {
 	</tr>
 	<tr>
 		<th>비밀번호</th>
-		<td><input type="password" id="member_pw" placeholder="8~10자 영문대소문자, 특수문자 포함"></td>
+		<td><input type="password" name="member_pw" id="member_pw" placeholder="8~10자 영문대소문자, 특수문자 포함"></td>
 	</tr>
 	<tr>
 		<th>비밀번호 확인</th>
-		<td><input type="password" id="member_pw_confirm" placeholder="비밀번호확인"></td>
+		<td><input type="password" placeholder="비밀번호확인"></td>
 	</tr>
 	<tr>
 		<th>핸드폰번호</th>
@@ -112,8 +119,9 @@ table td, #member_address {
 	</tr>
 	<tr>
 		<th>주소</th>
-		<td><input type="text" value="${login_info.member_post }" id="member_post" name="member_post" readonly="readonly"><button id="post">우편번호찾기</button><br/>
-			<input type="text" value="${login_info.member_address }" id="member_address" name="member_address" readonly="readonly">
+		<td><input  type="text" value="${login_info.member_post }" id="member_post" name="member_post" >
+		<button type="button" onclick="daum_post()" id="post">우편번호찾기</button><br/>
+			<input type="text" value="${login_info.member_address }" id="member_address" name="member_address">
 			<input type="text" value="${login_info.member_address2 }" name="member_address2" placeholder="상세주소" ></td>
 	</tr>
 	</table>
@@ -121,12 +129,30 @@ table td, #member_address {
 
 <div class="btnSet" style="margin-bottom: 100px;">
 <script type="text/javascript" src="js/need_check.js"></script>
-<script type="text/javascript" src="js/file_attach.js"></script>
-<script type="text/javascript" src="js/image_preview.js"></script>
-<a class="btn1" onclick="if($('form').submit();}">저장</a>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<a class="btn1" onclick="$('form').submit();">저장</a>
 <a class="btn2" href="javascript:history.go(-1)">취소</a>
 </div>
 
 </div>
+<script type="text/javascript">
+function daum_post(){
+	new daum.Postcode({
+		oncomplete:function(data){
+			$('[name=member_post]').val(data.zonecode);//우편번호
+			var member_address 
+				= data.userSelectedType =='J' ? data.jibunAddress:data.roadAddress;
+			if(data.buildingName != '')
+				member_address +='('+data.buildingName+')';
+			$('[name=member_address]').eq(0).val(member_address);	
+
+		}
+	}).open();
+	
+	
+}
+</script>
 </body>
 </html>

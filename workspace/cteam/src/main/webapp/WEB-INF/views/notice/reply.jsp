@@ -39,10 +39,32 @@ table th {
 }
 
 select { height:32px; }
+
+button {
+	height: 35px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-weight: bold;
+}
+
+.cancel, .submit {
+	width: 75px;
+	height: 30px;
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
+}
+
 </style>
 </head>
 <body>
-<h1>답글</h1>
+
 <form action="reply_insert.no" method="post" enctype="multipart/form-data">
 <input type="hidden" name="root" value="${vo.root }"/>
 <input type="hidden" name="indent" value="${vo.indent }"/>
@@ -73,8 +95,8 @@ select { height:32px; }
 <br/>
 </form>
 <div>
-	<a class="btn-fill" onclick="if(necessary()){$('form').submit()}">저장</a>
-	<a class="btn-empty" href="javascript:history.go(-1)">취소</a>
+	<button class='cancel'><a href="javascript:history.go(-1)">취소</a></button>
+	<button class='submit'><a onclick="if(necessary()){$('form').submit()}">저장</a></button>
 </div>
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>

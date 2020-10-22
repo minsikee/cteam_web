@@ -63,4 +63,12 @@ public class MyPageController {
 		return "mypage/myWrite";
 	}
 	
+	//회원정보 수정
+	@RequestMapping("/update.my")
+	public String my_update(MemberVO vo,HttpSession session, Model model) {
+		service.update(vo);
+		return "mypage/mypagelist";
+	}
+	
+	
 }

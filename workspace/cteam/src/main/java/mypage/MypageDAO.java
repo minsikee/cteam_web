@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Repository;
 
 import member.MemberVO;
@@ -49,8 +50,13 @@ public class MypageDAO implements MypageService{
 
 	@Override
 	public List<CommentVO> my_comment(String member_id) {
-		// TODO Auto-generated method stub
 		return sql.selectList("mypage.mapper.mycomment", member_id);
+	}
+
+	@Override
+	public int update(MemberVO vo) {
+		String member_id = vo.getMember_id();
+		return sql.update("mypage.mapper.update", vo);
 	}
 
 

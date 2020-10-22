@@ -16,4 +16,5 @@ public interface MypageService {
 	void mypage_update(MemberVO vo);				//내정보 수정
 	List<WrtieVO> my_board(String member_id);		//내가 쓴 글 조회
 	List<CommentVO> my_comment(String member_id);	//내가 쓴 댓글조회
+	int update(MemberVO vo);						//내 정보수정
 }

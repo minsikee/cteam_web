@@ -83,4 +83,23 @@ import order.OrderListVO;
 		return sql.update("admin.mapper.update", vo);
 	}
 
+	@Override
+	public DetailVO order_detail(String order_num) {
+		
+		DetailVO item = sql.selectOne("admin.mapper.orderDetail", order_num);
+		item.setOrder_item(sql.selectList("admin.mapper.detailList_item",order_num));	
+			
+		return item;
+	}
+	@Override
+	public int item_delete(int item_num) {
+		// TODO Auto-generated method stub
+		return sql.delete("admin.mapper.item_delete",item_num);
+	}
+
+	@Override
+	public boolean code_check(String code) {
+		// TODO Auto-generated method stub
+		return (Integer)sql.selectOne("admin.mapper.code_check", code) >0? false: true;
+	}
 }

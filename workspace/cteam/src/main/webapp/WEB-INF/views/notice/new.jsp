@@ -48,10 +48,25 @@ table th, table td {
 }
 
 select { height:32px; }
+
+button {
+	height: 35px;
+	background-color: #FFB4BE;
+	border: 1px groove #333333;
+ 	box-shadow: 2px 2px 2px #969696;
+}
+
+button a {
+	display: block;
+	color: #111111;
+	font-size: 15px;
+	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
-<h3>[공지글 쓰기]</h3>
+
 <!-- 
 파일전송시
 1. form 의 전송방식은 반드시 post로 지정한다.
@@ -83,8 +98,8 @@ select { height:32px; }
 <br/>
 </form>
 <div>
-	<a class="btn-fill" onclick="if(necessary()){$('form').submit()}">저장</a>
-	<a class="btn-empty" href="javascript:history.back();">취소</a>
+	<button><a href="javascript:history.back();">취소</a></button>
+	<button><a onclick="if(necessary()){$('form').submit()}">저장</a></button>
 </div>
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>

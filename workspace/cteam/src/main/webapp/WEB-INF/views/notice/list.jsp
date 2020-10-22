@@ -51,7 +51,7 @@ select { height:32px; }
 </style>
 </head>
 <body>
-<h1>공지사항</h1>
+
 <form method="post" action="list.no">
 <input type="hidden" name="curPage" value="1">
 <div id="list-top">

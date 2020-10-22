@@ -115,7 +115,7 @@ table th:not(:last-child) {
 					<th>상품 코드</th>
 					<td>
 					<input width="70%;" type="text" id="item_code" name="item_code" />
-					<button class="add" style="width: 20%; margin-right: 5px;">중복확인</button>
+					<!-- <button class="add" id="code" style="width: 20%; margin-right: 5px;">중복확인</button> -->
 					</td>
 				</tr>
 				<tr>
@@ -186,7 +186,31 @@ table th:not(:last-child) {
 			$('#content-delete-file').css('display', 'none');
 		});
 
-	
+
+		$('#code').on('click', function(){
+			code_check();
+		});
+
+
+		function code_check(){
+
+			//올바른아이디일 경우만
+			var $code = $('[name=item_code]');
+			
+			$.ajax({
+				url : 'code_check',
+				data: { id:$code.val() },
+				success:function( data ){
+					alert('사용가능한 코드입니다.');
+				},
+				error:function(req,text){
+					alert(text+":"+req.status);
+				}
+				
+				
+			});
+				
+		}
 	</script>
 	<script type="text/javascript" src="js/image_preview.js?v=<%=new java.util.Date().getTime()%>"></script>
 	<script type="text/javascript" src="js/need_check.js"></script>
