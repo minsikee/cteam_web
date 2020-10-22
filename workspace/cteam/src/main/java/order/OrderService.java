@@ -15,4 +15,5 @@ public interface OrderService {
 	ShopVO order_show(int item_num);
 	
 	List<OrderVO> order_select(String order_num);
+	
 }

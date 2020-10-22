@@ -5,8 +5,10 @@ import java.util.List;
 import order.ItemVO;
 
 public class CartVO {
-	private String item_num, option_info, totalPrice, member_id, cart_num;
+	private String item_num, option_info, totalPrice, member_id;
+	private int cart_num;
 	private ItemVO order_item;
+	
 
 	
 	public ItemVO getOrder_item() {
@@ -18,11 +20,11 @@ public class CartVO {
 		this.order_item = order_item;
 	}
 
-	public String getCart_num() {
+	public int getCart_num() {
 		return cart_num;
 	}
 
-	public void setCart_num(String cart_num) {
+	public void setCart_num(int cart_num) {
 		this.cart_num = cart_num;
 	}
 

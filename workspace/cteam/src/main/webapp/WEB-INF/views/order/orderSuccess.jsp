@@ -43,6 +43,16 @@ h3{
 	color:#666666;
 	margin-bottom: 50px;
 }
+
+a.listBtn{
+	background-color: black;
+	color:white;
+	font-size: 13px;
+	padding: 10px;
+	display:inline-block;
+	width: 200px;
+	margin-bottom: 10px;
+}
 </style>
 </head>
 <body>
@@ -160,6 +170,7 @@ h3{
 					
 				</c:forEach>
 		
+			<a href="javascript:history.go(-3)" class="listBtn"> 목록으로</a>
 		
 		</div>
 		

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,45 +44,77 @@ input {
 <body>
 	<div>
 		<h1>ORDER LIST</h1>
-		<form action="orderSuccess" method="post">
+		
+		<form action="orderInsert" method="post">
 			<table style="margin: 0 auto;">
 				<tr style="color: #777; font-size: 12px;">
 					<th class="w-px120 th-top">사진</th>
-					<th class="w-px350 th-top">상품명</th>
-					<th class="w-px150 th-top">옵션</th>
+					<th class="w-px350 th-top">상품명 / 옵션</th>
 					<th class="w-px160 th-top">가격</th>
 					<th class="w-px120 th-top">수량</th>
 					<th class="w-px200 th-top">합계</th>
 				</tr>
-				<c:set var="options" value="${fn:split(vo.option_name, '/')}" />
+							
+							
+				<c:set var = "total" value = "0" />
+				
+				<c:forEach items="${carts }" var="vo">
+				
+				<c:set var="options" value="${fn:split(vo.option_info, '/')}" />
+				
 				<c:forEach begin="0" end="${fn:length(options)-1}"
 					varStatus="optionsStatus">
 					<c:set var="option" value="${options[optionsStatus.index]}" />
 					<c:set var="detail" />
+					
 					<c:forEach begin="0" end="${fn:length(option)-1}"
 						varStatus="optionStatus">
 						<c:set var="detail" value="${fn:split(option, '@')}" />
 					</c:forEach>
 					<tr>
 						<td><img class="imgpath"
-							src="<c:url value='/' />${vo.item_imgpath }"
+							src="<c:url value='/' />${vo.order_item.item_imgpath }"
 							style="width: 80; height: 113px;"></td>
 
-						<td>${vo.item_name }</td>
-						<td>${detail[0]}</td>
-						<td>${vo.item_price }원</td>
+						<td>${vo.order_item.item_name } / <span style="color:#666666; font-size: 13px;">${detail[0]} </span></td>
+						<td style="color:#666666;">${vo.order_item.item_price }원</td>
 						<td>${detail[1]}</td>
-						<td>${ vo.item_price * detail[1]}원</td>
+						<td>${ vo.order_item.item_price * detail[1]}원</td>
 
 					</tr>
+					
+					<c:set var="total" value="${total + vo.order_item.item_price * detail[1] }"/>
+					
 				</c:forEach>
-				<tr
+			
+				
+				
+				<input type="hidden" name="item_num" value="${vo.order_item.item_num }" />
+				<input type="hidden" name="option_info" value="${vo.option_info }" />
+			</c:forEach>
+				
+				
+				
+				<c:choose>
+				<c:when test="${total lt 50000 }">
+					<tr
 					style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
-					<td colspan="6" style="padding: 10px;" class="right">total
-						cost : ${vo.totalPrice } 원</td>
-				</tr>
+					<td colspan="6" style="padding: 10px;" class="right">total cost: ${total} +배송비 2500 = ${total+2500} ￦
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr
+						style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
+						<td colspan="6" style="padding: 10px;" class="right">total cost: ${total } + 배송비 0 = <span style="color:#000000;">${total } ￦</span>
+					</tr>
+				
+				</c:otherwise>
+				</c:choose>
+				
+			
 			</table>
-
+				<input type="hidden" name="member_id" value="${login_info.member_id }" />
+		
 
 
 			<table>
@@ -102,8 +134,7 @@ input {
 				<tr style="border-top: 1px solid gray">
 					<td class="w-px120 th-middle">연락처:</td>
 					<td class="w-px500 th-middle"><input name="member_phonenum"
-						maxlength="11" onKeyup="SetNum(this);"
-						value="${member.member_phonenum }" /></td>
+						maxlength="11" onKeyup="SetNum(this);" value="${member.member_phonenum }" /></td>
 				</tr>
 
 			</table>
@@ -128,9 +159,9 @@ input {
 					<td class="w-px500 th-middle"><input type="text"
 						name="shipping_post" maxlength="5"
 						style="width: 70px; margin-bottom: 10px;" readonly> <a
-						class="btn-fill-s" onclick="daum_post()">우편번호찾기</a> <br /> <input
-						type="text" name="shipping_address" readonly /> <input
-						type="text" name="shipping_address2" value="상세주소를 입력하세요"
+						class="btn-fill-s" onclick="daum_post()">우편번호찾기</a> <br /> 
+						<input type="text" name="shipping_address" readonly /> 
+						<input type="text" name="shipping_address2" value="상세주소를 입력하세요"
 						onfocus="this.value=''" /></td>
 
 				</tr>
@@ -147,11 +178,9 @@ input {
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="member_id" value="${login_info.member_id }" />
-			<input type="hidden" name="item_num" value="${vo.item_num }" />
-			<input type="hidden" name="option_info" value="${vo.option_name }" />
-			
+		 	
 		</form>
+		
 
 		<div class="btnSet">
 			<a onclick="go_pay()" class="btn-pay">결제하기</a>
@@ -168,13 +197,7 @@ input {
 
 	<script type="text/javascript">
 
-		function go_pay() {
-			if( $("[name=shipping_address2]").val() =="상세주소를 입력하세요"){
-				alert("상세주소를 입력하세요");
-				return false;
-			}
-			$('form').submit();
-		}
+	
 
 		//전화번호 유효성
 		function SetNum(obj) {
@@ -211,6 +234,18 @@ input {
 					}).open();
 
 		}
+
+
+		function go_pay() {
+			if( $("[name=shipping_address2]").val() =="상세주소를 입력하세요"){
+				alert("상세주소를 입력하세요");
+				return false;
+			}
+			
+			$('form').submit();
+
+		}
+		
 	</script>
 </body>
 </html>

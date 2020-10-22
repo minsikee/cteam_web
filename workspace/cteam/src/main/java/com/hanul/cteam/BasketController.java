@@ -1,25 +1,25 @@
 package com.hanul.cteam;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import Basket.BasketServiceImpl;
 import Basket.CartVO;
+import member.MemberServiceImpl;
 import member.MemberVO;
+import order.OrderVO;
 
 @Controller
 public class BasketController {
@@ -27,15 +27,44 @@ public class BasketController {
 	@Autowired BasketServiceImpl service;
 
 	
+	
+	//주문넣기
+	@RequestMapping("/orderInsert")
+	public String orderInsert(HttpSession session,Model model, OrderVO orderVo) {
+		
+		String member_id=((MemberVO)session.getAttribute("login_info")).getMember_id();
+		List<CartVO> carts=service.cart_select(member_id);
+        int dice = new Random().nextInt(4589362) + 49311;
+		orderVo.setOrder_num( new SimpleDateFormat("yyyyMMdd").format(new Date().getTime())  +dice);
+		orderVo = service.cartOrder_insert(orderVo,carts);
+		
+		//System.out.println(carts.get(0).getCart_num());
+		
+	//	model.addAttribute(attributeName, attributeValue)
+		
+//		model.addAttribute("vo", orderVo);
+		return "order/cartOrderSuccess";
+	}
+	
+	
+
+	
+	
+	
 	//주문하기
 	
 	@RequestMapping("/cart_order")
-	public void cart_order(Model model, @RequestParam String cart_num) {
+	public String cart_order(HttpSession session,Model model, @RequestParam int cart_num) {
+
 		
+		String member_id=((MemberVO)session.getAttribute("login_info")).getMember_id();
+		List<CartVO> carts=service.cart_select(member_id);
 		
-		System.out.println(cart_num);
+		model.addAttribute("carts", carts);
 		
-		return;
+		model.addAttribute("member", service.cart_member(member_id));
+		
+		return "order/cartOrder";
 	}
 	
 	
@@ -46,7 +75,7 @@ public class BasketController {
 	
 	@RequestMapping("/cart_delete")
 	@ResponseBody
-	public String go_cart(Model model,@RequestParam String cart_num) {
+	public String go_cart(Model model,@RequestParam int cart_num) {
 		String success="성공";
 		
 		System.out.println(cart_num);
@@ -58,6 +87,9 @@ public class BasketController {
 	@RequestMapping("/cart.bs")
 	public String go_cart(HttpSession session,Model model) {
 		session.setAttribute("category", "bs");
+		
+		if((session.getAttribute("login_info"))!=null) {
+			
 
 		MemberVO login = (MemberVO)session.getAttribute("login_info");
 		
@@ -65,6 +97,7 @@ public class BasketController {
 		
 		model.addAttribute("list",service.cart_select(member_id));
 		
+		}
 		return "basket/cart";
 	}
 	

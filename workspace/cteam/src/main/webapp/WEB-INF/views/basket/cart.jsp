@@ -104,8 +104,9 @@ a.orderbtn{
 							<td>${vo.order_item.item_price * detail[1]}원</td>
 							<td><a class="deletebtn" onclick="delete_cart(${vo.cart_num})">delete</a></td>
 							
-							<td><input type="checkbox" name="cart_num" value="${vo.cart_num }"/></td>
-
+							
+								<td><input type="checkbox" name="cart_num" value="${vo.cart_num }"/></td>
+					
 							
 							<c:set var="total" value="${total+vo.order_item.item_price * detail[1] }"/>
 							
@@ -117,16 +118,16 @@ a.orderbtn{
 				</c:forEach>
 				
 				<tr style="background-color: #F4F4F4; color: #6d6c71; font-size: 12dp; text-align: right;">
-						<td colspan="6" style="padding: 10px;" class="right">total
+						<td colspan="7" style="padding: 10px;" class="right">total
 							cost : <c:out value= "${total}"/>￦</td>
 				</tr>
 					
 					
 			</table>
 			
-			<a href="${pageContext.request.contextPath}/cart_order?cart_num="+${cart_num }" class="orderbtn" >order</a>
 		</form>
 
+			<a onclick="submit()" class="orderbtn" >order</a>
 
 <script type="text/javascript">
 	function delete_cart(cart_num){
@@ -139,6 +140,11 @@ a.orderbtn{
 			});
 	}
 
+	function submit(){
+		
+		$('form').submit();
+
+	}
 
 </script>
 </body>

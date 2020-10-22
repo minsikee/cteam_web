@@ -4,6 +4,7 @@
 <mapper namespace="order.mapper">
 	
 	
+	
 <select id="orderlist" resultType="order.OrderVO">
 	   select o.*, g.option_info,g.item_num
        from orderlist o, orderlist_goods g
