@@ -222,7 +222,7 @@
 			
 
 			if( !item_check ($('[name=member_pw]')) ) return;	//invaild이면 가입불가
->>>>>>> ba7d735343dce9a6445b51fa357762e63363116f
+>>>>>>> fbcfc7aef592eb3ce928136f481b1916eedc25a9
 
 		if( !item_check ($('[name=member_pw_ck]')) ) return;
 
@@ -239,7 +239,7 @@
 			
 			
 			$('form').submit();
->>>>>>> ba7d735343dce9a6445b51fa357762e63363116f
+>>>>>>> fbcfc7aef592eb3ce928136f481b1916eedc25a9
 		
 		
 	}
