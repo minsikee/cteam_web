@@ -38,6 +38,28 @@ input {
 	height: 16px;
 	outline: none;
 }
+a.btn-pay{
+background-color: black;
+	color:white;
+	font-size: 13px;
+	padding: 10px;
+	display:inline-block;
+	width: 200px;
+	margin: 50px auto;
+}
+
+a.btn-back{
+background-color: white;
+	color:black;
+	border:1px solid black;
+	font-size: 13px;
+	padding: 10px;
+	display:inline-block;
+	width: 200px;
+	margin: 50px auto;
+
+}
+
 </style>
 </head>
 

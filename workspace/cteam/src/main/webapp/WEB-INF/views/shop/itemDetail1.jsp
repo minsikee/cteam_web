@@ -440,7 +440,7 @@
 
 		function wrap(o){
 			//옵션창 지우면 그만큼 토탈금액이 마이너스
-			var deletePrice= parseInt($(o).prev().text()); 
+			var deletePrice= (parseInt($(o).prev().text()))*1000; 
 
 			totalPrice-=deletePrice;
 
@@ -455,27 +455,11 @@
 			su=1;
 
 
-			
-				
-
-			
-			//totalPrice -=deletePrice;
-
-			//alert(totalPrice);
-			
-			//$(".price-strong").text(totalPrice);
 
 
 		}
 
-/* 
-		if(totalPrice>50000){
-			$("#shipPrice").val("0원");
-			totalPrice+=2500;
-		}else{
-			$("#shipPrice").val("2,500원");
-		}
- */
+
 
 		
 	</script>
