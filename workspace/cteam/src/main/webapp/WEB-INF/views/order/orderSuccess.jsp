@@ -146,7 +146,7 @@ a.listBtn{
 					<td class="th-middle-top" colspan="2">받으시는 분</td>
 				</tr>
 				<tr>
-					<td class="w-px120 th-middle">수취인:</td>
+					<td class="w-px120 th-middle">수취인 성함:</td>
 					<td class="w-px500 th-middle">${vo.shipping_name }</td>
 				</tr>
 				<tr style="border-top: 1px solid gray">

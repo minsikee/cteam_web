@@ -203,7 +203,26 @@
 			}	
 		}
 
+<<<<<<< HEAD
 		if( !item_check ($('[name=member_pw]')) ) return;	//invaild이면 가입불가
+=======
+			if( $('[name=member_address2]').val()=="상세주소를 입력하세요"  ){
+
+				alert("상세주소를 입력하세요");
+				return;
+			}
+
+
+			if(! $('[name=member_post]').val()  ){
+
+				alert("상세주소를 입력하세요");
+				return;
+			}
+			
+			
+
+			if( !item_check ($('[name=member_pw]')) ) return;	//invaild이면 가입불가
+>>>>>>> ba7d735343dce9a6445b51fa357762e63363116f
 
 		if( !item_check ($('[name=member_pw_ck]')) ) return;
 
@@ -213,8 +232,14 @@
 
 		if (!item_check ($('[name=member_phonenum]')) ) return;
 
+<<<<<<< HEAD
 		$('form').submit();
 	
+=======
+			
+			
+			$('form').submit();
+>>>>>>> ba7d735343dce9a6445b51fa357762e63363116f
 		
 		
 	}
