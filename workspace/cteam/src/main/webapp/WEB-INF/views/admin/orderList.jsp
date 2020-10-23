@@ -47,7 +47,9 @@ label {
 <body>
 <div align="center">
 <h1>주문관리</h1>
-		
+<div style="width: 80%; height: 30px;">
+<a href="admin.ad" class="btn-fill-s" style="float: right;">관리자페이지로</a>
+</div>
 <c:forEach items="${orderlist }" var="vo"> 
 <table style="width: 80%">
 	<tr id="title">
@@ -55,18 +57,24 @@ label {
 		<a style="color: white;" href="adOrderdetail.my?order_num=${vo.order_num }">${vo.order_num }</a>
 		</th>
 		<th>
-		<form action="stateUpdate.ad" method="post">
-		<select name="order_state">
-			<option value="상품준비중" ${vo.order_state eq '상품준비중' ? 'selected' : ''}>상품준비중</option>
-			<option value="배송중"  ${vo.order_state eq '배송중' ? 'selected' : ''}>배송중</option>
-			<option value="배송완료" ${vo.order_state eq '배송완료' ? 'selected' : ''}>배송완료</option>
-		</select><a style="margin-left: 5px;"class="btn-fill-s">확인</a>
+		<form action="stateUpdate.ad" method="post" name="${vo.order_num }">
+			<input type="hidden" name="order_num" value="${vo.order_num }">
+			<select name="order_state">
+<!-- 				<option value="상품준비중" >상품준비중</option> -->
+<!-- 				<option value="배송중" >배송중</option> -->
+<!-- 				<option value="배송완료" >배송완료</option> -->
+				<option value="상품준비중" ${vo.order_state eq '상품준비중' ? 'selected' : ''}>상품준비중</option>
+				<option value="배송중"  ${vo.order_state eq '배송중' ? 'selected' : ''}>배송중</option>
+				<option value="배송완료" ${vo.order_state eq '배송완료' ? 'selected' : ''}>배송완료</option>
+			</select>
+			<a onclick="javascript:$('form[name=${vo.order_num}]').submit();" style="margin-left: 5px;"class="btn-fill-s">확인</a>
+	<!-- 		<a onclick="javascript:$('form').submit();" style="margin-left: 5px;"class="btn-fill-s">확인</a> -->
 		</form>
 		</th>
 	<tr>
 	<tr>
 		<th>주문자</th>
-		<td colspan="3" style="border-bottom: 1px solid #FFB4BE; font-weight: bold;">${vo.member_id}</a></td>
+		<td colspan="3" style="border-bottom: 1px solid #FFB4BE; font-weight: bold;">${vo.member_id}</td>
 	</tr>
 	<tr style="text-align: center;">
 		<th>상품</th>

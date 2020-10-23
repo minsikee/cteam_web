@@ -4,7 +4,7 @@
 
 <select id="orderlist" resultType="order.OrderListVO">
 select order_num, order_date, order_state
-from orderlist where member_id = #{member_id} order by order_date desc
+from orderlist where member_id = #{member_id} order by order_seq desc
 
 </select>
 

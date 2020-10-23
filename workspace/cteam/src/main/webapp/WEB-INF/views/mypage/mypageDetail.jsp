@@ -71,6 +71,17 @@ select {
 	width: 80%;
 }
 </style>
+<script>
+	$(document).ready(function() {
+		$("#confirm_pw").keyup(function() {
+			if ($("#member_pw").val()!= $("#confirm_pw").val()) {
+				$("#statementpwCheck").html("일치하지 않음").css("color","red");
+			} else {
+				$("#statementpwCheck").html("일치함").css("color","blue");
+			}
+		});//pwCheck_keyup
+	});
+</script>
 </head>
 <body>
 <h2>마이페이지</h2>
@@ -93,7 +104,7 @@ select {
 	</tr>
 	<tr>
 		<th>비밀번호 확인</th>
-		<td><input type="password" placeholder="비밀번호확인"></td>
+		<td><input type="password" placeholder="비밀번호확인" id="confirm_pw"><span id="statementpwCheck"></span><br /></td>
 	</tr>
 	<tr>
 		<th>핸드폰번호</th>
@@ -128,31 +139,25 @@ select {
 </form>
 
 <div class="btnSet" style="margin-bottom: 100px;">
-<script type="text/javascript" src="js/need_check.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<a class="btn1" onclick="$('form').submit();">저장</a>
+
+<a class="btn1" onclick="go_detail()">저장</a>
 <a class="btn2" href="javascript:history.go(-1)">취소</a>
 </div>
 
 </div>
 <script type="text/javascript">
-function daum_post(){
-	new daum.Postcode({
-		oncomplete:function(data){
-			$('[name=member_post]').val(data.zonecode);//우편번호
-			var member_address 
-				= data.userSelectedType =='J' ? data.jibunAddress:data.roadAddress;
-			if(data.buildingName != '')
-				member_address +='('+data.buildingName+')';
-			$('[name=member_address]').eq(0).val(member_address);	
-
-		}
-	}).open();
-	
+function go_detail(){
+ if($('#member_pw').val = ""){
+	alert("비밀번호를 입력해주세요");
+ }else{
+	$('form').submit();
+	 }
 	
 }
 </script>
+<script type="text/javascript" src="js/need_check.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>

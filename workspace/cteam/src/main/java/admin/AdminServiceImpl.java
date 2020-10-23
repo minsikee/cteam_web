@@ -43,13 +43,6 @@ public class AdminServiceImpl implements AdminService {
 		return dao.order_list();
 	}
 
-	/*
-	 * @Override public void state_update(HashMap<String, String> map) {
-	 * dao.state_update(map);
-	 * 
-	 * }
-	 */
-
 	@Override
 	public SellItemVO item_select(int item_num) {
 
@@ -90,6 +83,14 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.code_check(code);
 	}
+
+	@Override
+	public void state_update(HashMap<String, String> map) {
+		dao.state_update(map);
+		
+	}
+
+
 
 	
 }

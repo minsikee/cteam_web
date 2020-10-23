@@ -191,19 +191,14 @@ public class AdminController {
 	 		return "admin/orderDetail";
 	 	}
 		
-		/*
-		 * //제품삭제하기
-		 * 
-		 * @ResponseBody @RequestMapping("/item_delete.ad") public String
-		 * item_delete(Model model, HttpSession session, int item_num) {
-		 * model.addAttribute("url", "list.ad"); service.item_delete(item_num); return
-		 * "admin/redirect"; }
-		 * 
-		 * //상품코드 중복확인
-		 * 
-		 * @ResponseBody @RequestMapping("code_check") public boolean code_check(String
-		 * code) {
-		 * 
-		 * return service.code_check(code); }
-		 */
+		@RequestMapping("/stateUpdate.ad")
+		public String state(String order_num,String order_state, HttpSession session) {
+			System.out.println(order_num + ":" +order_state);
+			HashMap<String,String> map = new HashMap<String, String>();
+			map.put("order_num", order_num);
+			map.put("order_state",order_state);
+			service.state_update(map);
+			return "redirect:orderList.ad";
+		}
+		
 }

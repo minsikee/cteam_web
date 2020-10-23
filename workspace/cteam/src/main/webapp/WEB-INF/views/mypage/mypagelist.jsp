@@ -130,7 +130,8 @@ ol {
 	</div>
 	<div id="box">
 	<table>
-		<tr><td align="left"><a href="mypageDetail.my">회원정보수정<img class="next" src="img/next.png"></a></td></tr>
+<!-- 		<tr><td align="left"><a href="mypageDetail.my">회원정보수정<img class="next" src="img/next.png"></a></td></tr> -->
+		<tr><td align="left"><a href="pwConfirm.my">회원정보수정<img class="next" src="img/next.png"></a></td></tr>
 		<tr><td id="order" align="left"><a href="myorder.my">주문조회<img class="next" src="img/next.png"></a></td></tr>
 		<tr><td align="left"><a href="myWrite.my">내가 쓴 글 / 댓글보기<img class="next" src="img/next.png"></a></td></tr>
 	</table>

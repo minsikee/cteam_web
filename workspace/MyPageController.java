@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import admin.AdminServiceImpl;
 import member.MemberVO;
 import mypage.MypageServiceImpl;
 
 @Controller
 public class MyPageController {
 	@Autowired private MypageServiceImpl service;
-	@Autowired private AdminServiceImpl admin;
 	
 	//마이페이지 선택항목불러오기
 	@RequestMapping("/list.my")
@@ -46,12 +44,12 @@ public class MyPageController {
 	
 	//내 주문 상세조회
 	@RequestMapping("/orderdetail.my")
-	public String orderdetail(Model model, HttpSession session,  String order_num) {
-		model.addAttribute("list", admin.order_detail(order_num));
+	public String orderdetail(Model model, HttpSession session) {
+		
 		session.setAttribute("category", "my");
 		if( session.getAttribute("login_info")==null ) 
 				return "redirect:/";
-		else	return "admin/orderDetail";
+		else	return "mypage/orderdetail";
 	}
 	
 	//내가 쓴 글, 댓글 보기
@@ -65,20 +63,15 @@ public class MyPageController {
 		return "mypage/myWrite";
 	}
 	
-	//회원정보수정 전 아이디찾기
-	@RequestMapping("/pwConfirm.my")
-	public String pwConfirm(MemberVO vo,HttpSession session, Model model) {
-		
-		return "mypage/pwConfirm";
-	}
 	//회원정보 수정
 	@RequestMapping("/update.my")
 	public String my_update(MemberVO vo,HttpSession session, Model model) {
-		
-		if(service.update(vo)==1) { session.setAttribute("login_info", vo); }
-		
-		//service.update(vo);
+		if(service.update(vo)==1) {
+			session.setAttribute("login_info", vo);
+			
+		}
 		return "mypage/mypagelist";
 	}
+	
 	
 }

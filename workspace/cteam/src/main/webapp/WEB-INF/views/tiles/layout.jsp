@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>cteam</title>
+<title>Petmily</title>
 <link rel="icon" type="text/x-icon" href="img/hanul.ico">
 <link rel="stylesheet" type="text/css" href="css/common.css?v=<%=new java.util.Date().getTime() %>">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

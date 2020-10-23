@@ -56,10 +56,6 @@ import order.OrderListVO;
 		return orderlist;
 	}
 
-	/*
-	 * @Override public void state_update(HashMap<String, String> map) {
-	 * sql.update("admin.mapper.state",map); }
-	 */
 	@Override
 	public SellItemVO item_select(int item_num) {
 		
@@ -102,4 +98,14 @@ import order.OrderListVO;
 		// TODO Auto-generated method stub
 		return (Integer)sql.selectOne("admin.mapper.code_check", code) >0? false: true;
 	}
+
+	@Override
+	public void state_update(HashMap<String, String> map) {
+		int result = sql.update("admin.mapper.state",map);
+		System.out.println(result);
+	}
+
+	
+	
+	
 }
