@@ -15,81 +15,58 @@
 		span{display:block;  margin-bottom: 10px; text-align: left;}
 		span.item-title{ font-weight: bold; color: gray; font-size: 20px; margin-top: 5px; }
 		span.item-price{ color: purple; font-size: 15px; font-weight: bold;}
-		ul li{ float: left; margin-right: 20px;}
-		ul{ padding: 0px; margin: 0 auto; }
+		ul li{ float: left; margin-right: 20px; }
+		ul{  padding:0px; margin: 0 auto; }
 		input.search-input{ border-radius: 20px; background-color: #f7f7f6; width:200px; border: #f7f7f6; outline: none; font-size: 13px; padding-left: 10px;}
 		#top	{margin-bottom:10px;}
 		#search	{border:none; padding:5px; outline: none; width:20px; }
 
-            #title {
-                color: white;
-                font-size: 50px;
-                font-weight: 900;
-                letter-spacing: -1px;
-
-                text-align: center;
-                padding: 50px 0;
-                /* margin: 50px auto; */
-                /* → margin-top과 margin-left, margin-right는 속성 값이 적용되지 않는다. */
-            }
-
-            #container {
-                /* width: 100%; */
-                /* → 굳이 width: 100%를 지정하지 않아도 100%로 자동으로 설정
-                    개발자 도구 → width: 1080px   height: 600px */
+         /* Animation Canvas */
+		
+		
+         .container {
                 border-top: 8px solid white;
                 border-bottom: 8px solid white;
-                margin: 50px 0 100px 0;
-
-                /* 요소의 영역을 벗어난 부분이 보이지 않도록 */
+                margin: 50px 0 100px 0;            
                 overflow: hidden;
-
-                min-width: 1080px;
+                min-width: 1280px;
+          }
+          
+		  #slide {
+                width: 500%;     
             }
 
-            #slide {
-                /* 사진 다섯 장이 나열될 수 있도록 너비 설정 */
-                width: 500%;
-                /* 개발자도구 → width: 5400px(1080 x 5)   height: 600px */
-            }
-
-            /* 모든 자식 요소에 float 스타일 속성을 설정한 경우 부모 요소의 영역을 잡아주기 위해 */
             #slide::after { content: ""; display: block; clear: both; }
 
             #slide > li {
-                /* 형제 요소들을 나란히 배치 */
                 float: left;
-
-                /* 사진 한장의 크기로 너비 설정 */
+                padding: 0px;
+                margin : 0px auto;
                 width: 20%;
-                /* 개발자도구 → width: 1080px  */
-
-                /* img 요소가 이 요소의 영역을 기준으로 배치되도록 */
                 position: relative;
-
-                /* 자식 요소들이 position 속성을 absolute로 주었기 때문에 부모 요소에 독립되기 때문에
-                    어쩔 수 없이 높이를 잡아줄 수 밖에 없다. */
                 height: 600px;
-
-                /* 이 속성을 주는 이유는?  */
                 overflow: hidden;
+          		
             }
 
-            #slide > li > img {
-                display: block;
-                /* 뷰포트의 너비에 상관 없이 이미지가 원본 크기대로 표시될 수 있도록 크기 설정을 하지 않는다.*/
-                /* width: 100%; (개발자도구 → width: 1080px)*/
-                /* → 이미지의 너비를 잡아버리면 뷰포트를 줄일 때 줄이는 크기만큼 같이 줄어드는 문제가 발생한다. */
-                /* 개발자도구 → width: 1920px   height: 600px   → 이미지 원본 크기 */
 
-                /* 뷰포트의 너비에 상관 없이 이미지가 li 요소의 영역 가운데에 배치되도록 설정
-                    img 요소를 가운데에 배치시켜야 한다. */
+		     #slide > li > img {
+                display: block;
                 position: absolute;
                 top: 50%; left: 50%;
                 transform: translate(-50%, -50%);
+                width: 1280px;
             }
+
+
+	
+
+            
+            
         </style>
         <script src="https://code.jquery.com/jquery.min.js"></script>
+ 
+    
         <script>
             $(function () {
                 //--------------------------------------------------------------------------------------
@@ -119,7 +96,7 @@
                 //    → #container 요소에 mouseenter 이벤트 핸들러를 연결해서 구현
                 // 3. #container 요소의 영역에서 마우스 포인터가 빠져나오면
                 //    → #container 요소에 mouseleave 이벤트 핸들러를 연결해서 구현
-                $("#container").hover(
+                $(".container").hover(
                     function () {
                         // 이벤트 핸들러: #container 요소에 mouseenter 이벤트가 발생하면 실행할 기능
                         
@@ -152,21 +129,29 @@
                         // 1.4. #slide 요소의 첫 번째 자식 요소를 #slide 요소의 마지막으로 옮긴다.
                         $slide.removeAttr("style").children(":first").appendTo($slide);
                         
-                    }, 400);
+                    }, 2000);
                 }
             });  // document.onready
             </script>
+
     </head>
    
 
 <body>
 	
 	
-		
-		<div style="margin-bottom:30px; " id="top-img" style="width:100%; height: 400px;">
-    		<img src="img/banner-pets-dog-cat-boarding (1).png" style="width:1080px;">
+	<div class="container">
+		<div style="margin-bottom:30px;" id="top-img" style="width:100%; height: 400px;">
+    		 <ul id="slide" >
+    		<li><img src="img/banner-pets-dog-cat-boarding (1).png" ></li>  
+    		<li><img src="img/dog1.jpg" class="slider_image"></li>
+    		<li><img src="img/cat4.jpg" class="slider_image"></li>     
+    		<li><img src="img/dog2.jpg" class="slider_image"></li>     
+    		<li><img src="img/dog5.jpg" class="slider_image"></li>
+            </ul>
     	</div>
-		
+    	
+	</div>
 				
 		<div id="top" style="margin: 50px auto; text-align: center;">
 			<h1 style="text-align: left;">Best 상품</h1>
@@ -266,18 +251,7 @@
 
     
         <div id="container">
-            <ul id="slide">
-                <li><img src="img/dog1.jpg" style="width:1080px;"></li>
            
-                <li><img src="img/cat4.jpg" style="width:1080px;"></li>
-           
-                <li><img src="img/dog2.jpg" style="width:1080px;"></li>
-           
-                <li><img src="img/dog5.jpg" style="width:1080px;"></li>
-           
-                <li><img src="img/dog3.jpg" style="width:1080px;"></li>
-           
-            </ul>
         </div>
  
     
